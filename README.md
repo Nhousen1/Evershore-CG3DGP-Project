@@ -1,4 +1,4 @@
-Evershore
+[Evershore]
 Team Members
 List your team members here. Link to each member's individual github account.
 
