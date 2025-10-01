@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 7706632497782600447}
   - component: {fileID: 1496316262890514496}
   m_Layer: 0
-  m_Name: Player
+  m_Name: IsoPlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
