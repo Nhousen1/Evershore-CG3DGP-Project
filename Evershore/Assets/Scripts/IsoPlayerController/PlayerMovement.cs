@@ -3,15 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float runSpeed;
     public float walkSpeed;
+    public float runSpeedMultiplier;
 
     private Vector2 moveInput;
-    [SerializeField]
+    private bool isRunning;
 
+    [SerializeField]
     private CinemachineVirtualCamera isoCam;
     private Vector3 isoForward;
     private Vector3 isoRight;
@@ -19,10 +21,15 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+        moveInput.Normalize();
+    }
+    public void OnSprint(InputValue value)
+    {
+        isRunning = value.isPressed;
     }
     public void Start()
     {
-        //UNDER THIS SETUP, THE CAMREA SHOULD NEVER ROTATE
+        //UNDER THIS SETUP, THE CAMERA SHOULD NEVER ROTATE
         if (isoCam != null) 
         {
             //Define camrea isometric coordinate system
@@ -36,11 +43,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 move = isoForward * moveInput.x + isoRight * moveInput.y;
-
-        transform.Translate(move * walkSpeed * Time.deltaTime);
+        float speed = walkSpeed * (isRunning ? runSpeedMultiplier : 1f);
+        transform.Translate(move * speed * Time.deltaTime, Space.World);
     }
 }
