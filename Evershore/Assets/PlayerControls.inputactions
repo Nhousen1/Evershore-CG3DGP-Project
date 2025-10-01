@@ -108,8 +108,8 @@
                 {
                     "name": "",
                     "id": "0b59af68-61e2-4c1e-8492-c86eaa6184dc",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
