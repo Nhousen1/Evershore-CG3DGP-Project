@@ -20,10 +20,11 @@ public class OarWeapon : Weapon
     private readonly Collider[] hits = new Collider[32];
     public override void DoAttack()
     {
-        int count = Physics.OverlapSphereNonAlloc(hitPoint.position, radius, hits, damageLayers, triggerInteraction);
+        Collider[] hits = new Collider[32];
+        Physics.OverlapSphereNonAlloc(hitPoint.position, radius, hits, damageLayers, triggerInteraction);
 
         //Apply damage once per collider hit
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < hits.Length; i++)
         {
             var collider = hits[i];
             if (!collider) continue;

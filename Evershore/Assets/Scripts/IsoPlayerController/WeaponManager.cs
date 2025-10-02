@@ -29,12 +29,18 @@ public class WeaponManager : MonoBehaviour
     }
     public void OnNext()
     {
-        if (weaponList == null || weaponList.Count == 0) return;
+        if (weaponList == null || weaponList.Count == 0)
+        {
+            return;
+        }
         SelectWeapon((index + 1) % weaponList.Count);
     }
     public void OnPrevious()
     {
-        if (weaponList == null || weaponList.Count == 0) return;
+        if (weaponList == null || weaponList.Count == 0)
+        {
+            return;
+        }
         SelectWeapon((index - 1 + weaponList.Count) % weaponList.Count);
     }
     void Start()
@@ -76,9 +82,15 @@ public class WeaponManager : MonoBehaviour
     }
     public void SelectWeapon(int i)
     {
-        if (weaponList.Count == 0) return;
+        if (weaponList.Count == 0)
+        {
+            return;
+        }
         i = Mathf.Clamp(i, 0, weaponList.Count - 1);
-        if (i == index && activeWeapon != null) return;
+        if (i == index && activeWeapon != null)
+        {
+            return;
+        }
         if(activeWeapon != null)
         {
             activeWeapon.gameObject.SetActive(false);
