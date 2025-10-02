@@ -47,13 +47,31 @@
                     "id": "4c4cd0ac-e78c-43a9-b08a-aecc9a5525cd",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Interact",
                     "type": "Button",
                     "id": "861a676f-56c6-4c68-bae5-85061e335331",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Next",
+                    "type": "Button",
+                    "id": "ba20e49f-fbd7-45ea-a840-5aceb1a8ce88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Previous",
+                    "type": "Button",
+                    "id": "25b5c44e-7419-4d22-8017-56bf9d95f9f4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -170,6 +188,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "405ec839-ebf9-4201-bcfa-69cd4e722b4f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2167a9b-1581-4e20-8840-cec0c840e7ee",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Previous",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
