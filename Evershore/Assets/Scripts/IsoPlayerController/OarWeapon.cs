@@ -16,7 +16,7 @@ public class OarWeapon : Weapon
     [SerializeField] 
     private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Collide;
 
-    //reccomended to use a buffer for effeciency
+    //Use a reuasble buffer of colliders to make detection more effcient
     private readonly Collider[] hits = new Collider[32];
     public override void DoAttack()
     {
@@ -25,10 +25,10 @@ public class OarWeapon : Weapon
         //Apply damage once per collider hit
         for (int i = 0; i < count; i++)
         {
-            var col = hits[i];
-            if (!col) continue;
+            var collider = hits[i];
+            if (!collider) continue;
 
-            var life = col.GetComponentInParent<EnemyLife>();
+            var life = collider.GetComponentInParent<EnemyLife>();
             if (life != null)
             {
                 life.amount -= damage;

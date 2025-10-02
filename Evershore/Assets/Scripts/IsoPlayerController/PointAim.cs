@@ -8,7 +8,7 @@ public class PointAim : MonoBehaviour
     public Transform target;
 
     [Header("Layer Filtering")]
-    [SerializeField] private LayerMask aimLayers = 0; // default: everything
+    [SerializeField] private LayerMask aimLayers = 0;
 
     private void OnEnable()
     {

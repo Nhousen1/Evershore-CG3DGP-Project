@@ -37,7 +37,7 @@ public abstract class Weapon : MonoBehaviour
         isCycling = true;
 
         if (windUp > 0f) yield return new WaitForSeconds(windUp);
-        DoAttack(); // subclass effect (spawn, hitbox, etc.)
+        DoAttack();
         if (active > 0f) yield return new WaitForSeconds(active);
         if (recovery > 0f) yield return new WaitForSeconds(recovery);
 
@@ -46,5 +46,6 @@ public abstract class Weapon : MonoBehaviour
         if (fireMode == FireMode.AutoHold && isHeld)
             TryStartCycle();
     }
+    //Specific weapon behavior here
     public abstract void DoAttack();
 }

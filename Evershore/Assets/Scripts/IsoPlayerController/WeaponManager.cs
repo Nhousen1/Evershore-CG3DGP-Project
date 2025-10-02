@@ -41,7 +41,6 @@ public class WeaponManager : MonoBehaviour
     {
         if(weaponList != null && weaponList.Count != 0)
         {
-            //inject refrences
             foreach (Weapon weapon in weaponList)
             {
                 weapon.gameObject.SetActive(false);
@@ -58,7 +57,7 @@ public class WeaponManager : MonoBehaviour
     {
         bool wasActive = (weapon == activeWeapon);
         weaponList.Remove(weapon);
-        Destroy(weapon.gameObject); //TODO: Might be too agressive
+        Destroy(weapon.gameObject);
         int idx = weaponList.IndexOf(weapon);
         if (idx == -1) return;
         
