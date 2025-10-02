@@ -68,16 +68,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   sightSensor: {fileID: 8629010432430187365}
+  combatSightAngle: 180
   patrolRadius: 7
   patrolPointTolerance: 1
   patrolPauseTime: 0
   playerSwingDistance: 4
-  playerChaseDistance: 6
+  playerParryDistance: 3
+  chaseStopDistance: 1.5
   playerChargeDistance: 8
   chargeWindup: 1
   chargeSpeed: 10
   maxChargeDistance: 15
+  targetRenderers: []
+  standardMaterial: {fileID: 2100000, guid: d64d63ac583134b3aa7832393be33899, type: 2}
+  chargeMaterial: {fileID: 2100000, guid: 0a7280056f27f42c2831b81f090b9e25, type: 2}
+  parryMaterial: {fileID: 2100000, guid: 88afdb6b7d0034b1eb3e3e98edf8937d, type: 2}
+  spinRoot: {fileID: 2123414754824647561}
+  parryDuration: 1
+  parrySpinDuration: 0.8
+  parryCooldown: 5
   swordHit: {fileID: 3139947906971746526}
+  enemyLife: {fileID: 7521894298618215453}
+  parryArmorMultiplier: 1.5
 --- !u!1 &2170969381705287956
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 5
+  armor_amount: 0
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -381,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b3a39c6344644c69432cf00bca0222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 10
   OnSwordHit:
     m_PersistentCalls:
       m_Calls: []

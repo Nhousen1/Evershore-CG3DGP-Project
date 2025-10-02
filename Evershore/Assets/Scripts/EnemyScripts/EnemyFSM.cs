@@ -10,6 +10,10 @@ public class EnemyFSM : MonoBehaviour
     public EnemyState currentState;
 
     public EnemySight sightSensor;
+    // sight angle handling: cache original and use an expanded angle while in combat
+    public float combatSightAngle = 180f;
+    private float originalSightAngle = -1f;
+    private bool sightAngleCached = false;
 
     // Simple patrol (two-point) settings — computed from the enemy's starting position
     public float patrolRadius = 4f;
@@ -88,6 +92,13 @@ public class EnemyFSM : MonoBehaviour
         patrolPoints[1] = initialPosition - right * patrolRadius;
         // ensure we start out patrolling
         currentState = EnemyState.OutofCombat;
+
+        // cache original sight angle if a sensor is assigned in the inspector
+        if (sightSensor != null)
+        {
+            originalSightAngle = sightSensor.angle;
+            sightAngleCached = true;
+        }
     }
     private void OnDrawGizmosSelected()
     {
@@ -100,6 +111,20 @@ public class EnemyFSM : MonoBehaviour
 
     void Update()
     {
+        // changing in and out of combat sightAngle
+        if (!sightAngleCached && sightSensor != null)
+        {
+            originalSightAngle = sightSensor.angle;
+            sightAngleCached = true;
+        }
+
+        if (sightSensor != null && sightAngleCached)
+        {
+            if (currentState == EnemyState.OutofCombat)
+                sightSensor.angle = originalSightAngle;
+            else
+                sightSensor.angle = combatSightAngle;
+        }
         if (currentState == EnemyState.OutofCombat)
         {
             OutofCombat();
@@ -471,5 +496,7 @@ public class EnemyFSM : MonoBehaviour
     {
         if (swordHit != null)
             swordHit.OnSwordHit.RemoveListener(NotifySwordHit);
+        if (sightSensor != null && sightAngleCached)
+            sightSensor.angle = originalSightAngle;
     }
 }
