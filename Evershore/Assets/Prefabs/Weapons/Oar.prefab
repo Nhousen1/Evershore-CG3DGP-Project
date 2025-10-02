@@ -282,11 +282,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireMode: 0
   windUp: 0
-  active: 0.5
+  active: 0.1
   recovery: 0.3
   damage: 2
   hitPoint: {fileID: 7281262930679826229}
-  radius: 0.6
+  radius: 1
   damageLayers:
     serializedVersion: 2
     m_Bits: 128
