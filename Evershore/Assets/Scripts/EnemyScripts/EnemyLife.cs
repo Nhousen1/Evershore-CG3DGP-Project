@@ -7,7 +7,7 @@ public class EnemyLife : MonoBehaviour
 {
     public float amount;
     public float armor_amount;
-    public UnityEvent onDeath;
+    public UnityEvent onDeath = new UnityEvent();
     void Update()
     {
         if (amount <= 0)
