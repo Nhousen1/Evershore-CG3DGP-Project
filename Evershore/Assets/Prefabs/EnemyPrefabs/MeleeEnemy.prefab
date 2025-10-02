@@ -75,9 +75,9 @@ MonoBehaviour:
   playerSwingDistance: 4
   playerParryDistance: 3
   chaseStopDistance: 1.5
-  playerChargeDistance: 8
+  playerChargeDistance: 12
   chargeWindup: 1
-  chargeSpeed: 10
+  chargeSpeed: 15
   maxChargeDistance: 15
   targetRenderers: []
   standardMaterial: {fileID: 2100000, guid: d64d63ac583134b3aa7832393be33899, type: 2}

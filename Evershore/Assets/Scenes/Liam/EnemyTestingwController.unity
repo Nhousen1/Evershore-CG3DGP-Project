@@ -993,14 +993,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1438446812794367151, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
-      propertyPath: chargeSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438446812794367151, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
-      propertyPath: playerChargeDistance
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 2123414754824647561, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.869413

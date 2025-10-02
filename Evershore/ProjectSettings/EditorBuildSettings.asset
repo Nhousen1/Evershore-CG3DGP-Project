@@ -5,11 +5,26 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sam/Hub.unity
     guid: a23c57322a898144eb93ca097d40ee0b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sam/Wind.unity
     guid: 78113674975893541a87ddb1a01edb90
+  - enabled: 1
+    path: Assets/Scenes/Liam/EnemyTestingwController.unity
+    guid: a486abb2527b4402cbe0bd19a9f0741d
+  - enabled: 1
+    path: Assets/Scenes/Project-1-2-Submission/Wind 1.unity
+    guid: eafd52b2e83b24ced8bafc2f203d1168
+  - enabled: 0
+    path: Assets/Scenes/Liam/WinLoss/WinScene.unity
+    guid: d444d9c308cdd45799dc6330927ffb68
+  - enabled: 1
+    path: Assets/Scenes/Project-1-2-Submission/LoseScene 1.unity
+    guid: fb975740ed62746feb8f164c6b8edd82
+  - enabled: 1
+    path: Assets/Scenes/Project-1-2-Submission/WinScene 1.unity
+    guid: c4ac8d7061c7847739afc365e790e298
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
