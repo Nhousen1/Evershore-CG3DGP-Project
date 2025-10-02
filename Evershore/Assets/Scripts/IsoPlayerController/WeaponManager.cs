@@ -14,7 +14,10 @@ public class WeaponManager : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-        if (activeWeapon == null) return;
+        if (activeWeapon == null)
+        {
+            return;
+        }
         if (value.isPressed)
         {
             activeWeapon.onUsePressed();
