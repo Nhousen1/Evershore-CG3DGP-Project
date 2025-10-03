@@ -743,7 +743,7 @@ Camera:
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -768,7 +768,7 @@ Transform:
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911792, y: 0.3696462, z: -0.099045314, w: 0.8923981}
-  m_LocalPosition: {x: -12.3037615, y: 7.9600024, z: -6.1236863}
+  m_LocalPosition: {x: -6.123761, y: 5.0000024, z: -6.1236863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1169,6 +1169,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4617342406869167736, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.123761
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617342406869167736, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.0000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617342406869167736, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.1236863
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858127509575451839, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7319231641874773411, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1221,6 +1237,10 @@ PrefabInstance:
       propertyPath: 'weaponList.Array.data[0]'
       value: 
       objectReference: {fileID: 894447602}
+    - target: {fileID: 8784179863598320445, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: 'weaponList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
