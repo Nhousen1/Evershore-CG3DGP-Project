@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 /* Author: Marcus King
  * Date created: 10/1/2025
  * Date last updated: 10/6/2025
- * Summary: an "inventory" (list of weapons) giving the player weapon selection in scene and handling relevant input calls 
+ * Summary: an "inventory" (list of weapons) giving the player weapon selection in scene and handling relevant input calls.
  */
 public class WeaponManager : MonoBehaviour
 {

@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/* Author: Marcus King
+ * Date created: 10/1/2025
+ * Date last updated: 10/6/2025
+ * Summary: placeholder test melee weapon item which damages everything within range once per attack.
+ */
 public class OarWeapon : Weapon
 {
-    [Header("Gameplay Varibles")]
+    [Header("Gameplay Variables")]
     [SerializeField]
     private float damage;
     [Header("Collision Info")]
@@ -18,18 +23,19 @@ public class OarWeapon : Weapon
     [SerializeField] 
     private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Collide;
 
+    //Detect colliders (or triggers) in range of weapon on the first frame of the attack cycle. This is the most simple form of melee
     public override void DoAttack()
     {
         Collider[] hits = new Collider[32];
         hits = Physics.OverlapSphere(hitPoint.position, radius, damageLayers, triggerInteraction);
 
-        //Apply damage once per collider hit
         for (int i = 0; i < hits.Length; i++)
         {
             var collider = hits[i];
             if (!collider) continue;
 
-            var life = collider.GetComponentInParent<EnemyLife>();
+            //This assumes the life script and the collider script are on the same GameObject
+            var life = collider.GetComponent<EnemyLife>();
             if (life != null)
             {
                 life.amount -= damage;
