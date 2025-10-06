@@ -4,6 +4,7 @@ using UnityEngine;
 public enum FireMode { Single, AutoHold }
 public abstract class Weapon : MonoBehaviour
 {
+    [Header("Timing")]
     [SerializeField] 
     private FireMode fireMode = FireMode.Single;
     [SerializeField]
@@ -15,15 +16,15 @@ public abstract class Weapon : MonoBehaviour
 
 
     private bool isCycling = false;
-    private bool isHeld = false;
+    private bool isAttackHeld = false;
     public virtual void onUsePressed()
     {
-        isHeld = true;
+        isAttackHeld = true;
         TryStartCycle();
     }
     public virtual void onUseReleased()
     {
-        isHeld = false;
+        isAttackHeld = false;
     }
     private void TryStartCycle()
     {
@@ -43,7 +44,7 @@ public abstract class Weapon : MonoBehaviour
 
         isCycling = false;
 
-        if (fireMode == FireMode.AutoHold && isHeld)
+        if (fireMode == FireMode.AutoHold && isAttackHeld)
             TryStartCycle();
     }
     //Specific weapon behavior here

@@ -5,19 +5,26 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/* Author: Marcus King
+ * Date created: 10/1/2025
+ * Date last updated: 10/6/2025
+ * Summary: an "inventory" (list of weapons) giving the player weapon selection in scene and handling relevant input calls 
+ */
 public class WeaponManager : MonoBehaviour
 {
+    [Header("Inventory")]
     [SerializeField]
     private List<Weapon> weaponList;
     public Weapon activeWeapon;
-    private int index = -1;
 
+    private int index = -1;
     public void OnAttack(InputValue value)
     {
         if (activeWeapon == null)
         {
             return;
         }
+        //Events sent to weapon scripts, hold release used for Autohold weapons
         if (value.isPressed)
         {
             activeWeapon.onUsePressed();
@@ -29,6 +36,7 @@ public class WeaponManager : MonoBehaviour
     }
     public void OnNext()
     {
+        //Index forward through weapon list
         if (weaponList == null || weaponList.Count == 0)
         {
             return;
@@ -37,6 +45,7 @@ public class WeaponManager : MonoBehaviour
     }
     public void OnPrevious()
     {
+        //Index backward, ensuring index is positive
         if (weaponList == null || weaponList.Count == 0)
         {
             return;
@@ -45,13 +54,14 @@ public class WeaponManager : MonoBehaviour
     }
     void Start()
     {
+        //By default, the first weapon in hand is the first in the list
         if(weaponList != null && weaponList.Count != 0)
         {
             foreach (Weapon weapon in weaponList)
             {
                 weapon.gameObject.SetActive(false);
             }
-            SelectWeapon(0); //select the first weapon by default
+            SelectWeapon(0);
         }
     }
     public void addWeapon(Weapon weapon)
@@ -61,14 +71,14 @@ public class WeaponManager : MonoBehaviour
     }
     public void removeWeapon(Weapon weapon)
     {
+        //Removes weapon while handling case if that weapon is the active weapon
+        int weaponIndex = weaponList.IndexOf(weapon);
+
         bool wasActive = (weapon == activeWeapon);
+        
         weaponList.Remove(weapon);
         Destroy(weapon.gameObject);
-        int idx = weaponList.IndexOf(weapon);
-        if (idx == -1) return;
-        
-        weaponList.RemoveAt(idx);
-        Destroy(weapon.gameObject);
+
 
         if (wasActive) 
         {
@@ -76,12 +86,13 @@ public class WeaponManager : MonoBehaviour
             index = -1;
             if (weaponList.Count > 0)
             {
-                SelectWeapon(Mathf.Clamp(idx, 0, weaponList.Count - 1));
+                SelectWeapon(Mathf.Clamp(weaponIndex, 0, weaponList.Count - 1));
             }
         }
     }
     public void SelectWeapon(int i)
     {
+        //Chagne the active weapon with checks for empty lists and redundant calls
         if (weaponList.Count == 0)
         {
             return;

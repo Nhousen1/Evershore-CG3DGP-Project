@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class OarWeapon : Weapon
 {
+    [Header("Gameplay Varibles")]
     [SerializeField]
     private float damage;
+    [Header("Collision Info")]
     [SerializeField]
     private Transform hitPoint;
     [SerializeField] 
@@ -16,12 +18,10 @@ public class OarWeapon : Weapon
     [SerializeField] 
     private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Collide;
 
-    //Use a reuasble buffer of colliders to make detection more effcient
-    private readonly Collider[] hits = new Collider[32];
     public override void DoAttack()
     {
         Collider[] hits = new Collider[32];
-        Physics.OverlapSphereNonAlloc(hitPoint.position, radius, hits, damageLayers, triggerInteraction);
+        hits = Physics.OverlapSphere(hitPoint.position, radius, damageLayers, triggerInteraction);
 
         //Apply damage once per collider hit
         for (int i = 0; i < hits.Length; i++)
