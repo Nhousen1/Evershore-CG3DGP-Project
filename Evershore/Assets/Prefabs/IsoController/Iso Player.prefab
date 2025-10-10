@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8784179863598320445}
   m_Layer: 6
   m_Name: Weapons
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 1206244408825112140}
   m_Layer: 6
   m_Name: Camrea follow point
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,9 +92,10 @@ GameObject:
   - component: {fileID: 8021555270195315586}
   - component: {fileID: 2291519995677472778}
   - component: {fileID: 8606380147972356058}
+  - component: {fileID: 1567630563468739274}
   m_Layer: 6
   m_Name: Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,6 +248,33 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!54 &1567630563468739274
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079551493445879435}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2724522424458059149
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +287,7 @@ GameObject:
   - component: {fileID: 5858127509575451839}
   m_Layer: 6
   m_Name: Player Follow Camera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 2724522424458059149}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911792, y: 0.3696462, z: -0.099045314, w: 0.8923981}
-  m_LocalPosition: {x: -6.123761, y: 5.0000024, z: -6.1236863}
+  m_LocalPosition: {x: -6.1237617, y: 5.0000024, z: -6.1236863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -420,7 +448,7 @@ GameObject:
   - component: {fileID: 4497143836401090796}
   m_Layer: 6
   m_Name: Graphics(capsule)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,7 +567,7 @@ GameObject:
   - component: {fileID: 4243326291933951202}
   m_Layer: 6
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
