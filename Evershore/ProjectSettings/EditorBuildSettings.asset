@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sam/Hub.unity
-    guid: a23c57322a898144eb93ca097d40ee0b
+    path: Assets/Scenes/Project-1-2-Submission/Hub 1.unity
+    guid: 5b1cd9ced0b7d46999317e27a4bfb67b
   - enabled: 1
-    path: Assets/Scenes/Sam/Wind.unity
-    guid: 78113674975893541a87ddb1a01edb90
+    path: Assets/Scenes/Project-1-2-Submission/Wind 1.unity
+    guid: eafd52b2e83b24ced8bafc2f203d1168
   - enabled: 1
     path: Assets/Scenes/Liam/WinLoss/LoseScene.unity
     guid: cca067dc27ae64cb48ed8fbdf7db9207

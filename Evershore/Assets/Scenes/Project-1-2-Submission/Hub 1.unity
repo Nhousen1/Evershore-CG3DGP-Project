@@ -1442,6 +1442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneSwitch
       objectReference: {fileID: 0}
+    - target: {fileID: 4399065330070993595, guid: b38c3e05eefe49044b6dae0fc7076574, type: 3}
+      propertyPath: targetSceneName
+      value: Wind 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4947528191718736823, guid: b38c3e05eefe49044b6dae0fc7076574, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.19
