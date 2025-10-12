@@ -1,17 +1,15 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.UIElements;
 /* Author: Marcus King
  * Date created: 10/1/2025
- * Date last updated: 10/6/2025
+ * Date last updated: 10/12/2025
  * Summary: handles player movement inputs, defines isometric coordinate system.
  */
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement")]
     public float walkSpeed;
     public float runSpeedMultiplier;
     public float gravity = -9.8f;
@@ -20,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private bool isRunning;
 
+    [Header("Camera Configuration")]
     [SerializeField]
     private CinemachineVirtualCamera isoCam;
     private Vector3 isoForward;
@@ -27,8 +26,13 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController cc;
 
+    [Header("Input Flags")]
     [SerializeField]
     private bool canMove;
+
+    [Header("Animator")]
+    [SerializeField]
+    private Animator animator;//TODO: should the animator really be handled here?
 
     private Vector3 velocity;
     public void OnMove(InputValue value)
@@ -84,6 +88,18 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         cc.Move(velocity * Time.deltaTime);
+
+        //assumes moveInput is normalized
+        Vector2 moveDirection = moveInput;
+        float aimAngle = transform.rotation.eulerAngles.y * Mathf.Deg2Rad;//Aim is done on this transform
+        Vector2 aimDirection = new Vector2(Mathf.Cos(aimAngle), Mathf.Sin(aimAngle));
+        Vector2 aimPerpDirection = new Vector2(Mathf.Cos(aimAngle), -Mathf.Sin(aimAngle));
+
+        float animatorForward = Vector2.Dot(aimDirection, moveDirection) * -1f;
+        float animatorStrafe = Vector2.Dot(aimPerpDirection, moveDirection);
+        Debug.Log(animatorForward + ", " + animatorStrafe);
+        animator.SetFloat("MoveY", animatorForward);
+        animator.SetFloat("MoveX", animatorStrafe);
     }
     public void stopInputMovement()
     {
