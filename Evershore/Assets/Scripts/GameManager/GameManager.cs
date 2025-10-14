@@ -18,6 +18,10 @@ public class GameManager : Singleton<GameManager>
     public UnityGameEventListener PillarsActivatedListener;
     public UnityGameEventListener PlayerDeathListener;
 
+    [Header("Scenes")]
+    public string winScene;
+    public string loseScene;
+
     void Start()
     {
         if (!PillarsActivatedListener || !PlayerDeathListener) 
@@ -28,11 +32,11 @@ public class GameManager : Singleton<GameManager>
     //Functions implementing the game events you want to handle. These will be called by the listeners attached to the GameManager prefab.
     public void OnAllPillarsActivated()
     {
-        SceneManager.LoadScene("WinScene");
+        SceneManager.LoadScene(winScene);
     }
 
     public void OnPlayerDied()
     {
-        SceneManager.LoadScene("LoseScene");
+        SceneManager.LoadScene(loseScene);
     }
 }
