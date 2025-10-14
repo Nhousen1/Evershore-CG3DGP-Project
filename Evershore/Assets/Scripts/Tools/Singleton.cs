@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+//From: https://gamedevbeginner.com/singletons-in-unity-the-right-way/
+public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
+{
+    public static T Instance { get; private set; }
+    //inherited class sets persistence flag
+    public abstract bool defineScenePersistence();
+    private bool isScenePersistent;
+
+    private void Awake()
+    {
+        isScenePersistent = defineScenePersistence();
+
+        if (Instance == null)
+        {
+            Instance = this as T;
+        }
+        else if (Instance != this)
+        {
+            Debug.LogWarning(gameObject.name + " is an illegal singleton instance. Removing singleton component...");
+            Destroy(gameObject);
+        }
+
+        if (isScenePersistent)
+        {
+            DontDestroyOnLoad(Instance.gameObject);
+        }
+    }
+    //reset instance so instance is not persistent across scenes
+    private void OnDestroy()
+    {
+        if(Instance == this)
+        {
+            Instance = null;
+        }
+    }
+}
