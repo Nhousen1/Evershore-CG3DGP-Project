@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 6754586186022091145}
   - component: {fileID: 8021555270195315586}
   - component: {fileID: 2291519995677472778}
-  - component: {fileID: 8606380147972356058}
+  - component: {fileID: 6304946622702710855}
   m_Layer: 6
   m_Name: Controller
   m_TagString: Untagged
@@ -135,6 +135,7 @@ MonoBehaviour:
   jumpHeight: 1.5
   isoCam: {fileID: 5858127509575451839}
   canMove: 1
+  animator: {fileID: 0}
 --- !u!114 &6987389852745770120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +231,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8606380147972356058
+--- !u!114 &6304946622702710855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,12 +240,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2079551493445879435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0af066c2c702439681405b85922e382, type: 3}
+  m_Script: {fileID: 11500000, guid: 146482436613c46529ec53ba6339a715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 100
   armor_amount: 0
-  onDeath:
+  onPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &2724522424458059149

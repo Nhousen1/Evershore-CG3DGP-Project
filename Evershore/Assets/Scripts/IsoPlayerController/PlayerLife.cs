@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyLife : MonoBehaviour
+public class PlayerLife : MonoBehaviour
 {
-    [Header("Enemy Life Settings")]
+    [Header("Player Life Settings")]
     [SerializeField] float amount;
     [SerializeField] float armor_amount;
-    public UnityEvent onEnemyDeath = new UnityEvent();
+    public UnityEvent onPlayerDeath = new UnityEvent();
     void Update()
     {
         if (amount <= 0)
         {
-            onEnemyDeath.Invoke();
+            onPlayerDeath.Invoke();
             Destroy(gameObject);
         }
     }

@@ -7,7 +7,7 @@ using System;
 
 public class GameWinManager : MonoBehaviour
 {
-    [SerializeField] EnemyLife playerLife;
+    [SerializeField] PlayerLife playerLife;
     public static GameWinManager Instance { get; private set; }
 
     // singleton pattern persisting across scenes
@@ -24,7 +24,7 @@ public class GameWinManager : MonoBehaviour
     }
     void Start()
     {
-        playerLife.onDeath.AddListener(OnPlayerDied);
+        playerLife.onPlayerDeath.AddListener(OnPlayerDied);
         // subscribe to pillar win event (static UnityEvent on PillarInteractable)
         PillarInteractable.onAllPillarsActivated.AddListener(OnAllPillarsActivated);
     }
