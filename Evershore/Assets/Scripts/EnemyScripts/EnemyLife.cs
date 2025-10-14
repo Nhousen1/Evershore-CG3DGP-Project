@@ -5,9 +5,9 @@ using UnityEngine.Events;
 
 public class EnemyLife : MonoBehaviour
 {
-    [Header("Enemy Life Settings")]
-    [SerializeField] float amount;
-    [SerializeField] float armor_amount;
+    [Header("EnemyLife Settings")]
+    public float amount;
+    public float armor_amount;
     public UnityEvent onEnemyDeath = new UnityEvent();
     void Update()
     {
