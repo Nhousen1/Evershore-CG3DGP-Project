@@ -6,14 +6,15 @@ using UnityEngine.Events;
 public class PlayerLife : MonoBehaviour
 {
     [Header("Player Life Settings")]
-    [SerializeField] float amount;
-    [SerializeField] float armor_amount;
-    public UnityEvent onPlayerDeath = new UnityEvent();
+    public float amount;
+    public float armor_amount;
+    [Header("Events")]
+    public GameEvent onPlayerDeath;
     void Update()
     {
         if (amount <= 0)
         {
-            onPlayerDeath.Invoke();
+            onPlayerDeath.Raise();
             Destroy(gameObject);
         }
     }

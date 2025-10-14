@@ -11,7 +11,7 @@ public class SwordHit : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //TODO: need to change to work with player
-        EnemyLife life = other.GetComponent<EnemyLife>();
+        PlayerLife life = other.GetComponent<PlayerLife>();
 
         if (life != null)
         {

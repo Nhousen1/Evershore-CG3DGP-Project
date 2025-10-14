@@ -245,9 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 100
   armor_amount: 0
-  onPlayerDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  onPlayerDeath: {fileID: 11400000, guid: 5d53e6d021a5f7447b3e57e7f18cb8b6, type: 2}
 --- !u!1 &2724522424458059149
 GameObject:
   m_ObjectHideFlags: 0
