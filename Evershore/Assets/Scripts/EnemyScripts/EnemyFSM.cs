@@ -2,19 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
+
+/**
+* Author: Liam Housenbold
+* Date Created: 9-25-2025
+* Date Modified: 10-15-2025
+* Summary: A finite state machine (FSM) for melee enemy AI behavior. has a out of combat patrol state, chase player state, charge attack state, sword swing attack state, and defense stance state.
+* The enemy uses a NavMeshAgent for movement and pathfinding.
+*/
 
 public class EnemyFSM : MonoBehaviour
 {
-    public enum EnemyState { OutofCombat, SwingSword, ChargeAttack, ParryStance, ParrySpin, ChasePlayer }
-
+    // Different states the enemy can be in
+    public enum EnemyState { OutofCombat, SwingSword, Charge, DefenseStance, ChasePlayer }
     public EnemyState currentState;
+    private Animator animator;
 
-    public EnemySight sightSensor;
-    // sight angle handling: cache original and use an expanded angle while in combat
-    public float combatSightAngle = 180f;
-    private float originalSightAngle = -1f;
-    private bool sightAngleCached = false;
-
+    [Header("Out of Combat Patrol Settings")]
     // Simple patrol (two-point) settings — computed from the enemy's starting position
     public float patrolRadius = 4f;
     public float patrolPointTolerance = 0.5f;
@@ -25,15 +30,15 @@ public class EnemyFSM : MonoBehaviour
     private Vector3 initialPosition;
 
 
+    [Header("Enemy Trigger Distance Settings")]
     // distance settings
     public float playerSwingDistance;
-    public float playerParryDistance;
-    public float chaseStopDistance = 1.5f;
+    public float chaseStopDistance;
+    public float playerChargeDistance;
 
 
-
-    // Charge attack settings
-    public float playerChargeDistance; // min distance to player to trigger charge
+    // Charge settings
+    [Header("Enemy Charge Move Settings")]
     public float chargeWindup = 0.5f; // seconds to aim before charging
     public float chargeSpeed = 8f; // movement speed while charging
     public float maxChargeDistance = 8f; // maximum distance to travel during charge
@@ -44,87 +49,110 @@ public class EnemyFSM : MonoBehaviour
     private Vector3 chargeTarget = Vector3.zero;
     private float originalAgentSpeed = 0f;
 
-    // material settings/params
-    public Renderer[] targetRenderers;
-    public Material standardMaterial;
-    public Material chargeMaterial;
-    public Material parryMaterial;
-    // Transform to rotate/translate during spin and movement (defaults to agent root)
-    public Transform spinRoot;
-  
-    // Parry params
-    public float parryDuration = 1.0f;
-    public float parrySpinDuration = 0.8f;
-    private float parryTimer = 0f;
+    // Defense params
+    [Header("Enemy Defense Stance Settings")]
+    public float defenseDuration;
+    private bool isDefending = false;
+    private float defenseTimer = 0f;
+    private bool defenseInitialized = false;
+    public int swingsBeforeDefense = 3;   // ex) 3 swings then defend
+    private int swingCounter = 0;         // counts completed swings since last defense
+    public float defenseArmorMultiplier = 2.0f; // modify armor while defending
+    private float prevArmorAmount = 0f;
+    // Material Settings
+    private SkinnedMeshRenderer enemyRenderer;
+    private Material runtimeMaterial;
+    // Pulse effect parameters
+    private float pulseSpeed = 15.0f; // how fast the glow pulses
+    private float pulseIntensity = 4.0f; // maximum emission brightness
+    private bool isPulsing = false;
 
-    private bool parryInitialized = false;
-    // Parry spin runtime fields (used when in ParrySpin state)
-    private float parrySpinTimer = 0f;
-    private Quaternion parryStartRot;
-    private Quaternion parryEndRot;
 
-    private bool prevAgentUpdateRotation = true;
-    // parry cooldown: minimum seconds between parry activations
-    public float parryCooldown = 5f;
-    private float lastParryTime = 0f;
+    [Header("Enemy Sword Swing Settings")]
+    // Sword Swing Params
+    public float swingCooldown = 1f;
+    private float swingTimer = 0f;
 
+
+    [Header("Refrences")]
     [SerializeField] private SwordHit swordHit;
     [SerializeField] private EnemyLife enemyLife;
-    // parry armor modifier
-    public float parryArmorMultiplier = 2.0f; // double armor while parrying by default
-    private float prevArmorAmount = 0f;
-
+    [SerializeField] private EnemySight sightSensor;
     private UnityEngine.AI.NavMeshAgent agent;
+
+    private float originalSightAngle = -1f;
 
     private void Awake()
     {
         agent = GetComponentInParent<UnityEngine.AI.NavMeshAgent>();
-        swordHit.OnSwordHit.AddListener(NotifySwordHit); //stop charge on sword hit event listener
+        swordHit.OnSwordHit.AddListener(NotifySwordHit); //detect when player is hit on charge
+        animator = GetComponent<Animator>();
 
-        // default spinRoot to the agent/root transform so visuals rotate with movement
-        if (spinRoot == null)
-            spinRoot = (agent != null) ? agent.transform : transform.parent;
-
-    // record starting position and initialize patrol points relative to the spin root
-    initialPosition = (spinRoot != null) ? spinRoot.position : transform.position;
-    Vector3 right = (spinRoot != null) ? spinRoot.right : transform.right;
+        // record starting position and initialize patrol points
+        initialPosition = transform.position;
+        // Use the enemy's local right direction for patrol points
+        Vector3 right = transform.right;
+        // Generate two patrol points offset by patrolRadius to the left and right
         patrolPoints[0] = initialPosition + right * patrolRadius;
         patrolPoints[1] = initialPosition - right * patrolRadius;
-        // ensure we start out patrolling
         currentState = EnemyState.OutofCombat;
+    }
 
-        // cache original sight angle if a sensor is assigned in the inspector
-        if (sightSensor != null)
+    private void Start()
+    {
+        // Run AFTER Unity finishes prefab instantiation
+        enemyRenderer = transform.parent.GetComponentInChildren<SkinnedMeshRenderer>();
+        if (enemyRenderer != null)
         {
-            originalSightAngle = sightSensor.angle;
-            sightAngleCached = true;
+            // Create a unique material instance just for this enemy
+            runtimeMaterial = Instantiate(enemyRenderer.sharedMaterial);
+            enemyRenderer.material = runtimeMaterial;
         }
     }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, playerParryDistance);
-
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, playerChargeDistance);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, playerSwingDistance);
+
+        // Sword hitbox visualization
+        if (swordHit != null)
+        {
+            BoxCollider box = swordHit.GetComponent<BoxCollider>();
+            if (box != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.matrix = box.transform.localToWorldMatrix;
+                Gizmos.DrawWireCube(box.center, box.size);
+                Gizmos.matrix = Matrix4x4.identity;
+            }
+        }
     }
 
     void Update()
     {
-        // changing in and out of combat sightAngle
-        if (!sightAngleCached && sightSensor != null)
+        // Prevent other states from interrupting defense
+        if (isDefending)
         {
-            originalSightAngle = sightSensor.angle;
-            sightAngleCached = true;
+            DefenseStance();
+            return; // skip everything else until defense ends
         }
 
-        if (sightSensor != null && sightAngleCached)
+        if (sightSensor != null)
         {
-            if (currentState == EnemyState.OutofCombat)
-                sightSensor.angle = originalSightAngle;
+            // Cache the original angle if not already stored
+            if (originalSightAngle < 0f)
+                originalSightAngle = sightSensor.angle;
+
+            // Expand vision to 360° while not patrolling
+            if (currentState != EnemyState.OutofCombat)
+                sightSensor.angle = 360f;
             else
-                sightSensor.angle = combatSightAngle;
+                sightSensor.angle = originalSightAngle;
         }
+
         if (currentState == EnemyState.OutofCombat)
         {
             OutofCombat();
@@ -133,22 +161,35 @@ public class EnemyFSM : MonoBehaviour
         {
             ChasePlayer();
         }
-        else if (currentState == EnemyState.ChargeAttack)
+        else if (currentState == EnemyState.Charge)
         {
-            ChargeAttack();
+            Charge();
         }
-        else if (currentState == EnemyState.ParryStance)
+        else if (currentState == EnemyState.DefenseStance)
         {
-            ParryStance();
+            DefenseStance();
         }
-        else if (currentState == EnemyState.ParrySpin)
+        else if (currentState == EnemyState.SwingSword)
         {
-            ParrySpin();
+            SwingSword();
+        }
+
+        // Handle pulsing red glow in Defense Stance
+        if (isPulsing && runtimeMaterial != null)
+        {
+            // Pulse intensity using a sine wave
+            float emission = (Mathf.Sin(Time.time * pulseSpeed) + 1f) * 0.5f; // oscillates 0–1
+            Color pulseColor = Color.red * (emission * pulseIntensity);
+            runtimeMaterial.SetColor("_EmissionColor", pulseColor);
+            DynamicGI.SetEmissive(enemyRenderer, pulseColor);
         }
     }
 
     void OutofCombat()
     {
+        if (animator != null)
+            animator.SetBool("isMoving", true);
+
         // If a player appears, break patrol and chase
         if (sightSensor != null && sightSensor.detectedObject != null)
         {
@@ -203,9 +244,13 @@ public class EnemyFSM : MonoBehaviour
 
     void ChasePlayer()
     {
+        if (animator != null)
+            animator.SetBool("isMoving", true);
+
         if (agent == null)
             agent = GetComponentInParent<UnityEngine.AI.NavMeshAgent>();
 
+        // if player out of sight, return to patrol
         if (sightSensor == null || sightSensor.detectedObject == null)
         {
             currentState = EnemyState.OutofCombat;
@@ -216,18 +261,7 @@ public class EnemyFSM : MonoBehaviour
         Vector3 agentPos = agent != null ? agent.transform.position : transform.position;
         float distanceToPlayer = Vector3.Distance(agentPos, target.transform.position);
 
-        // If the player is close enough and cooldown has elapsed, enter parry stance
-        if (distanceToPlayer <= playerParryDistance && Time.time >= lastParryTime + parryCooldown)
-        {
-            if (agent != null)
-                agent.isStopped = true;
-            parryInitialized = false;
-                lastParryTime = Time.time; // Set lastParryTime when entering parry stance
-            currentState = EnemyState.ParryStance;
-            return;
-        }
-
-        // If the player is outside the charge range, start a charge attack
+        // If the player is outside the charge range, start a charge
         if (distanceToPlayer > playerChargeDistance)
         {
             // prepare charge: windup/aim then set an agent destination for the charge
@@ -243,7 +277,7 @@ public class EnemyFSM : MonoBehaviour
             chargeTarget = agentPos + chargeDirection * maxChargeDistance;
             chargeTimer = 0f;
             isCharging = false;
-            currentState = EnemyState.ChargeAttack;
+            currentState = EnemyState.Charge;
             return;
         }
 
@@ -266,12 +300,18 @@ public class EnemyFSM : MonoBehaviour
 
         if (distanceToPlayer <= playerSwingDistance)
         {
-            //currentState = EnemyState.SwingSword;
+            currentState = EnemyState.SwingSword;
         }
     }
 
-    void ChargeAttack()
+    void Charge()
     {
+        if (animator != null)
+        {
+            animator.ResetTrigger("Charge");
+            animator.SetTrigger("Charge");
+        }
+
         if (agent == null)
             agent = GetComponentInParent<UnityEngine.AI.NavMeshAgent>();
 
@@ -296,8 +336,6 @@ public class EnemyFSM : MonoBehaviour
             {
                 // start charging: set agent destination to the sampled chargeTarget and increase speed
                 isCharging = true;
-                // apply charge material visuals
-                ApplyMaterial(chargeMaterial);
                 chargeTimer = 0f;
                 chargeStartPos = agentPos;
                 if (agent != null)
@@ -323,8 +361,6 @@ public class EnemyFSM : MonoBehaviour
                 chargeTimer = 0f;
                 agent.speed = originalAgentSpeed;
                 agent.isStopped = false;
-                    // restore visuals
-                    ApplyMaterial(standardMaterial);
                 currentState = EnemyState.ChasePlayer;
             }
         }
@@ -339,85 +375,143 @@ public class EnemyFSM : MonoBehaviour
             {
                 isCharging = false;
                 chargeTimer = 0f;
-                ApplyMaterial(standardMaterial);
                 currentState = EnemyState.ChasePlayer;
             }
         }
     }
 
-    void ParryStance()
+    void DefenseStance()
     {
-        if (!parryInitialized)
+        if (!defenseInitialized)
         {
-            parryTimer = 0f;
+            isDefending = true;
+
+            // Start pulsing emission 
+            if (enemyRenderer != null && runtimeMaterial != null)
+            {
+                runtimeMaterial.EnableKeyword("_EMISSION");
+                isPulsing = true; // enable pulsing in Update()
+            }
+
+            if (animator != null)
+            {
+                animator.ResetTrigger("Attack");
+                animator.ResetTrigger("Charge");
+                animator.ResetTrigger("Defense");
+                animator.SetTrigger("Defense");
+                animator.SetBool("isMoving", false);
+            }
+
+            defenseTimer = 0f;
             // stop movement
             if (agent != null)
             {
                 agent.isStopped = true;
             }
-            // set parry visual
-            ApplyMaterial(parryMaterial);
             // temporarily increase armor if EnemyLife is available
             if (enemyLife != null)
             {
                 prevArmorAmount = enemyLife.armor_amount;
-                enemyLife.armor_amount = prevArmorAmount * parryArmorMultiplier;
+                enemyLife.armor_amount = prevArmorAmount * defenseArmorMultiplier;
             }
-            parryInitialized = true;
+            defenseInitialized = true;
         }
 
         // count down
-            parryTimer += Time.deltaTime;
+        defenseTimer += Time.deltaTime;
 
-        // When the timer reaches parryDuration, transition into the ParrySpin state
-        if (parryTimer >= parryDuration)
+        // When the timer reaches defenseDuration, transition into SingSword
+        if (defenseTimer >= defenseDuration)
         {
-            // prepare spin runtime data
-            parrySpinTimer = 0f;
-            parryStartRot = (spinRoot != null) ? spinRoot.rotation : transform.rotation;
-            parryEndRot = parryStartRot * Quaternion.Euler(0f, 360f, 0f);
-
-            // disable NavMeshAgent automatic rotation so it doesn't override our manual spin
-            if (agent != null)
+            // Stop pulsing and clear emission 
+            if (enemyRenderer != null && runtimeMaterial != null)
             {
-                prevAgentUpdateRotation = agent.updateRotation;
-                agent.updateRotation = false;
+                isPulsing = false;
+                runtimeMaterial.DisableKeyword("_EMISSION");
+                runtimeMaterial.SetColor("_EmissionColor", Color.black);
+                DynamicGI.SetEmissive(enemyRenderer, Color.black);
             }
 
-            currentState = EnemyState.ParrySpin;
+            // Restore armor and flags
+            if (enemyLife != null)
+                enemyLife.armor_amount = prevArmorAmount;
+
+            isDefending = false;
+            defenseInitialized = false;
+
+            // Reset animator triggers so swing restarts cleanly
+            if (animator != null)
+            {
+                animator.ResetTrigger("Defense");
+                animator.ResetTrigger("Attack");
+                animator.SetBool("isMoving", false);
+            }
+
+            currentState = EnemyState.ChasePlayer;
         }
     }
-    void ParrySpin()
+
+    void SwingSword()
     {
-        // restore armor after parry
-        if (enemyLife != null)
-            enemyLife.armor_amount = prevArmorAmount;
-            
+        if (sightSensor == null || sightSensor.detectedObject == null)
+        {
+            // No target, return to patrol
+            currentState = EnemyState.OutofCombat;
+            return;
+        }
+
+        var target = sightSensor.detectedObject;
+        Vector3 agentPos = agent != null ? agent.transform.position : transform.position;
+        float distanceToPlayer = Vector3.Distance(agentPos, target.transform.position);
+
+        // Face the player
+        LookTo(target.transform.position);
+
+        // -------------------------
+        // Attack animation and timing
+        // -------------------------
+
+        // Make sure NavMeshAgent is stopped while swinging
         if (agent != null)
             agent.isStopped = true;
 
-        parrySpinTimer += Time.deltaTime;
+        // Increment swing timer
+        swingTimer += Time.deltaTime;
 
-        // how fast to spin (degrees per second)
-        float spinSpeed = 720f; // 2 full rotations per second
-
-        // Rotate the spinRoot around its up axis
-        if (spinRoot != null)
-            spinRoot.Rotate(Vector3.up, spinSpeed * Time.deltaTime, Space.Self);
-        else
-            transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime, Space.Self);
-
-        // end spin after duration
-        if (parrySpinTimer >= parrySpinDuration)
+        // If just starting the swing
+        if (swingTimer < 0.1f)
         {
-            ApplyMaterial(standardMaterial);
+            // Trigger the attack animation once
+            if (animator != null)
+            {
+                animator.ResetTrigger("Attack");
+                animator.SetTrigger("Attack");
+            }
+        }
+
+        // Wait for the attack animation duration before resuming
+        if (swingTimer >= swingCooldown)
+        {
+            // Reset swing timer and go back to chase
+            swingTimer = 0f;
+
+            // Count this swing
+            swingCounter++;
+
+            // If we've hit the threshold, go to Defense instead of Chase
+            if (swingCounter >= swingsBeforeDefense)
+            {
+                swingCounter = 0;          // reset for next cycle
+                defenseInitialized = false;
+                if (agent != null) agent.isStopped = true;
+
+                currentState = EnemyState.DefenseStance;
+                return; // exit early to avoid switching to Chase
+            }
 
             if (agent != null)
-            {
                 agent.isStopped = false;
-                agent.updateRotation = prevAgentUpdateRotation;
-            }
-            parryInitialized = false;
+
             currentState = EnemyState.ChasePlayer;
         }
     }
@@ -441,24 +535,8 @@ public class EnemyFSM : MonoBehaviour
 
         // return to chasing state so AI can resume normal behavior
         currentState = EnemyState.ChasePlayer;
-        // restore visuals if we changed them
-        ApplyMaterial(standardMaterial);
     }
-    void ApplyMaterial(Material mat)
-    {
-        if (targetRenderers == null || mat == null)
-            return;
 
-        for (int i = 0; i < targetRenderers.Length; i++)
-        {
-            var r = targetRenderers[i];
-            if (r == null) continue;
-            var mats = r.materials;
-            for (int m = 0; m < mats.Length; m++)
-                mats[m] = mat;
-            r.materials = mats;
-        }
-    }
 
     // Helper: set destination using NavMesh.SamplePosition fallback this helped a lot with buggy path setting
     void SetNavDestination(Vector3 desiredPoint)
@@ -483,20 +561,22 @@ public class EnemyFSM : MonoBehaviour
 
     void LookTo(Vector3 targetPosition)
     {
-        Vector3 origin = (spinRoot != null) ? spinRoot.position : transform.parent.position;
-        Vector3 directionToPosition = Vector3.Normalize(targetPosition - origin);
-        directionToPosition.y = 0;
-        if (spinRoot != null)
-            spinRoot.forward = directionToPosition;
-        else
-            transform.parent.forward = directionToPosition;
+        Vector3 origin = transform.position;
+        // Compute direction from enemy to target
+        Vector3 directionToPosition = targetPosition - origin;
+        directionToPosition.y = 0; // keep rotation flat on the ground
+
+        // If direction has nonzero length, apply rotation
+        if (directionToPosition.sqrMagnitude > 0.0001f)
+        {
+            transform.forward = directionToPosition.normalized;
+        }
     }
-    
+
+
     private void OnDestroy()
     {
         if (swordHit != null)
             swordHit.OnSwordHit.RemoveListener(NotifySwordHit);
-        if (sightSensor != null && sightAngleCached)
-            sightSensor.angle = originalSightAngle;
     }
 }
