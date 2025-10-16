@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/**
+* Author: Liam Housenbold
+* Date Created: 9-25-2025
+* Date Modified: 10-15-2025
+* Summary: Manages the enemy's sight detection, allowing it to detect objects within a certain distance and angle, considering obstacles.
+*/
 public class EnemySight : MonoBehaviour
 {
+    [Header("EnemySight Settings")]
     public float distance;
     public float angle;
     public LayerMask objectsLayers;

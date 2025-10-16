@@ -3,8 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/**
+* Author: Liam Housenbold
+* Date Created: 9-25-2025
+* Date Modified: 10-15-2025
+* Summary: Handles sword hit detection and applies damage to player characters upon collision. 
+* It also triggers an event when a hit occurs (this is used in EnemyFSM to manage certain attack behavior).
+*/
 public class SwordHit : MonoBehaviour
 {
+    [Header("Sword Hit Settings")]
     public float damage;
     public UnityEvent<Collider> OnSwordHit;
 
@@ -25,5 +33,5 @@ public class SwordHit : MonoBehaviour
         }
     }
 
-    
+
 }
