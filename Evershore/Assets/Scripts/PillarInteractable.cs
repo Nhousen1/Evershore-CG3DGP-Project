@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/* Author: Samuel Huang
+ * Date created: 10/16/2025
+ * Date last updated: 10/16/2025
+ * Summary: Haldles pillar interaction for pillar puzzle element.
+ */
 public class PillarInteractable : MonoBehaviour
 {
     [Header("Pillar Settings")]
@@ -12,7 +17,9 @@ public class PillarInteractable : MonoBehaviour
     private static int activatedPillars = 0;
     private static bool hasWon = false;
     // Static UnityEvent fired when all pillars are activated (same style as EnemyLife.onDeath)
-    public static UnityEvent onAllPillarsActivated = new UnityEvent();
+    //public static UnityEvent onAllPillarsActivated = new UnityEvent();
+
+    public GameEvent onAllPillarsActivated; //Marcus: I have modified this to work with the new event system
 
     void Start()
     {
@@ -74,19 +81,20 @@ public class PillarInteractable : MonoBehaviour
             hasWon = true;
             Debug.Log("*** YOU WIN! All pillars have been triggered! ***");
             // Fire the static UnityEvent (matches EnemyLife.onDeath style)
-            try { onAllPillarsActivated?.Invoke(); } catch (System.Exception e) { Debug.LogWarning($"Exception invoking onAllPillarsActivated: {e}"); }
+            //Marcus: Now instead, the game event scriptable object has its "raise" function called
+            try { onAllPillarsActivated?.Raise(); } catch (System.Exception e) { Debug.LogWarning($"Exception invoking onAllPillarsActivated: {e}"); }
         }
     }
 
     // Helper used to check and dispatch the all-activated event (used at Start too)
-    private static void CheckForAllActivated()
+    private void CheckForAllActivated()
     {
         if (hasWon) return;
         if (totalPillars > 0 && activatedPillars >= totalPillars)
         {
             hasWon = true;
             Debug.Log("*** YOU WIN! All pillars have been triggered! *** (checked)");
-            try { onAllPillarsActivated?.Invoke(); } catch (System.Exception e) { Debug.LogWarning($"Exception invoking onAllPillarsActivated: {e}"); }
+            try { onAllPillarsActivated?.Raise(); } catch (System.Exception e) { Debug.LogWarning($"Exception invoking onAllPillarsActivated: {e}"); }
         }
     }
 
@@ -111,7 +119,8 @@ public class PillarInteractable : MonoBehaviour
         totalPillars = 0;
         activatedPillars = 0;
         hasWon = false;
-        onAllPillarsActivated = new UnityEvent();
+        //Marcus: I do not believe I need to make an equivalent modification here
+        //onAllPillarsActivated = new UnityEvent();
     }
 
     

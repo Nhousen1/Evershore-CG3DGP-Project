@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/* Author: Samuel Huang
+ * Date created: 10/1/2025
+ * Date last updated: 10/16/2025
+ * Summary: transitions scenes based on collider trigger.
+ */
 public class SceneTransition : MonoBehaviour
 {
     [Header("Scene Transition Settings")]
