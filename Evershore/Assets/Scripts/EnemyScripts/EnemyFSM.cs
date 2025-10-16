@@ -29,13 +29,11 @@ public class EnemyFSM : MonoBehaviour
     private float patrolTimer = 0f;
     private Vector3 initialPosition;
 
-
     [Header("Enemy Trigger Distance Settings")]
     // distance settings
     public float playerSwingDistance;
     public float chaseStopDistance;
     public float playerChargeDistance;
-
 
     // Charge settings
     [Header("Enemy Charge Move Settings")]
@@ -59,20 +57,20 @@ public class EnemyFSM : MonoBehaviour
     private int swingCounter = 0;         // counts completed swings since last defense
     public float defenseArmorMultiplier = 2.0f; // modify armor while defending
     private float prevArmorAmount = 0f;
+
     // Material Settings
     private SkinnedMeshRenderer enemyRenderer;
     private Material runtimeMaterial;
+
     // Pulse effect parameters
     private float pulseSpeed = 15.0f; // how fast the glow pulses
     private float pulseIntensity = 4.0f; // maximum emission brightness
     private bool isPulsing = false;
 
-
     [Header("Enemy Sword Swing Settings")]
     // Sword Swing Params
     public float swingCooldown = 1f;
     private float swingTimer = 0f;
-
 
     [Header("Refrences")]
     [SerializeField] private SwordHit swordHit;
@@ -87,6 +85,16 @@ public class EnemyFSM : MonoBehaviour
         agent = GetComponentInParent<UnityEngine.AI.NavMeshAgent>();
         swordHit.OnSwordHit.AddListener(NotifySwordHit); //detect when player is hit on charge
         animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            // Deep-clone the controller so this enemy’s animation state machine is unique
+            RuntimeAnimatorController originalController = animator.runtimeAnimatorController;
+            animator.runtimeAnimatorController = Instantiate(originalController);
+
+            // Randomize animator time offset to break global sync
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            animator.Play(stateInfo.fullPathHash, 0, Random.Range(0f, 1f));
+        }
 
         // record starting position and initialize patrol points
         initialPosition = transform.position;
@@ -100,7 +108,7 @@ public class EnemyFSM : MonoBehaviour
 
     private void Start()
     {
-        // Run AFTER Unity finishes prefab instantiation
+        // Run after Unity finishes prefab instantiation
         enemyRenderer = transform.parent.GetComponentInChildren<SkinnedMeshRenderer>();
         if (enemyRenderer != null)
         {
@@ -108,7 +116,10 @@ public class EnemyFSM : MonoBehaviour
             runtimeMaterial = Instantiate(enemyRenderer.sharedMaterial);
             enemyRenderer.material = runtimeMaterial;
         }
+        if (animator != null)
+            animator.speed = Random.Range(0.9f, 1.1f);
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
@@ -153,8 +164,12 @@ public class EnemyFSM : MonoBehaviour
                 sightSensor.angle = originalSightAngle;
         }
 
+        if (animator != null && agent != null)
+            animator.speed = agent.velocity.magnitude / agent.speed;
+
         if (currentState == EnemyState.OutofCombat)
         {
+            ResetCombatAnimation();
             OutofCombat();
         }
         else if (currentState == EnemyState.ChasePlayer)
@@ -187,58 +202,53 @@ public class EnemyFSM : MonoBehaviour
 
     void OutofCombat()
     {
+        // Animation handling
         if (animator != null)
+        {
             animator.SetBool("isMoving", true);
+        }
 
-        // If a player appears, break patrol and chase
+        // Player detection
         if (sightSensor != null && sightSensor.detectedObject != null)
         {
             currentState = EnemyState.ChasePlayer;
             return;
         }
 
-        // start moving toward the current patrol point
-        float destDiff = float.PositiveInfinity;
-        if (agent.hasPath)
-            destDiff = Vector3.Distance(agent.destination, patrolPoints[patrolIndex]);
-
-        if (!agent.hasPath || destDiff > 0.1f)
-        {
-            // if the current path is invalid, reset it and try a reachable nearby point
-            if (agent.pathStatus == UnityEngine.AI.NavMeshPathStatus.PathInvalid)
-            {
-                agent.ResetPath();
-            }
-
-            // Try to sample a nearby valid NavMesh position in case the exact patrol point is off-mesh
-            UnityEngine.AI.NavMeshHit hit;
-            Vector3 targetPoint = patrolPoints[patrolIndex];
-            if (UnityEngine.AI.NavMesh.SamplePosition(patrolPoints[patrolIndex], out hit, patrolRadius, UnityEngine.AI.NavMesh.AllAreas))
-            {
-                targetPoint = hit.position;
-            }
-
-            SetNavDestination(targetPoint);
-            // reset timer when we start moving toward a point
-            patrolTimer = 0f;
-        }
-
-        // use NavMeshAgent's remainingDistance for arrival check
+        // If close enough to current patrol point
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + patrolPointTolerance)
         {
-            // arrived
-            if (!agent.isStopped)
-                agent.isStopped = true;
-
             patrolTimer += Time.deltaTime;
+            agent.isStopped = true;
+
+            // wait at patrol point
             if (patrolTimer >= patrolPauseTime)
             {
-                patrolTimer = 0f;
+                // choose next patrol point
                 patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
+                patrolTimer = 0f;
+
+                // find a valid NavMesh point
+                Vector3 nextTarget = patrolPoints[patrolIndex];
+                UnityEngine.AI.NavMeshHit hit;
+                if (UnityEngine.AI.NavMesh.SamplePosition(nextTarget, out hit, patrolRadius, UnityEngine.AI.NavMesh.AllAreas))
+                    nextTarget = hit.position;
+
+                // resume movement to next patrol point
                 agent.isStopped = false;
-                // set destination to the next point
-                SetNavDestination(patrolPoints[patrolIndex]);
+                agent.SetDestination(nextTarget);
             }
+        }
+        else if (!agent.hasPath)
+        {
+            // Agent has no destination at all
+            Vector3 startTarget = patrolPoints[patrolIndex];
+            UnityEngine.AI.NavMeshHit hit;
+            if (UnityEngine.AI.NavMesh.SamplePosition(startTarget, out hit, patrolRadius, UnityEngine.AI.NavMesh.AllAreas))
+                startTarget = hit.position;
+
+            agent.isStopped = false;
+            agent.SetDestination(startTarget);
         }
     }
 
@@ -264,16 +274,13 @@ public class EnemyFSM : MonoBehaviour
         // If the player is outside the charge range, start a charge
         if (distanceToPlayer > playerChargeDistance)
         {
-            // prepare charge: windup/aim then set an agent destination for the charge
             if (agent != null)
                 agent.isStopped = true;
 
-            // compute direction from agent position toward player's current position
             chargeDirection = (target.transform.position - agentPos);
             chargeDirection.y = 0;
             chargeDirection = chargeDirection.normalized;
             chargeStartPos = agentPos;
-            // compute a target point maxChargeDistance away along the direction
             chargeTarget = agentPos + chargeDirection * maxChargeDistance;
             chargeTimer = 0f;
             isCharging = false;
@@ -281,10 +288,9 @@ public class EnemyFSM : MonoBehaviour
             return;
         }
 
-        // otherwise continue chasing using NavMeshAgent, but maintain a minimum chase distance
+        // otherwise continue chasing using NavMeshAgent
         if (agent != null)
         {
-            // if we're further than the stop distance, move toward the player
             if (distanceToPlayer > chaseStopDistance)
             {
                 agent.isStopped = false;
@@ -292,7 +298,6 @@ public class EnemyFSM : MonoBehaviour
             }
             else
             {
-                // close enough: stop moving and face the player
                 agent.isStopped = true;
                 LookTo(target.transform.position);
             }
@@ -309,7 +314,7 @@ public class EnemyFSM : MonoBehaviour
         if (animator != null)
         {
             animator.ResetTrigger("Charge");
-            animator.SetTrigger("Charge");
+            StartCoroutine(TriggerWithDelay("Charge", Random.Range(0f, 0.25f)));
         }
 
         if (agent == null)
@@ -317,7 +322,6 @@ public class EnemyFSM : MonoBehaviour
 
         if (sightSensor == null || sightSensor.detectedObject == null)
         {
-            // no target, abort charge
             if (agent != null)
                 agent.isStopped = false;
             currentState = EnemyState.OutofCombat;
@@ -329,12 +333,10 @@ public class EnemyFSM : MonoBehaviour
 
         if (!isCharging)
         {
-            // Aim at the player during windup
             LookTo(targetPos);
             chargeTimer += Time.deltaTime;
             if (chargeTimer >= chargeWindup)
             {
-                // start charging: set agent destination to the sampled chargeTarget and increase speed
                 isCharging = true;
                 chargeTimer = 0f;
                 chargeStartPos = agentPos;
@@ -348,15 +350,12 @@ public class EnemyFSM : MonoBehaviour
             return;
         }
 
-        // While charging we let the NavMeshAgent follow the previously set destination
         if (agent != null)
         {
-            // check arrival or exceeding max distance
             float travelled = Vector3.Distance(agent.transform.position, chargeStartPos);
             float distToPlayer = Vector3.Distance(agent.transform.position, targetPos);
             if ((!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance) || travelled >= maxChargeDistance || distToPlayer <= playerSwingDistance)
             {
-                // stop charging and resume chase
                 isCharging = false;
                 chargeTimer = 0f;
                 agent.speed = originalAgentSpeed;
@@ -366,7 +365,6 @@ public class EnemyFSM : MonoBehaviour
         }
         else
         {
-            // no agent: fallback to previous behavior
             Vector3 move = chargeDirection * chargeSpeed * Time.deltaTime;
             transform.parent.position += move;
             float travelled = Vector3.Distance(transform.parent.position, chargeStartPos);
@@ -386,11 +384,10 @@ public class EnemyFSM : MonoBehaviour
         {
             isDefending = true;
 
-            // Start pulsing emission 
             if (enemyRenderer != null && runtimeMaterial != null)
             {
                 runtimeMaterial.EnableKeyword("_EMISSION");
-                isPulsing = true; // enable pulsing in Update()
+                isPulsing = true;
             }
 
             if (animator != null)
@@ -398,17 +395,14 @@ public class EnemyFSM : MonoBehaviour
                 animator.ResetTrigger("Attack");
                 animator.ResetTrigger("Charge");
                 animator.ResetTrigger("Defense");
-                animator.SetTrigger("Defense");
+                StartCoroutine(TriggerWithDelay("Defense", Random.Range(0f, 0.25f)));
                 animator.SetBool("isMoving", false);
             }
 
             defenseTimer = 0f;
-            // stop movement
             if (agent != null)
-            {
                 agent.isStopped = true;
-            }
-            // temporarily increase armor if EnemyLife is available
+
             if (enemyLife != null)
             {
                 prevArmorAmount = enemyLife.armor_amount;
@@ -417,13 +411,10 @@ public class EnemyFSM : MonoBehaviour
             defenseInitialized = true;
         }
 
-        // count down
         defenseTimer += Time.deltaTime;
 
-        // When the timer reaches defenseDuration, transition into SingSword
         if (defenseTimer >= defenseDuration)
         {
-            // Stop pulsing and clear emission 
             if (enemyRenderer != null && runtimeMaterial != null)
             {
                 isPulsing = false;
@@ -432,14 +423,12 @@ public class EnemyFSM : MonoBehaviour
                 DynamicGI.SetEmissive(enemyRenderer, Color.black);
             }
 
-            // Restore armor and flags
             if (enemyLife != null)
                 enemyLife.armor_amount = prevArmorAmount;
 
             isDefending = false;
             defenseInitialized = false;
 
-            // Reset animator triggers so swing restarts cleanly
             if (animator != null)
             {
                 animator.ResetTrigger("Defense");
@@ -455,7 +444,6 @@ public class EnemyFSM : MonoBehaviour
     {
         if (sightSensor == null || sightSensor.detectedObject == null)
         {
-            // No target, return to patrol
             currentState = EnemyState.OutofCombat;
             return;
         }
@@ -464,49 +452,35 @@ public class EnemyFSM : MonoBehaviour
         Vector3 agentPos = agent != null ? agent.transform.position : transform.position;
         float distanceToPlayer = Vector3.Distance(agentPos, target.transform.position);
 
-        // Face the player
         LookTo(target.transform.position);
 
-        // -------------------------
-        // Attack animation and timing
-        // -------------------------
-
-        // Make sure NavMeshAgent is stopped while swinging
         if (agent != null)
             agent.isStopped = true;
 
-        // Increment swing timer
         swingTimer += Time.deltaTime;
 
-        // If just starting the swing
         if (swingTimer < 0.1f)
         {
-            // Trigger the attack animation once
             if (animator != null)
             {
                 animator.ResetTrigger("Attack");
-                animator.SetTrigger("Attack");
+                StartCoroutine(TriggerWithDelay("Attack", Random.Range(0f, 0.25f)));
             }
         }
 
-        // Wait for the attack animation duration before resuming
         if (swingTimer >= swingCooldown)
         {
-            // Reset swing timer and go back to chase
             swingTimer = 0f;
-
-            // Count this swing
             swingCounter++;
 
-            // If we've hit the threshold, go to Defense instead of Chase
             if (swingCounter >= swingsBeforeDefense)
             {
-                swingCounter = 0;          // reset for next cycle
+                swingCounter = 0;
                 defenseInitialized = false;
                 if (agent != null) agent.isStopped = true;
 
                 currentState = EnemyState.DefenseStance;
-                return; // exit early to avoid switching to Chase
+                return;
             }
 
             if (agent != null)
@@ -518,7 +492,6 @@ public class EnemyFSM : MonoBehaviour
 
     public void NotifySwordHit(Collider other)
     {
-        // Force stop the charge: clear flags and immediately halt the NavMeshAgent
         isCharging = false;
         chargeTimer = 0f;
 
@@ -533,12 +506,9 @@ public class EnemyFSM : MonoBehaviour
             }
         }
 
-        // return to chasing state so AI can resume normal behavior
         currentState = EnemyState.ChasePlayer;
     }
 
-
-    // Helper: set destination using NavMesh.SamplePosition fallback this helped a lot with buggy path setting
     void SetNavDestination(Vector3 desiredPoint)
     {
         if (agent == null)
@@ -562,17 +532,33 @@ public class EnemyFSM : MonoBehaviour
     void LookTo(Vector3 targetPosition)
     {
         Vector3 origin = transform.position;
-        // Compute direction from enemy to target
         Vector3 directionToPosition = targetPosition - origin;
-        directionToPosition.y = 0; // keep rotation flat on the ground
+        directionToPosition.y = 0;
 
-        // If direction has nonzero length, apply rotation
         if (directionToPosition.sqrMagnitude > 0.0001f)
         {
             transform.forward = directionToPosition.normalized;
         }
     }
 
+    private IEnumerator TriggerWithDelay(string triggerName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (animator != null)
+            animator.SetTrigger(triggerName);
+    }
+
+    private void ResetCombatAnimation()
+    {
+        if (animator == null) return;
+
+        animator.ResetTrigger("Attack");
+        animator.ResetTrigger("Charge");
+        animator.ResetTrigger("Defense");
+
+        animator.SetBool("isMoving", true);
+        animator.SetFloat("MoveSpeed", 0f);
+    }
 
     private void OnDestroy()
     {
