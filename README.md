@@ -65,6 +65,21 @@ A top down mobile game involving building camps. We will take inspiration from i
 
 Build isometric perspective, player controller, combat system, stealth, movement, health, attacks
 
+**Project Checkpoint 2**
+Samuel: I have added two island scenes that uses Terrain. They also use low poly assets that I have acquired from the Unity store. The Hub map has a marketplace, houses, and three NPCs. I have implemented a simple dialogue system where you can talk to the NPC by pressing 'E', and dialogue UI will show up. 
+
+Assets used: 
+https://assetstore.unity.com/packages/3d/characters/humanoids/low-poly-medieval-characters-lite-316247
+https://assetstore.unity.com/packages/3d/environments/wooden-house-free-low-poly-270889
+https://assetstore.unity.com/packages/vfx/particles/fire-explosions/low-poly-fire-244190
+https://assetstore.unity.com/packages/3d/environments/low-poly-tropical-island-lite-242437
+https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153
+https://assetstore.unity.com/packages/3d/environments/simplepoly-city-low-poly-assets-58899
+https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-atmospheric-locations-pack-278928
+
+
+
+
 Implement enemy navigation objective system and attack sequences. Set up sight and sound detection.
 
 Implement individual scene decisions and lore of the endings.
