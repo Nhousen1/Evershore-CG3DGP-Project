@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 /* Author: Marcus King
  * Date created: 10/1/2025
  * Date last updated: 10/20/2025
- * Summary: handles player movement inputs, defines isometric coordinate system.
+ * Summary: handles player movement inputs, sets animator controller vars, and defines isometric coordinate system.
  */
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,8 +34,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animator")]
     [SerializeField]
     private Animator animator;//TODO: should the animator really be handled here?
-    [SerializeField]
-    private GameObject graphicsPlayer;
 
     private Vector3 velocity;
     public void OnMove(InputValue value)
@@ -91,18 +89,17 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         cc.Move(velocity * Time.deltaTime);
 
-
+        //The players feet need to always look like they are moving in the desired direciton, but the players head should always face the aiming direction.
         Vector2 moveDirection = moveInput;
-        float lookAngle = GetComponent<PointAim>().target.transform.eulerAngles.y;//Aim is done on this transform
+        float lookAngle = GetComponent<PointAim>().target.transform.eulerAngles.y;
 
         Vector2 move2d = new Vector2(move.x, move.z);
         Vector2 forwardRef = new Vector2(Vector3.forward.x, Vector3.forward.z);
         float moveAngle = Mathf.Repeat(Vector2.SignedAngle(move2d, forwardRef), 360f);
 
-        float animatorBlendAngle = Mathf.Repeat(360 - (lookAngle - moveAngle), 360f);
+        float animatorBlendAngle = Mathf.Repeat(360 - (lookAngle - moveAngle), 360f); //need the animator to visually "counteract" the transform rotation.
 
         animator.SetFloat("MoveBlendAngle", animatorBlendAngle);
-        Debug.Log(graphicsPlayer.transform.rotation.eulerAngles);
         animator.SetBool("IsRunning", (moveInput.magnitude > 0)); //TODO handle walking
     }
     public void stopInputMovement()

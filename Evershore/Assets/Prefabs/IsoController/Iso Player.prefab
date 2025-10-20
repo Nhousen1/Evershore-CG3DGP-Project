@@ -137,9 +137,7 @@ MonoBehaviour:
   isoCam: {fileID: 5858127509575451839}
   canMove: 1
   animator: {fileID: 4773159661264104746}
-  movDir: 0
-  looDir: 0
-  blendAngle: 0
+  graphicsPlayer: {fileID: 0}
 --- !u!114 &6987389852745770120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a306c77dd96651e458485029c56d7167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4861031972198538554}
+  target: {fileID: 6352825801940901485}
   aimLayers:
     serializedVersion: 2
     m_Bits: 1
