@@ -36,7 +36,7 @@ public class PointAim : MonoBehaviour
             Vector3 aimDir = new Vector3(dirVector.x, 0, dirVector.z);
             Debug.DrawLine(transform.position, hitPoint, Color.red);
 
-            transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
+            target.transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
         }
     }
 }

@@ -137,6 +137,9 @@ MonoBehaviour:
   isoCam: {fileID: 5858127509575451839}
   canMove: 1
   animator: {fileID: 4773159661264104746}
+  movDir: 0
+  looDir: 0
+  blendAngle: 0
 --- !u!114 &6987389852745770120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a306c77dd96651e458485029c56d7167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 6352825801940901485}
+  target: {fileID: 4861031972198538554}
   aimLayers:
     serializedVersion: 2
     m_Bits: 1
@@ -285,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 2724522424458059149}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911792, y: 0.3696462, z: -0.099045314, w: 0.8923981}
-  m_LocalPosition: {x: -12.24752, y: 10.000008, z: -12.247368}
+  m_LocalPosition: {x: -12.247522, y: 10.000005, z: -12.247374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

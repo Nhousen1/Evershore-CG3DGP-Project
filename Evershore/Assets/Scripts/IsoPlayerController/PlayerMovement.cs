@@ -1,10 +1,11 @@
 using Cinemachine;
+using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 /* Author: Marcus King
  * Date created: 10/1/2025
- * Date last updated: 10/12/2025
+ * Date last updated: 10/20/2025
  * Summary: handles player movement inputs, defines isometric coordinate system.
  */
 public class PlayerMovement : MonoBehaviour
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animator")]
     [SerializeField]
     private Animator animator;//TODO: should the animator really be handled here?
+    [SerializeField]
+    private GameObject graphicsPlayer;
 
     private Vector3 velocity;
     public void OnMove(InputValue value)
@@ -76,8 +79,8 @@ public class PlayerMovement : MonoBehaviour
         float speed = walkSpeed * (isRunning ? runSpeedMultiplier : 1f);
 
         Vector3 move = isoForward * moveInput.x + isoRight * moveInput.y;
-        move = new Vector3(move.x * speed * Time.deltaTime, 0, move.z * speed * Time.deltaTime);
-        cc.Move(move);
+        Vector3 moveAdjusted = new Vector3(move.x * speed * Time.deltaTime, 0, move.z * speed * Time.deltaTime);
+        cc.Move(moveAdjusted);
 
         //Apply a downward velocity to keep the player grounded (resets to this value when grounded), and then apply gravity
         if (cc.isGrounded && velocity.y < 0)
@@ -86,20 +89,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
         velocity.y += gravity * Time.deltaTime;
-
         cc.Move(velocity * Time.deltaTime);
 
-        //assumes moveInput is normalized
-        Vector2 moveDirection = moveInput;
-        float aimAngle = transform.rotation.eulerAngles.y * Mathf.Deg2Rad;//Aim is done on this transform
-        Vector2 aimDirection = new Vector2(Mathf.Cos(aimAngle), Mathf.Sin(aimAngle));
-        Vector2 aimPerpDirection = new Vector2(Mathf.Cos(aimAngle), -Mathf.Sin(aimAngle));
 
-        float animatorForward = Vector2.Dot(aimDirection, moveDirection) * -1f;
-        float animatorStrafe = Vector2.Dot(aimPerpDirection, moveDirection);
-        Debug.Log(animatorForward + ", " + animatorStrafe);
-        animator.SetFloat("MoveY", animatorForward);
-        animator.SetFloat("MoveX", animatorStrafe);
+        Vector2 moveDirection = moveInput;
+        float lookAngle = GetComponent<PointAim>().target.transform.eulerAngles.y;//Aim is done on this transform
+
+        Vector2 move2d = new Vector2(move.x, move.z);
+        Vector2 forwardRef = new Vector2(Vector3.forward.x, Vector3.forward.z);
+        float moveAngle = Mathf.Repeat(Vector2.SignedAngle(move2d, forwardRef), 360f);
+
+        float animatorBlendAngle = Mathf.Repeat(360 - (lookAngle - moveAngle), 360f);
+
+        animator.SetFloat("MoveBlendAngle", animatorBlendAngle);
+        Debug.Log(graphicsPlayer.transform.rotation.eulerAngles);
+        animator.SetBool("IsRunning", (moveInput.magnitude > 0)); //TODO handle walking
     }
     public void stopInputMovement()
     {
