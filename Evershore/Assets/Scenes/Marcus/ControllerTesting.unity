@@ -488,12 +488,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 24673468124281660, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
       propertyPath: walkSpeed
-      value: 0.1
+      value: 4.5
       objectReference: {fileID: 0}
-    - target: {fileID: 24673468124281660, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
-      propertyPath: graphicsPlayer
-      value: 
-      objectReference: {fileID: 329345559}
     - target: {fileID: 7319231641874773411, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.959885
@@ -534,10 +530,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8021555270195315586, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1129107036}
     - target: {fileID: 8457010712606172612, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
       propertyPath: m_Name
       value: Iso Player
@@ -562,11 +554,6 @@ PrefabInstance:
       addedObject: {fileID: 1143749226}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
---- !u!1 &329345559 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7235180720485107141, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
-  m_PrefabInstance: {fileID: 296274227}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &353314488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,11 +1590,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074099054}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1129107036 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6352825801940901485, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
-  m_PrefabInstance: {fileID: 296274227}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1143749226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4075925604616385288, guid: c8d4165b168c68744bb15b4a4b9d42b7, type: 3}
