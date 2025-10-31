@@ -13,7 +13,6 @@ public class PlayerLife : MonoBehaviour
     [Header("Player Life Settings")]
     public float amount;
     public float amountMax;
-    public float armor_amount;
     [Header("Events")]
     public GameEvent onPlayerDeath;
     private void Start()
