@@ -137,7 +137,6 @@ MonoBehaviour:
   isoCam: {fileID: 5858127509575451839}
   canMove: 1
   animator: {fileID: 4773159661264104746}
-  graphicsPlayer: {fileID: 0}
 --- !u!114 &6987389852745770120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 100
+  amountMax: 100
   armor_amount: 0
   onPlayerDeath: {fileID: 11400000, guid: 5d53e6d021a5f7447b3e57e7f18cb8b6, type: 2}
 --- !u!114 &6627566800942936477

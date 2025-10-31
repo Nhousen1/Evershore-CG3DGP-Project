@@ -23,7 +23,7 @@ public class SwordHit : MonoBehaviour
 
         if (life != null)
         {
-            life.amount -= (damage - life.armor_amount);
+            life.Damage(damage);
         }
 
         // invoke the UnityEvent so other listeners can react
