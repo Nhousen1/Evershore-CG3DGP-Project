@@ -139,7 +139,8 @@ Possible nice to have:
 ~~\-Add blood particle effect on weapon hit~~  
 ~~\-Add dust trail effect on sprint~~
 
-### Possible nice to have: \-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
+Possible nice to have:
+\-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
 
 ### LIAM:
 
