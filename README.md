@@ -162,9 +162,7 @@ Nice to have:
 
 ### MARCUS:
 
-\-Finish Player weapon Animations  
-“This has been pushed to the next submission due to complexity. I have discussed this system with Shawn and made an outline on paper. I am currently in the preliminary stages of implementing this on a feature branch”
-
+\-Finish Player weapon Animations 
 \-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
 
 ### LIAM:
