@@ -904,15 +904,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontAsset: {fileID: 11400000, guid: 5cc39517889a851489dc353f5abdd228, type: 2}
-  sampleText: 'The lull arrives. You speak up, yelling as the elders order the crowd
-    to the Shrine. They bind your wrists and ankles with cord from the fishing sheds.
-    They lift you onto the wet slab above the surf. The windmills were aligned. The
-    bell was struck. The candle stays lit. The sea turns red. A knife is used, and
-    your blood enters the water. Boats are launched in sequence from the dock. Ropes
-    are cut. Oars move. Sails rise. The large boats clear the headland while the
-    lull holds. You cannot stand. You cannot breathe as the next wave takes you.
-    The village fleet passes the reef line. The lull ends after they are already
-    away. Your body goes under and does not return. The island becomes quiet. '
+  sampleText: "The lull arrives. You carry a small pack and move toward the skiff.
+    The water stays flat but the color gives you away. The guards at the dock see
+    the redness of blood. They raise a shout, and the crowd runs from the Shrine.
+    You desperately try to row away, but you are too slow. A hook buries into the
+    side of the boat. They grab your arms and legs. They pull you back across the
+    sand and take you to the slab. The windmills were aligned. The bell was struck.
+    The candle stays lit. A knife is used, and your blood enters the water. The large
+    boats leave the harbor while you bleed out. The island becomes quiet.\r"
   charsPerSecond: 30
   punctuationHold: 0.25
   sentenceHold: 0.6
