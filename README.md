@@ -114,33 +114,68 @@ Nice to have Additions:
 ~~\-Add villager models~~  
 ~~\-Add textbox dialogue system with villagers on interact~~
 
-### **Preliminary Plan for Project Part 3 (Chapters 11, 12, and 13):**  
-\-Add scene Illumination (lighting and shadows)  
-\-Finalize level design   
-\-Add ranged enemies  
-\-Finish Player weapon Animations  
-\-Update Player movement Animations  
-\-Add basic ending scene  
-\-Object fader script  
-\-Add blood particle effect on weapon hit  
-\-Add particle effect to ranged projectile  
-\-Add second Puzzle  
-\-Standardize scene hierarchy organization  
-\-Add player  
-\-enemy HP bars
+## Checkpoint 3: (Chapters 11, 12, and 13\)
+
+### SAM:
+
+~~\-Add scene Illumination w/ day-night cycle (lighting and shadows)~~  
+~~\-Apply post-processing effects to highlight tonal shifts as the game becomes more sinister.~~  
+~~\-Finalize level design~~  
+~~\-Add ending scene with typewriter effect~~  
+~~\-Add basic ending scene~~  
+\-Add second Puzzle
 
 Possible nice to have:  
-\-Add dust trail effect on sprint  
-\-Add respawn/replay button to win and lose screens
+\-Add respawn/replay button to win and lose screens  
+\- Experiment with increasing the player’s scale to match the proportions of other scene elements.
+
+### MARCUS:
+
+\-Finish Player weapon Animations  
+*“This has been pushed to the next submission due to complexity. I have discussed this system with Shawn and made an outline on paper. I am currently in the preliminary stages of implementing this on a feature branch”*  
+~~\-Update Player movement Animations~~  
+~~\-Make materials transparent when the player moves behind objects, particularly in the puzzle test scene, to improve visibility.~~  
+~~\-Add player HP bars~~  
+~~\-Add blood particle effect on weapon hit~~  
+~~\-Add dust trail effect on sprint~~
+
+### Possible nice to have: \-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
+
+### LIAM:
+
+~~\-Add ranged enemies~~  
+~~\-enemy HP bar~~  
+~~\-Add particle effect to ranged projectile~~  
+\-Standardize scene hierarchy organization
+
+Nice to have:
+
+- ~~Add particle effects to enhance~~ the bonfire and ~~combat interactions.~~  
+- Refine lighting to make scenes more dynamic and to give each area a distinct atmosphere.
+
+## Preliminary Plan for Checkpoint 4:
+
+### SAM: \-Add respawn/replay button to win and lose screens
+
+\- Experiment with increasing the player’s scale to match the proportions of other scene elements.
+
+### MARCUS:
+
+\-Finish Player weapon Animations  
+“This has been pushed to the next submission due to complexity. I have discussed this system with Shawn and made an outline on paper. I am currently in the preliminary stages of implementing this on a feature branch”
+
+\-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
+
+### LIAM:
+
+\-Standardize scene hierarchy organization
 
 ## **Instructions for Testing the Project:**  
-There are 3 main scenes in a ProjectSubmission2 folder in the Scenes folder:  
-IslandHub scene, EnemyIsland scene, and Forrest scene (the puzzle).
+Please browse through all scenes in Project-3-Submission folder in the Scenes folder. This contains all planed endings (not yet connected), win/lose place holder scenes, the island hub connected to the puzzel test and enemy combat testing scene.
 
 Player:
 
-- WASD controls. Point player in the direction of your cursor. Q previous weapon, E next weapon. Left click to attack. Space to jump, shift to sprint. (weapon system is currently broken when adding animations to it)  
-- 
+- WASD controls. Point player in the direction of your cursor. Q previous weapon, E next weapon. Left click to attack. Space to jump, shift to sprint. Scroll Q/E for next/previous weapon.
 
 \-The Hub map has a marketplace, houses, and three NPCs. I have implemented a simple dialogue system where you can talk to the NPC by pressing 'E', and the dialogue UI will show up. 
 
