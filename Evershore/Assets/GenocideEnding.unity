@@ -904,15 +904,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontAsset: {fileID: 11400000, guid: 5cc39517889a851489dc353f5abdd228, type: 2}
-  sampleText: 'The lull arrives. You speak up, yelling as the elders order the crowd
-    to the Shrine. They bind your wrists and ankles with cord from the fishing sheds.
-    They lift you onto the wet slab above the surf. The windmills were aligned. The
-    bell was struck. The candle stays lit. The sea turns red. A knife is used, and
-    your blood enters the water. Boats are launched in sequence from the dock. Ropes
-    are cut. Oars move. Sails rise. The large boats clear the headland while the
-    lull holds. You cannot stand. You cannot breathe as the next wave takes you.
-    The village fleet passes the reef line. The lull ends after they are already
-    away. Your body goes under and does not return. The island becomes quiet. '
+  sampleText: "The festival ground is empty. Doors hang open. Cooking fires are cold.
+    Tools and buckets lie where they were dropped. The Cleaver sits on the Shrine
+    step, wet and heavy in your hands. No voice answers when you call from the dock.
+    There are no hands to raise sails, no eyes to watch the reef, no crew to haul
+    lines.There is no lull. There is no launch. Night arrives. The Cleaver slips
+    and rusts in the spray. Time stretches without measure. Days later there is only
+    a body near the headland and a blade the color of old iron. When strangers reach
+    the island much later, they write a short note about the remains and leave.\r"
   charsPerSecond: 30
   punctuationHold: 0.25
   sentenceHold: 0.6
