@@ -31,9 +31,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool canMove;
 
-    [Header("Animator")]
+    [Header("Animator and particles")]
     [SerializeField]
     private Animator animator;//TODO: should the animator really be handled here?
+    [SerializeField]
+    private ParticleSystem dustTrail;
 
     private Vector3 velocity;
     public void OnMove(InputValue value)
@@ -101,6 +103,18 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("MoveBlendAngle", animatorBlendAngle);
         animator.SetBool("IsRunning", (moveInput.magnitude > 0)); //TODO handle walking
+
+        if(moveInput.magnitude > 0)
+        {
+            dustTrail.gameObject.SetActive(true);
+            dustTrail.Play();
+            var emision = dustTrail.emission;
+            emision.rateOverTime = 5 * (isRunning ? runSpeedMultiplier : 1f);
+        }
+        else
+        {
+            dustTrail.Pause();
+        }
     }
     public void stopInputMovement()
     {

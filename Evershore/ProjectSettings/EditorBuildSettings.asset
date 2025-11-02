@@ -6,19 +6,31 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Project-2-Submission/IslandHub.unity
-    guid: 4235b391779986d43bab80fbc0d7778e
-  - enabled: 1
-    path: Assets/Scenes/Project-2-Submission/EnemyIsland.unity
+    path: Assets/Scenes/Project-3-Submission/EnemyIsland.unity
     guid: a902aca80350c436f8f02a84aa18ccac
   - enabled: 1
-    path: Assets/Scenes/Project-2-Submission/Forest.unity
+    path: Assets/Scenes/Project-3-Submission/Forest.unity
     guid: 8c6df18d47602af449cf55de6cb06fee
   - enabled: 1
-    path: Assets/Scenes/Project-2-Submission/WinLoss/LoseScene.unity
+    path: Assets/Scenes/Project-3-Submission/WinLoss/LoseScene.unity
     guid: cca067dc27ae64cb48ed8fbdf7db9207
   - enabled: 1
-    path: Assets/Scenes/Project-2-Submission/WinLoss/WinScene.unity
+    path: Assets/Scenes/Project-3-Submission/WinLoss/WinScene.unity
     guid: d444d9c308cdd45799dc6330927ffb68
+  - enabled: 1
+    path: Assets/Scenes/Project-3-Submission/SacrificeEnding.unity
+    guid: d968e49a6188d5e4282fcedff0219a07
+  - enabled: 1
+    path: Assets/Scenes/Project-3-Submission/LullEnding.unity
+    guid: 776af9310422869469825a55dda596ab
+  - enabled: 1
+    path: Assets/Scenes/Project-3-Submission/GenocideEnding.unity
+    guid: 6a3e7651f393d13408365a08c0165b19
+  - enabled: 1
+    path: Assets/Scenes/Project-3-Submission/BindingEnding.unity
+    guid: 0cf9cfb44d9d88d41994b1cb1a0709c3
+  - enabled: 1
+    path: Assets/Scenes/Project-3-Submission/Fire.unity
+    guid: 82042083e1454494daeb0ac1a88805e9
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

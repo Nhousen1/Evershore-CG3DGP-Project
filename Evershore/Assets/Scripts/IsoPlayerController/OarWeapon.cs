@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 /* Author: Marcus King
  * Date created: 10/1/2025
@@ -22,6 +23,7 @@ public class OarWeapon : Weapon
     private LayerMask damageLayers = 0; 
     [SerializeField] 
     private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Collide;
+    public UnityEvent onCollide;
 
     //Detect colliders (or triggers) in range of weapon on the first frame of the attack cycle. This is the most simple form of melee
     public override void DoAttack()
@@ -39,6 +41,7 @@ public class OarWeapon : Weapon
             if (life != null)
             {
                 life.amount -= damage;
+                onCollide.Invoke();
             }
         }
     }
