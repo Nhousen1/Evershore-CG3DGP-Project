@@ -404,6 +404,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: playerLife
+      value: 
+      objectReference: {fileID: 1814657657}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: ThornsDamage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: swingsBeforeDefense
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
@@ -846,6 +862,17 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 6754586186022091145, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
   m_PrefabInstance: {fileID: 89387086}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1814657657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6304946622702710855, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+  m_PrefabInstance: {fileID: 89387086}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146482436613c46529ec53ba6339a715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2670510333975320683
 PrefabInstance:
   m_ObjectHideFlags: 0
