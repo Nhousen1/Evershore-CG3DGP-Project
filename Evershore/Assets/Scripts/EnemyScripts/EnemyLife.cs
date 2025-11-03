@@ -14,8 +14,12 @@ public class EnemyLife : MonoBehaviour
     [Header("EnemyLife Settings")]
     public static float max_amount;
     public float amount;
+
+    private float current_amount;
     public float armor_amount;
     public UnityEvent onEnemyDeath = new UnityEvent();
+
+    public UnityEvent onEnemyDamaged = new UnityEvent();
 
     [SerializeField] private FloatingEnemyHpBar floatingHpBar;
 
@@ -23,12 +27,19 @@ public class EnemyLife : MonoBehaviour
     {
         floatingHpBar = GetComponentInChildren<FloatingEnemyHpBar>();
         max_amount = amount;
+        current_amount = amount;
+
     }
 
 
     void Update()
     {
         floatingHpBar.UpdateHpBar(amount, max_amount);
+        if (current_amount > amount)
+        {
+            onEnemyDamaged.Invoke();
+            current_amount = amount;
+        }
         if (amount <= 0)
         {
             onEnemyDeath.Invoke();

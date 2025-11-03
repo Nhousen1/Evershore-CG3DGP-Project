@@ -53,8 +53,10 @@ public class EnemyFSM : MonoBehaviour
     private bool isDefending = false;
     private float defenseTimer = 0f;
     private bool defenseInitialized = false;
+
+    public int ThornsDamage = 5;
     public int swingsBeforeDefense = 3;   // ex) 3 swings then defend
-    private int swingCounter = 0;         // counts completed swings since last defense
+    private int swingCounter = 2;         // counts completed swings since last defense
     public float defenseArmorMultiplier = 2.0f; // modify armor while defending
     private float prevArmorAmount = 0f;
 
@@ -75,6 +77,7 @@ public class EnemyFSM : MonoBehaviour
     [Header("Refrences")]
     [SerializeField] private SwordHit swordHit;
     [SerializeField] private EnemyLife enemyLife;
+    [SerializeField] private PlayerLife playerLife;
     [SerializeField] private EnemySight sightSensor;
     private UnityEngine.AI.NavMeshAgent agent;
 
@@ -84,6 +87,8 @@ public class EnemyFSM : MonoBehaviour
     {
         agent = GetComponentInParent<UnityEngine.AI.NavMeshAgent>();
         swordHit.OnSwordHit.AddListener(NotifySwordHit); //detect when player is hit on charge
+        if (enemyLife != null)
+            enemyLife.onEnemyDamaged.AddListener(OnEnemyDamaged); // detect when enemy is damaged
         animator = GetComponent<Animator>();
         if (animator != null)
         {
@@ -267,6 +272,16 @@ public class EnemyFSM : MonoBehaviour
             return;
         }
 
+        if (swingCounter >= swingsBeforeDefense)
+        {
+            swingCounter = 0;
+            defenseInitialized = false;
+            if (agent != null) agent.isStopped = true;
+
+            currentState = EnemyState.DefenseStance;
+            return;
+        }
+
         var target = sightSensor.detectedObject;
         Vector3 agentPos = agent != null ? agent.transform.position : transform.position;
         float distanceToPlayer = Vector3.Distance(agentPos, target.transform.position);
@@ -409,9 +424,10 @@ public class EnemyFSM : MonoBehaviour
                 enemyLife.armor_amount = prevArmorAmount * defenseArmorMultiplier;
             }
             defenseInitialized = true;
-        }
+        } 
 
         defenseTimer += Time.deltaTime;
+
 
         if (defenseTimer >= defenseDuration)
         {
@@ -509,6 +525,18 @@ public class EnemyFSM : MonoBehaviour
         currentState = EnemyState.ChasePlayer;
     }
 
+    private void OnEnemyDamaged()
+    {
+        // only react while in Defense Stance
+        if (currentState == EnemyState.DefenseStance)
+        {
+            if (playerLife != null)
+            {
+                playerLife.Damage(ThornsDamage);
+            }
+        }
+    }
+
     void SetNavDestination(Vector3 desiredPoint)
     {
         if (agent == null)
@@ -564,5 +592,7 @@ public class EnemyFSM : MonoBehaviour
     {
         if (swordHit != null)
             swordHit.OnSwordHit.RemoveListener(NotifySwordHit);
+        if (enemyLife != null)
+            enemyLife.onEnemyDamaged.RemoveListener(OnEnemyDamaged); 
     }
 }
