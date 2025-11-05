@@ -12,11 +12,23 @@ using UnityEngine.Events;
 public class EnemyLife : MonoBehaviour
 {
     [Header("EnemyLife Settings")]
+    public static float max_amount;
     public float amount;
     public float armor_amount;
     public UnityEvent onEnemyDeath = new UnityEvent();
+
+    [SerializeField] private FloatingEnemyHpBar floatingHpBar;
+
+    void Awake()
+    {
+        floatingHpBar = GetComponentInChildren<FloatingEnemyHpBar>();
+        max_amount = amount;
+    }
+
+
     void Update()
     {
+        floatingHpBar.UpdateHpBar(amount, max_amount);
         if (amount <= 0)
         {
             onEnemyDeath.Invoke();
