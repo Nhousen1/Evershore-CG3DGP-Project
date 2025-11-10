@@ -126,6 +126,10 @@ public class PlayerMovement : MonoBehaviour
     {
         //Potentially useful in the future for cutscenes, knockback, or anything that freezes player
         canMove = false;
+        if (dustTrail.isEmitting)
+        {
+            dustTrail.Stop();
+        }
     }
     public void unstopInputMovement()
     {
