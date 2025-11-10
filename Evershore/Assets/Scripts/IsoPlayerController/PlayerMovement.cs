@@ -104,22 +104,32 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("MoveBlendAngle", animatorBlendAngle);
         animator.SetBool("IsRunning", (moveInput.magnitude > 0)); //TODO handle walking
 
-        if(moveInput.magnitude > 0)
+        Debug.Log("Stopped: " + dustTrail.isStopped);
+        Debug.Log("Move: " + moveInput.magnitude);
+        Debug.Log("Active: " + dustTrail.gameObject.activeInHierarchy);
+        //dustTrail.Play();
+        if (moveInput.magnitude > 0)
         {
-            dustTrail.gameObject.SetActive(true);
-            dustTrail.Play();
-            var emision = dustTrail.emission;
-            emision.rateOverTime = 5 * (isRunning ? runSpeedMultiplier : 1f);
+            var emission = dustTrail.emission;
+            emission.rateOverTime = 5 * (isRunning ? runSpeedMultiplier : 1f);
+            if (!dustTrail.isEmitting)
+            {
+                dustTrail.Play();
+            }
         }
-        else
+        else if (dustTrail.isPlaying) 
         {
-            dustTrail.Pause();
+            dustTrail.Stop();
         }
     }
     public void stopInputMovement()
     {
         //Potentially useful in the future for cutscenes, knockback, or anything that freezes player
         canMove = false;
+        if (dustTrail.isEmitting)
+        {
+            dustTrail.Stop();
+        }
     }
     public void unstopInputMovement()
     {

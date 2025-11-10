@@ -4,11 +4,13 @@ using UnityEngine;
 
 //Author: Marcus King
 //Date created: 11/2/25
-//Date last modified: 11/2/25
+//Date last modified: 11/10/25
 //Summary: handles the blood drriping effect when player hits something. Effectively a counter.
 public class BloodDripper : MonoBehaviour
 {
     public float decay;
+    [SerializeField]
+    public float maxDrip;
     public ParticleSystem bloodDroplets;
     private float bloodAmount = 1;
     public void Reset()
@@ -23,7 +25,7 @@ public class BloodDripper : MonoBehaviour
         {
             bloodAmount -= Time.deltaTime * decay;
             var emmision = bloodDroplets.emission;
-            emmision.rateOverTime = 3 * bloodAmount;
+            emmision.rateOverTime = maxDrip * bloodAmount;
         }
         else
         {

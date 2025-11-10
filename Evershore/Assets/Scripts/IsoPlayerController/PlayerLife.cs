@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +16,10 @@ public class PlayerLife : MonoBehaviour
     public float amountMax;
     [Header("Events")]
     public GameEvent onPlayerDeath;
+    public UnityEvent onDamage;
+    public UnityEvent onHeal;
+    //TODO: possible revive event?
+    private bool isDead = false;
     private void Start()
     {
         if (PlayerHealthBar.Instance == null)
@@ -29,26 +34,35 @@ public class PlayerLife : MonoBehaviour
     //Never input negative values for these events
     public void Damage(float damage)
     {
-        Mathf.Abs(damage);
-        amount -= damage;
-
-        PlayerHealthBar.Instance.ChangeValue(amount);
-
-        if (amount <= 0)
+        if (!isDead)
         {
-            onPlayerDeath.Raise();
-            Destroy(gameObject);
+            Mathf.Abs(damage);
+            amount -= damage;
+
+            PlayerHealthBar.Instance.ChangeValue(amount);
+
+            if (amount <= 0)
+            {
+                isDead = true;
+                onPlayerDeath.Raise();
+                return;
+            }
+            onDamage.Invoke();
         }
     }
     public void Heal(float add)
     {
-        if (amount + add >= amountMax)
+        if (!isDead)
         {
-            return;
-        }
-        Mathf.Abs(add);
-        amount += add;
+            if (amount + add >= amountMax)
+            {
+                return;
+            }
+            onHeal.Invoke();
+            Mathf.Abs(add);
+            amount += add;
 
-        PlayerHealthBar.Instance.ChangeValue(amount);
+            PlayerHealthBar.Instance.ChangeValue(amount);
+        }
     }
 }

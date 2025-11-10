@@ -18,7 +18,9 @@ public abstract class Weapon : MonoBehaviour
     protected float active;
     [SerializeField]
     protected float recovery;
-
+    [Header("Animation")]
+    public WeaponAnimationPack animPack;
+    private Animator animator;//injected
 
     private bool isCycling = false;
     private bool isAttackHeld = false;

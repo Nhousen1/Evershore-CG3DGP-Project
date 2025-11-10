@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 /* Author: Marcus King
  * Date created: 10/1/2025
  * Date last updated: 10/6/2025
- * Summary: an "inventory" (list of weapons) giving the player weapon selection in scene and handling relevant input calls.
+ * Summary: an "inventory" (list of weapons) giving the player weapon selection in scene and handling relevant input calls. Also handles weapon animarion layer.
  */
 public class WeaponManager : MonoBehaviour
 {
@@ -16,6 +16,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private List<Weapon> weaponList;
     public Weapon activeWeapon;
+    [Header("Animation")]
+    public Animator animator;
+    private int WeaponAnimLayerIndex;
 
     private int index = -1;
     public void OnAttack(InputValue value)
@@ -54,14 +57,17 @@ public class WeaponManager : MonoBehaviour
     }
     void Start()
     {
+        WeaponAnimLayerIndex = animator.GetLayerIndex("Weapon");
+        DisableWeaponAnimations();
         //By default, the first weapon in hand is the first in the list
-        if(weaponList != null && weaponList.Count != 0)
+        if (weaponList != null && weaponList.Count != 0)
         {
             foreach (Weapon weapon in weaponList)
             {
                 weapon.gameObject.SetActive(false);
             }
             SelectWeapon(0);
+            EnableWeaponAnimations();
         }
     }
     public void addWeapon(Weapon weapon)
@@ -88,11 +94,15 @@ public class WeaponManager : MonoBehaviour
             {
                 SelectWeapon(Mathf.Clamp(weaponIndex, 0, weaponList.Count - 1));
             }
+            else
+            {
+                animator.SetLayerWeight(WeaponAnimLayerIndex, 0);
+            }
         }
     }
     public void SelectWeapon(int i)
     {
-        //Chagne the active weapon with checks for empty lists and redundant calls
+        //Change the active weapon with checks for empty lists and redundant calls
         if (weaponList.Count == 0)
         {
             return;
@@ -109,6 +119,14 @@ public class WeaponManager : MonoBehaviour
         index = i;
         activeWeapon = weaponList[index];
         activeWeapon.gameObject.SetActive(true);
+    }
+    public void DisableWeaponAnimations()
+    {
+        animator.SetLayerWeight(WeaponAnimLayerIndex, 0);
+    }
+    public void EnableWeaponAnimations()
+    {
+        animator.SetLayerWeight(WeaponAnimLayerIndex, 1);
     }
 }
 
