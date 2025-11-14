@@ -25,24 +25,51 @@ public class OarWeapon : Weapon
     private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Collide;
     public UnityEvent onCollide;
 
+    private bool checking = false;
+    private bool hasHit = false;
     //Detect colliders (or triggers) in range of weapon on the first frame of the attack cycle. This is the most simple form of melee
     public override void DoAttack()
     {
-        Collider[] hits = new Collider[32];
-        hits = Physics.OverlapSphere(hitPoint.position, radius, damageLayers, triggerInteraction);
-
-        for (int i = 0; i < hits.Length; i++)
+        hasHit = false;
+        if (!checking)
         {
-            var collider = hits[i];
-            if (!collider) continue;
-
-            //This assumes the life script and the collider script are on the same GameObject
-            var life = collider.GetComponent<EnemyLife>();
-            if (life != null)
-            {
-                life.amount -= damage;
-                onCollide.Invoke();
-            }
+            StartCoroutine(checkCollision());   
         }
+    }
+    public override void StopAttack()
+    {
+        checking = false;
+        hasHit = false;
+    }
+    System.Collections.IEnumerator checkCollision()
+    {
+        checking = true;
+
+        while (checking && !hasHit)
+        {
+            Debug.Log("CHECKING FOR HIT");
+            Collider[] hits = new Collider[32];
+            hits = Physics.OverlapSphere(hitPoint.position, radius, damageLayers, triggerInteraction);
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                var collider = hits[i];
+                if (!collider) continue;
+
+                Debug.Log("hit: " + collider.gameObject.name);
+                //This assumes the life script and the collider script are on the same GameObject
+                var life = collider.GetComponent<EnemyLife>();
+                if (life != null)
+                {
+                    hasHit = true;
+                    life.amount -= damage;
+                    onCollide.Invoke();
+                }
+            }
+
+            yield return null;
+        }
+
+        checking = false;
     }
 }

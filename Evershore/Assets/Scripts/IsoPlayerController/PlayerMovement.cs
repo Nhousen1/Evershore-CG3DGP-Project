@@ -104,9 +104,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("MoveBlendAngle", animatorBlendAngle);
         animator.SetBool("IsRunning", (moveInput.magnitude > 0)); //TODO handle walking
 
-        Debug.Log("Stopped: " + dustTrail.isStopped);
-        Debug.Log("Move: " + moveInput.magnitude);
-        Debug.Log("Active: " + dustTrail.gameObject.activeInHierarchy);
         //dustTrail.Play();
         if (moveInput.magnitude > 0)
         {

@@ -164,10 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  windUp: 0
-  active: 0.1
-  recovery: 0.3
-  animPack: {fileID: 0}
+  windUp: 0.25
+  active: 0.4
+  recovery: 0.88
+  overrideController: {fileID: 22100000, guid: 885d4ff98227cad4ba43a4fa9b9827d0, type: 2}
+  animator: {fileID: 0}
   damage: 2
   hitPoint: {fileID: 0}
   radius: 1
@@ -175,6 +176,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   triggerInteraction: 2
+  onCollide:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8902872000161463819
 GameObject:
   m_ObjectHideFlags: 0
