@@ -18,8 +18,7 @@ public class MachineGun : Weapon
     private float damage;
     [SerializeField]
     private float range;
-    [SerializeField]
-    private float MaxAmmo;
+    public int MaxAmmo;
     public int currentAmmo;
     [SerializeField]
     private float ammoRegenTime;

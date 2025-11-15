@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PillarsActivatedListener: {fileID: 5191120692344058465}
   PlayerDeathListener: {fileID: 8468341488537835643}
-  winScene: WinScene 1
-  loseScene: LoseScene 1
+  winScene: WinScene
+  loseScene: LoseScene
 --- !u!114 &5191120692344058465
 MonoBehaviour:
   m_ObjectHideFlags: 0
