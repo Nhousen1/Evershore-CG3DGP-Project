@@ -154,23 +154,44 @@ Nice to have:
 - ~~Add particle effects to enhance~~ the bonfire and ~~combat interactions.~~  
 - Refine lighting to make scenes more dynamic and to give each area a distinct atmosphere.
 
-## Preliminary Plan for Checkpoint 4:
+## Checkpoint 3-4:
 
-### SAM: \-Add respawn/replay button to win and lose screens
+Checkpoint 4: (Chapters 14, 15, and 17)
+SAM:
+-~~Add death screen prefab that appears on player death event (main menu, restart scene)~~
+-~~Add main menu that allows access to all scenes (no options, just play -> select scene)~~
+-~~Animate environmental elements such as grass or trees to add life to the scene.~~
+-~~Implement sound effects and music, with the soundtrack gradually becoming creepier as the game progresses.~~
 
-\- Experiment with increasing the player’s scale to match the proportions of other scene elements.
+MARCUS:
+-~~Make the dithering shader effect slightly less intense.~~ 
+-~~Update in-game healthbar~~ 
+-~~Finish Player weapon Animations~~ 
+-~~Update Oar attack system~~
+-~~Add second weapon~~
+-~~Add weapon UI display~~
+-~~Player Audio (footsteps, hurt, attack)~~
+LIAM:
+- ~~Fix the skeleton walking animation, which currently looks like sliding/skating.~~
+- ~~Fix the throwing animation for the ranged enemy.~~
+-~~Fix animation conflicts with multiple enemies at same time.~~
+- ~~Add enemy audio(footsteps, attack, defense, shoot, charge)~~
+-~~Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.~~
 
-### MARCUS:
+## Checkpoint 4 Plan:
+-add additional ending scenes
+-add killing villagers
+-fix up the scene transitions for the various updated versions of scenes that are a bit all over the place 
+-clean up project heiracrchy more
+-add some bonus juice and polish (more soundeffects/particles/deathanimation etc.)
+-add pause menu
+-refine puzzle maps and enemy map
 
-\-Finish Player weapon Animations 
-\-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
-
-### LIAM:
-
-\-Standardize scene hierarchy organization
 
 ## **Instructions for Testing the Project:**  
-Please browse through all scenes in Project-3-Submission folder in the Scenes folder. This contains all planed endings (not yet connected), win/lose place holder scenes, the island hub connected to the puzzel test and enemy combat testing scene.
+Please browse through all scenes in Project-3-Submission folder and the Gameplay Testing secene that is in the Marcus folder both of wich are in the Scenes folder ADDITIONALLY: in the SamPrject4 folder there are more updated scenes with work for submission 4 such as the Forrest4 scene. This contains all planed endings (not yet connected), win/lose place holder scenes, the island hub connected to the puzzel test and enemy combat testing scene.
+
+The Ambient audio 
 
 Player:
 
