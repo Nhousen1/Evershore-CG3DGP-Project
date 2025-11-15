@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 /* Author: Marcus King
  * Date created: 10/1/2025
- * Date last updated: 10/6/2025
- * Summary: placeholder test melee weapon item which damages everything within range once per attack.
+ * Date last updated: 11/15/2025
+ * Summary: test melee weapon item which damages everything within range once per attack.
  */
 public class OarWeapon : Weapon
 {
@@ -24,6 +24,10 @@ public class OarWeapon : Weapon
     [SerializeField] 
     private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Collide;
     public UnityEvent onCollide;
+    [Header("Audio")]
+    public AudioClip swingSound;
+    public AudioClip hitSound;
+    public AudioSource audioSource;
 
     private bool checking = false;
     private bool hasHit = false;
@@ -33,6 +37,7 @@ public class OarWeapon : Weapon
         hasHit = false;
         if (!checking)
         {
+            audioSource.PlayOneShot(swingSound);
             StartCoroutine(checkCollision());   
         }
     }
@@ -60,6 +65,7 @@ public class OarWeapon : Weapon
                 var life = collider.GetComponent<EnemyLife>();
                 if (life != null)
                 {
+                    audioSource.PlayOneShot(hitSound);
                     hasHit = true;
                     life.amount -= damage;
                     onCollide.Invoke();
