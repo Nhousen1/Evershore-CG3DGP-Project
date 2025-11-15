@@ -33,7 +33,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Project-3-Submission/Fire.unity
     guid: 82042083e1454494daeb0ac1a88805e9
   - enabled: 1
-    path: Assets/MainMenu.unity
+    path: Assets/SamProject4/MainMenu.unity
     guid: 9a9d5f7fb5baa62429ffe9dc8e755168
+  - enabled: 1
+    path: Assets/Scenes/Project-3-Submission/IslandHub 1.unity
+    guid: b2c1537fa2ff0424dbc01c96d5e5bc0e
+  - enabled: 1
+    path: Assets/SamProject4/Forest4.unity
+    guid: 125cd0935d8434741aff8b19f3e8323a
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
