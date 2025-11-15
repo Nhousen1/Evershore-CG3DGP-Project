@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 /**
 * Author: Liam Housenbold
 * Date Created: 9-25-2025
-* Date Modified: 10-15-2025
+* Date Modified: 11-14-2025
 * Summary: A finite state machine (FSM) for melee enemy AI behavior. has a out of combat patrol state, chase player state, charge attack state, sword swing attack state, and defense stance state.
 * The enemy uses a NavMeshAgent for movement and pathfinding.
 */
@@ -17,7 +17,7 @@ public class EnemyFSM : MonoBehaviour
     // Different states the enemy can be in
     public enum EnemyState { OutofCombat, SwingSword, Charge, DefenseStance, ChasePlayer }
     public EnemyState currentState;
-    private Animator animator;
+    private EnemyState previousState; // track state changes for animator flags
 
     [Header("Out of Combat Patrol Settings")]
     // Simple patrol (two-point) settings — computed from the enemy's starting position
@@ -34,6 +34,18 @@ public class EnemyFSM : MonoBehaviour
     public float playerSwingDistance;
     public float chaseStopDistance;
     public float playerChargeDistance;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip swordSwingClip;
+    [SerializeField] private AudioClip chargeWhooshClip;
+    [SerializeField] private AudioClip defenseSfxClip;
+
+    [Header("Footstep Audio")]
+    [SerializeField] private AudioClip[] footstepClips; 
+    [SerializeField] private float footstepInterval = 0.45f;
+    private float footstepTimer = 0f;
+    private int footstepIndex = 0;
 
     // Charge settings
     [Header("Enemy Charge Move Settings")]
@@ -79,9 +91,15 @@ public class EnemyFSM : MonoBehaviour
     [SerializeField] private EnemyLife enemyLife;
     [SerializeField] private PlayerLife playerLife;
     [SerializeField] private EnemySight sightSensor;
+    [SerializeField] private Animator animator;
     private UnityEngine.AI.NavMeshAgent agent;
 
     private float originalSightAngle = -1f;
+
+    // --- Animator trigger gating (to avoid spamming triggers every frame) ---
+    private bool chargeTriggerStarted = false;
+    private bool defenseTriggerStarted = false;
+    private bool attackTriggerStarted = false;
 
     private void Awake()
     {
@@ -89,8 +107,25 @@ public class EnemyFSM : MonoBehaviour
         swordHit.OnSwordHit.AddListener(NotifySwordHit); //detect when player is hit on charge
         if (enemyLife != null)
             enemyLife.onEnemyDamaged.AddListener(OnEnemyDamaged); // detect when enemy is damaged
-        animator = GetComponent<Animator>();
-        if (animator != null)
+
+        // Try serialized reference first. If not set, auto-find.
+        if (animator == null)
+        {
+            // 1) Check this object & its children
+            animator = GetComponent<Animator>();
+            if (animator == null)
+                animator = GetComponentInChildren<Animator>();
+
+            // 2) Check parent & its children (to catch the Skeleton sibling case)
+            if (animator == null && transform.parent != null)
+                animator = transform.parent.GetComponentInChildren<Animator>();
+        }
+
+        if (animator == null)
+        {
+            Debug.LogError("EnemyFSM: Animator not found! Make sure to assign the Skeleton's Animator.", this);
+        }
+        else
         {
             // Deep-clone the controller so this enemy’s animation state machine is unique
             RuntimeAnimatorController originalController = animator.runtimeAnimatorController;
@@ -109,6 +144,7 @@ public class EnemyFSM : MonoBehaviour
         patrolPoints[0] = initialPosition + right * patrolRadius;
         patrolPoints[1] = initialPosition - right * patrolRadius;
         currentState = EnemyState.OutofCombat;
+        previousState = currentState;
     }
 
     private void Start()
@@ -148,7 +184,53 @@ public class EnemyFSM : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
+        // --- FOOTSTEP HANDLING ---
+        if (animator != null && agent != null)
+        {
+            bool moving = !agent.isStopped && agent.velocity.magnitude > 0.15f;
+
+            if (moving)
+            {
+                footstepInterval = Mathf.Lerp(1.05f, 0.55f, agent.velocity.magnitude / agent.speed);
+                footstepTimer += Time.deltaTime;
+
+                if (footstepTimer >= footstepInterval)
+                {
+                    footstepTimer = 0f;
+
+                    if (audioSource != null && footstepClips != null && footstepClips.Length > 0)
+                    {
+                        // pick clip in sequence
+                        AudioClip clip = footstepClips[footstepIndex];
+
+                        // play it quietly, with slight pitch variation
+                        audioSource.pitch = Random.Range(0.9f, 1.1f);
+                        float vol = Random.Range(0.05f, 0.10f);
+                        audioSource.PlayOneShot(clip, vol);
+
+                        // move to next clip (looping)
+                        footstepIndex = (footstepIndex + 1) % footstepClips.Length;
+                    }
+                }
+            }
+            else
+            {
+                // reset timer + clip cycle when stopping
+                footstepTimer = 0f;
+                footstepIndex = 0;
+            }
+        }
+
+        // track state changes so we can reset animator trigger flags
+        if (currentState != previousState)
+        {
+            chargeTriggerStarted = false;
+            defenseTriggerStarted = false;
+            attackTriggerStarted = false;
+            previousState = currentState;
+        }
+
         // Prevent other states from interrupting defense
         if (isDefending)
         {
@@ -169,8 +251,17 @@ public class EnemyFSM : MonoBehaviour
                 sightSensor.angle = originalSightAngle;
         }
 
+        // Drive Animator locomotion parameters globally from NavMeshAgent
         if (animator != null && agent != null)
-            animator.speed = agent.velocity.magnitude / agent.speed;
+        {
+            float normalizedSpeed = 0f;
+            if (agent.speed > 0.01f)
+                normalizedSpeed = agent.velocity.magnitude / agent.speed; // 0 = idle, 1 ≈ full speed
+
+            animator.SetFloat("MoveSpeed", normalizedSpeed);
+            bool isMoving = !agent.isStopped && normalizedSpeed > 0.05f;
+            animator.SetBool("isMoving", isMoving);
+        }
 
         if (currentState == EnemyState.OutofCombat)
         {
@@ -207,11 +298,7 @@ public class EnemyFSM : MonoBehaviour
 
     void OutofCombat()
     {
-        // Animation handling
-        if (animator != null)
-        {
-            animator.SetBool("isMoving", true);
-        }
+        // Animation handling (locomotion handled globally in Update, so we don't force isMoving here)
 
         // Player detection
         if (sightSensor != null && sightSensor.detectedObject != null)
@@ -326,8 +413,10 @@ public class EnemyFSM : MonoBehaviour
 
     void Charge()
     {
-        if (animator != null)
+        // Fire charge animation once per entry into Charge state
+        if (animator != null && !chargeTriggerStarted)
         {
+            chargeTriggerStarted = true;
             animator.ResetTrigger("Charge");
             StartCoroutine(TriggerWithDelay("Charge", Random.Range(0f, 0.25f)));
         }
@@ -355,6 +444,18 @@ public class EnemyFSM : MonoBehaviour
                 isCharging = true;
                 chargeTimer = 0f;
                 chargeStartPos = agentPos;
+
+                if (audioSource != null && chargeWhooshClip != null)
+                {
+                    audioSource.pitch = Random.Range(0.95f, 1.05f);
+                    audioSource.PlayOneShot(chargeWhooshClip);
+                }
+
+                // increase anim speed during charge
+                if (animator != null)
+                    animator.SetBool("isCharging", true);
+                animator.speed = 1.8f;
+
                 if (agent != null)
                 {
                     originalAgentSpeed = agent.speed;
@@ -372,6 +473,8 @@ public class EnemyFSM : MonoBehaviour
             if ((!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance) || travelled >= maxChargeDistance || distToPlayer <= playerSwingDistance)
             {
                 isCharging = false;
+                animator.speed = 1.0f;
+                animator.SetBool("isCharging", false);
                 chargeTimer = 0f;
                 agent.speed = originalAgentSpeed;
                 agent.isStopped = false;
@@ -386,6 +489,8 @@ public class EnemyFSM : MonoBehaviour
             float distToPlayer = Vector3.Distance(transform.parent.position, targetPos);
             if (travelled >= maxChargeDistance || distToPlayer <= playerSwingDistance)
             {
+                animator.speed = 1.0f;
+                animator.SetBool("isCharging", false);
                 isCharging = false;
                 chargeTimer = 0f;
                 currentState = EnemyState.ChasePlayer;
@@ -405,13 +510,19 @@ public class EnemyFSM : MonoBehaviour
                 isPulsing = true;
             }
 
-            if (animator != null)
+            if (animator != null && !defenseTriggerStarted)
             {
+                defenseTriggerStarted = true;
                 animator.ResetTrigger("Attack");
                 animator.ResetTrigger("Charge");
                 animator.ResetTrigger("Defense");
                 StartCoroutine(TriggerWithDelay("Defense", Random.Range(0f, 0.25f)));
                 animator.SetBool("isMoving", false);
+            }
+
+            if (audioSource != null && defenseSfxClip != null)
+            {
+                audioSource.PlayOneShot(defenseSfxClip);
             }
 
             defenseTimer = 0f;
@@ -424,7 +535,7 @@ public class EnemyFSM : MonoBehaviour
                 enemyLife.armor_amount = prevArmorAmount * defenseArmorMultiplier;
             }
             defenseInitialized = true;
-        } 
+        }
 
         defenseTimer += Time.deltaTime;
 
@@ -475,12 +586,15 @@ public class EnemyFSM : MonoBehaviour
 
         swingTimer += Time.deltaTime;
 
+        // Only fire the Attack trigger once per swing
         if (swingTimer < 0.1f)
         {
-            if (animator != null)
+            if (animator != null && !attackTriggerStarted)
             {
+                attackTriggerStarted = true;
                 animator.ResetTrigger("Attack");
                 StartCoroutine(TriggerWithDelay("Attack", Random.Range(0f, 0.25f)));
+                StartCoroutine(PlaySoundDelayed(swordSwingClip, 0.25f));
             }
         }
 
@@ -510,6 +624,12 @@ public class EnemyFSM : MonoBehaviour
     {
         isCharging = false;
         chargeTimer = 0f;
+
+        if (animator != null)
+        {
+            animator.speed = 1.0f;
+            animator.SetBool("isCharging", false);
+        }
 
         if (agent != null)
         {
@@ -583,9 +703,17 @@ public class EnemyFSM : MonoBehaviour
         animator.ResetTrigger("Attack");
         animator.ResetTrigger("Charge");
         animator.ResetTrigger("Defense");
+    }
 
-        animator.SetBool("isMoving", true);
-        animator.SetFloat("MoveSpeed", 0f);
+    private IEnumerator PlaySoundDelayed(AudioClip clip, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (audioSource != null && clip != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(clip);
+        }
     }
 
     private void OnDestroy()
@@ -593,6 +721,6 @@ public class EnemyFSM : MonoBehaviour
         if (swordHit != null)
             swordHit.OnSwordHit.RemoveListener(NotifySwordHit);
         if (enemyLife != null)
-            enemyLife.onEnemyDamaged.RemoveListener(OnEnemyDamaged); 
+            enemyLife.onEnemyDamaged.RemoveListener(OnEnemyDamaged);
     }
 }

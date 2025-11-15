@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 /**
 * Author: Liam Housenbold
 * Date Created: 9-30-2025
-* Date Modified: 10-1-2025
+* Date Modified: 11-14-2025
 * Summary: A finite state machine (FSM) for Ranged enemy AI behavior. has a out of combat patrol state, chase player state, and attack state.
 * The enemy uses a NavMeshAgent for movement and pathfinding.
 */
@@ -17,8 +17,12 @@ public class EnemyRangedFSM : MonoBehaviour
     // Different states the enemy can be in
     public enum EnemyState { OutofCombat, ShootPlayer, ChasePlayer }
     public EnemyState currentState;
-    private Animator animator;
-
+    
+    // Animator & movement → animation glue
+    [Header("Animation")]
+    [SerializeField] private Animator animator;          // assigned in inspector or auto-found
+    private float baseAnimatorSpeed = 1.0f;              // randomized per enemy
+    
     [Header("Out of Combat Patrol Settings")]
     // Simple patrol (two-point) settings — computed from the enemy's starting position
     public float patrolRadius = 4f;
@@ -42,6 +46,15 @@ public class EnemyRangedFSM : MonoBehaviour
     public float lastShootTime;
     public float fireRate;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootClip; 
+
+    [Header("Footstep Audio")]
+    [SerializeField] private AudioClip[] footstepClips; 
+    [SerializeField] private float footstepInterval = 0.45f;
+    private float footstepTimer = 0f;
+    private int footstepIndex = 0;   
 
     [Header("Refrences")]
     public GameObject projectilePrefab;
@@ -56,9 +69,26 @@ public class EnemyRangedFSM : MonoBehaviour
     private void Awake()
     {
         agent = GetComponentInParent<UnityEngine.AI.NavMeshAgent>();
-        /*
-        animator = GetComponent<Animator>();
-        if (animator != null)
+
+        // --- Animator setup (similar pattern as melee FSM) ---
+        // Try serialized reference first. If not set, auto-find.
+        if (animator == null)
+        {
+            // 1) Check this object & its children
+            animator = GetComponent<Animator>();
+            if (animator == null)
+                animator = GetComponentInChildren<Animator>();
+
+            // 2) Check parent & its children (to catch Skeleton sibling case)
+            if (animator == null && transform.parent != null)
+                animator = transform.parent.GetComponentInChildren<Animator>();
+        }
+
+        if (animator == null)
+        {
+            Debug.LogError("EnemyRangedFSM: Animator not found! Make sure to assign the Skeleton's Animator.", this);
+        }
+        else
         {
             // Deep-clone the controller so this enemy’s animation state machine is unique
             RuntimeAnimatorController originalController = animator.runtimeAnimatorController;
@@ -68,7 +98,7 @@ public class EnemyRangedFSM : MonoBehaviour
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             animator.Play(stateInfo.fullPathHash, 0, Random.Range(0f, 1f));
         }
-        */
+        // ------------------------------------------------------
 
         // record starting position and initialize patrol points
         initialPosition = transform.position;
@@ -90,10 +120,13 @@ public class EnemyRangedFSM : MonoBehaviour
             runtimeMaterial = Instantiate(enemyRenderer.sharedMaterial);
             enemyRenderer.material = runtimeMaterial;
         }
-        /*
+
+        // Randomize base animator speed slightly per enemy (like melee FSM)
         if (animator != null)
-            animator.speed = Random.Range(0.9f, 1.1f);
-            */
+        {
+            baseAnimatorSpeed = Random.Range(0.9f, 1.1f);
+            animator.speed = baseAnimatorSpeed;
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -104,6 +137,43 @@ public class EnemyRangedFSM : MonoBehaviour
 
     void Update()
     {
+        // --- FOOTSTEP HANDLING ---
+        if (animator != null && agent != null)
+        {
+            bool moving = !agent.isStopped && agent.velocity.magnitude > 0.15f;
+
+            if (moving)
+            {
+                footstepInterval = Mathf.Lerp(1.05f, 0.55f, agent.velocity.magnitude / agent.speed);
+                footstepTimer += Time.deltaTime;
+
+                if (footstepTimer >= footstepInterval)
+                {
+                    footstepTimer = 0f;
+
+                    if (audioSource != null && footstepClips != null && footstepClips.Length > 0)
+                    {
+                        // pick clip in sequence
+                        AudioClip clip = footstepClips[footstepIndex];
+
+                        // play it quietly, with slight pitch variation
+                        audioSource.pitch = Random.Range(0.9f, 1.1f);
+                        float vol = Random.Range(0.05f, 0.10f);
+                        audioSource.PlayOneShot(clip, vol);
+
+                        // move to next clip (looping)
+                        footstepIndex = (footstepIndex + 1) % footstepClips.Length;
+                    }
+                }
+            }
+            else
+            {
+                // reset timer + clip cycle when stopping
+                footstepTimer = 0f;
+                footstepIndex = 0;
+            }
+        }
+
         if (sightSensor != null)
         {
             // Cache the original angle if not already stored
@@ -117,10 +187,17 @@ public class EnemyRangedFSM : MonoBehaviour
                 sightSensor.angle = originalSightAngle;
         }
 
-/*
+        // Drive Animator locomotion parameters globally from NavMeshAgent
         if (animator != null && agent != null)
-            animator.speed = agent.velocity.magnitude / agent.speed;
-            */
+        {
+            float normalizedSpeed = 0f;
+            if (agent.speed > 0.01f)
+                normalizedSpeed = agent.velocity.magnitude / agent.speed; // 0 = idle, 1 ≈ full speed
+
+            animator.SetFloat("MoveSpeed", normalizedSpeed);
+            bool isMoving = !agent.isStopped && normalizedSpeed > 0.05f;
+            animator.SetBool("isMoving", isMoving);
+        }
 
         if (currentState == EnemyState.OutofCombat)
         {
@@ -167,8 +244,8 @@ public class EnemyRangedFSM : MonoBehaviour
                 patrolTimer = 0f;
 
                 // find a valid NavMesh point
-                Vector3 nextTarget = patrolPoints[patrolIndex];
                 UnityEngine.AI.NavMeshHit hit;
+                Vector3 nextTarget = patrolPoints[patrolIndex];
                 if (UnityEngine.AI.NavMesh.SamplePosition(nextTarget, out hit, patrolRadius, UnityEngine.AI.NavMesh.AllAreas))
                     nextTarget = hit.position;
 
@@ -180,8 +257,8 @@ public class EnemyRangedFSM : MonoBehaviour
         else if (!agent.hasPath)
         {
             // Agent has no destination at all
-            Vector3 startTarget = patrolPoints[patrolIndex];
             UnityEngine.AI.NavMeshHit hit;
+            Vector3 startTarget = patrolPoints[patrolIndex];
             if (UnityEngine.AI.NavMesh.SamplePosition(startTarget, out hit, patrolRadius, UnityEngine.AI.NavMesh.AllAreas))
                 startTarget = hit.position;
 
@@ -195,7 +272,7 @@ public class EnemyRangedFSM : MonoBehaviour
         /*
         if (animator != null)
             animator.SetBool("isMoving", true);
-            */
+        */
 
         if (agent == null)
             agent = GetComponentInParent<UnityEngine.AI.NavMeshAgent>();
@@ -233,6 +310,7 @@ public class EnemyRangedFSM : MonoBehaviour
         }
 
     }
+
     void SetNavDestination(Vector3 desiredPoint)
     {
         if (agent == null)
@@ -280,8 +358,17 @@ public class EnemyRangedFSM : MonoBehaviour
         if (timeSinceLastShoot > fireRate)
         {
             lastShootTime = Time.time;
-            Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
-            shootEffect.Play();
+
+            // --- Trigger attack animation when actually firing ---
+            if (animator != null)
+            {
+                animator.ResetTrigger("Attack");
+                animator.SetTrigger("Attack");
+            }
+            // -----------------------------------------------------
+
+            // Delay projectile spawn by 0.5 seconds
+            StartCoroutine(DelayedProjectile());
         }
     }
 
@@ -290,6 +377,21 @@ public class EnemyRangedFSM : MonoBehaviour
         Vector3 directionToPosition = Vector3.Normalize(targetPosition - transform.parent.position);
         directionToPosition.y = 0;
         transform.parent.forward = directionToPosition;
+    }
+
+    private IEnumerator DelayedProjectile()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+        shootEffect.Play();
+        // play shoot sound here
+        if (audioSource != null && shootClip != null)
+        {
+            audioSource.pitch = Random.Range(0.97f, 1.03f);
+            audioSource.volume = 0.6f;
+            audioSource.PlayOneShot(shootClip);
+        }
     }
     
     private void OnDestroy()
@@ -300,3 +402,4 @@ public class EnemyRangedFSM : MonoBehaviour
         }
     }
 }
+
