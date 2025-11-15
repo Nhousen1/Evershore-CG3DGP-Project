@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight;
 
     private Vector2 moveInput;
-    private bool isRunning;
+    public bool isRunning;
 
     [Header("Camera Configuration")]
     [SerializeField]
