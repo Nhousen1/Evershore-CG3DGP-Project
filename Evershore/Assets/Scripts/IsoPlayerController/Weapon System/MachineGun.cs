@@ -33,6 +33,9 @@ public class MachineGun : Weapon
     [SerializeField] 
     private LayerMask damageLayers = 0; 
     public UnityEvent onHit;
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip fireSound;
     private void Start()
     {
         ammoRegenCounter = ammoRegenTime;
@@ -63,6 +66,7 @@ public class MachineGun : Weapon
         currentAmmo--;
 
         muzzleFlash.Play();
+        audioSource.PlayOneShot(fireSound);
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out RaycastHit hit, range, damageLayers))
         {
             Debug.DrawLine(shootPoint.position, hit.point, Color.red, 0.1f);
