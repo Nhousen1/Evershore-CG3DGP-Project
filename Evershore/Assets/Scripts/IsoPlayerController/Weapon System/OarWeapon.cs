@@ -47,7 +47,6 @@ public class OarWeapon : Weapon
 
         while (checking && !hasHit)
         {
-            Debug.Log("CHECKING FOR HIT");
             Collider[] hits = new Collider[32];
             hits = Physics.OverlapSphere(hitPoint.position, radius, damageLayers, triggerInteraction);
 

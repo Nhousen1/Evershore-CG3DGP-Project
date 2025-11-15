@@ -64,4 +64,15 @@ public abstract class Weapon : MonoBehaviour
     //Specific inherited weapon behavior is all contained in this method
     public abstract void DoAttack();
     public abstract void StopAttack();
+    private void OnDisable()
+    {
+        isCycling = false;
+        isAttackHeld = false;
+        StopAllCoroutines();
+    }
+    private void OnEnable()
+    {
+        isCycling = false;
+        isAttackHeld = false;
+    }
 }
