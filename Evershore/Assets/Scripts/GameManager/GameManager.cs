@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 /* Author: Liam Housenbold, Marcus King
  * Date created: 10/1/2025
- * Date last updated: 10/14/2025
+ * Date last updated: 11/15/2025
  * Summary: handles all major Game Events in a scene, mainly by calling scene switches.
  */
 public class GameManager : Singleton<GameManager>
@@ -37,6 +37,6 @@ public class GameManager : Singleton<GameManager>
 
     public void OnPlayerDied()
     {
-        SceneManager.LoadScene(loseScene);
+        //SceneManager.LoadScene(loseScene);
     }
 }

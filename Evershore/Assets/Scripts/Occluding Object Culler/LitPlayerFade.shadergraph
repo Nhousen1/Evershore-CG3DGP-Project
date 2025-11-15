@@ -38,6 +38,9 @@
         },
         {
             "m_Id": "4490e6e28eb64adfa5bb4cc2784afe76"
+        },
+        {
+            "m_Id": "779a829bad2e42c19de16a53e2492ea6"
         }
     ],
     "m_Keywords": [],
@@ -164,6 +167,9 @@
         },
         {
             "m_Id": "8b21747dc6ce484cbf5622823c25542f"
+        },
+        {
+            "m_Id": "92ed894333af406896547fed887b6608"
         }
     ],
     "m_GroupDatas": [],
@@ -447,6 +453,20 @@
                     "m_Id": "69de0da93ef94840b1df6add3d7ae3e1"
                 },
                 "m_SlotId": 1218012509
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "92ed894333af406896547fed887b6608"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "69de0da93ef94840b1df6add3d7ae3e1"
+                },
+                "m_SlotId": -479254558
             }
         },
         {
@@ -791,6 +811,21 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "A",
     "m_StageCapability": 2,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "0902530d44c84464ab721b6a781a3eac",
+    "m_Id": -479254558,
+    "m_DisplayName": "Screen Space Radius",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Screen_Space_Radius",
+    "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
@@ -1361,6 +1396,9 @@
         },
         {
             "m_Id": "10f67fa2c2024ca08de1e44b3bdc9f91"
+        },
+        {
+            "m_Id": "779a829bad2e42c19de16a53e2492ea6"
         }
     ]
 }
@@ -2311,6 +2349,9 @@
             "m_Id": "f8007e7171c44adab51f94488cd4d6c2"
         },
         {
+            "m_Id": "0902530d44c84464ab721b6a781a3eac"
+        },
+        {
             "m_Id": "26d5a532d88a4304a8cdcf2522adde69"
         }
     ],
@@ -2325,11 +2366,13 @@
     "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"f1d7167c813649e48841ba71e1b77c12\",\n        \"type\": 3\n    }\n}",
     "m_PropertyGuids": [
         "8499d377-3abd-477e-bb71-5afd2cfd2476",
-        "f58a4379-2da2-4afd-933a-a8f3c24ccb81"
+        "f58a4379-2da2-4afd-933a-a8f3c24ccb81",
+        "0a916fcd-f6eb-4137-a3b1-cf06670f06ae"
     ],
     "m_PropertyIds": [
         1218012509,
-        -854321014
+        -854321014,
+        -479254558
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -2433,6 +2476,34 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "779a829bad2e42c19de16a53e2492ea6",
+    "m_Guid": {
+        "m_GuidSerialized": "3138ae86-2662-4869-a7d0-a77cd377fefb"
+    },
+    "m_Name": "Screen Space Radius",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Screen Space Radius",
+    "m_DefaultReferenceName": "_Screen_Space_Radius",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
@@ -2844,6 +2915,42 @@
     "m_StageCapability": 3,
     "m_Value": false,
     "m_DefaultValue": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "92ed894333af406896547fed887b6608",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1118.4000244140625,
+            "y": 2648.0,
+            "width": 185.5999755859375,
+            "height": 33.60009765625
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "ff857a38ce25481ebdfd09365f816b3e"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "779a829bad2e42c19de16a53e2492ea6"
+    }
 }
 
 {
@@ -3613,9 +3720,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1067.2001953125,
-            "y": 2623.199951171875,
-            "width": 111.20001220703125,
+            "x": -1084.0,
+            "y": 2574.39990234375,
+            "width": 111.199951171875,
             "height": 33.60009765625
         }
     },
@@ -4043,5 +4150,20 @@
     "m_NormalDropOffSpace": 0,
     "m_ClearCoat": false,
     "m_BlendModePreserveSpecular": true
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "ff857a38ce25481ebdfd09365f816b3e",
+    "m_Id": 0,
+    "m_DisplayName": "Screen Space Radius",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
