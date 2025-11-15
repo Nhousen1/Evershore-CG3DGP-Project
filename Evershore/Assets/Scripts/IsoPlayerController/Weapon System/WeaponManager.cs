@@ -18,6 +18,7 @@ public class WeaponManager : MonoBehaviour
     public Weapon activeWeapon;
     [Header("Animation")]
     public Animator animator;
+    private RuntimeAnimatorController baseController;
     private int WeaponAnimLayerIndex;
 
     private int index = -1;
@@ -57,6 +58,7 @@ public class WeaponManager : MonoBehaviour
     }
     void Start()
     {
+        baseController = animator.GetComponent<RuntimeAnimatorController>();    
         WeaponAnimLayerIndex = animator.GetLayerIndex("Weapon");
         DisableWeaponAnimations();
         //By default, the first weapon in hand is the first in the list
@@ -64,8 +66,10 @@ public class WeaponManager : MonoBehaviour
         {
             foreach (Weapon weapon in weaponList)
             {
+                weapon.animator = animator;
                 weapon.gameObject.SetActive(false);
             }
+
             SelectWeapon(0);
             EnableWeaponAnimations();
         }
@@ -119,6 +123,15 @@ public class WeaponManager : MonoBehaviour
         index = i;
         activeWeapon = weaponList[index];
         activeWeapon.gameObject.SetActive(true);
+
+        if (activeWeapon.overrideController != null)
+        {
+            animator.runtimeAnimatorController = activeWeapon.overrideController;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = baseController;
+        }
     }
     public void DisableWeaponAnimations()
     {

@@ -19,8 +19,9 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     protected float recovery;
     [Header("Animation")]
-    public WeaponAnimationPack animPack;
-    private Animator animator;//injected
+    public AnimatorOverrideController overrideController;
+    [HideInInspector]
+    public Animator animator;//injected
 
     private bool isCycling = false;
     private bool isAttackHeld = false;
@@ -44,11 +45,17 @@ public abstract class Weapon : MonoBehaviour
     {
         isCycling = true;
 
+        animator.SetTrigger("Fire");
         if (windUp > 0f) yield return new WaitForSeconds(windUp);
-        DoAttack();
-        if (active > 0f) yield return new WaitForSeconds(active);
-        if (recovery > 0f) yield return new WaitForSeconds(recovery);
 
+        DoAttack();
+
+        if (active > 0f) yield return new WaitForSeconds(active);
+
+        StopAttack();
+
+        if (recovery > 0f) yield return new WaitForSeconds(recovery);
+        
         isCycling = false;
 
         if (fireMode == FireMode.AutoHold && isAttackHeld)
@@ -56,4 +63,16 @@ public abstract class Weapon : MonoBehaviour
     }
     //Specific inherited weapon behavior is all contained in this method
     public abstract void DoAttack();
+    public abstract void StopAttack();
+    private void OnDisable()
+    {
+        isCycling = false;
+        isAttackHeld = false;
+        StopAllCoroutines();
+    }
+    private void OnEnable()
+    {
+        isCycling = false;
+        isAttackHeld = false;
+    }
 }

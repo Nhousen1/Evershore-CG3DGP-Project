@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("MoveBlendAngle", animatorBlendAngle);
         animator.SetBool("IsRunning", (moveInput.magnitude > 0)); //TODO handle walking
 
-        // Handle visuals and audio feedback
+        //dustTrail.Play();
         if (moveInput.magnitude > 0)
         {
             var emission = dustTrail.emission;
