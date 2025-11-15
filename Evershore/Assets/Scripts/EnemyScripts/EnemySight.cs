@@ -4,7 +4,7 @@ using UnityEngine;
 /**
 * Author: Liam Housenbold
 * Date Created: 9-25-2025
-* Date Modified: 10-15-2025
+* Date Modified: 11-14-2025
 * Summary: Manages the enemy's sight detection, allowing it to detect objects within a certain distance and angle, considering obstacles.
 */
 public class EnemySight : MonoBehaviour
@@ -15,6 +15,14 @@ public class EnemySight : MonoBehaviour
     public LayerMask objectsLayers;
     public LayerMask obstaclesLayers;
     public Collider detectedObject;
+
+    [Header("Sprint Detection Settings")]
+
+    public PlayerMovement player; 
+    public float sprintMultiplier = 1.8f;   // how much bigger the radius becomes
+    public float sprintCheckInterval = 0.1f;
+    private float baseDistance;
+    private float sprintCheckTimer = 0f;
 
     void OnDrawGizmosSelected()
     {
@@ -33,8 +41,25 @@ public class EnemySight : MonoBehaviour
             Gizmos.DrawSphere(detectedObject.bounds.center, 0.2f);
         }
     }
+
+    private void Start()
+    {
+        baseDistance = distance;
+    }
     private void Update()
     {
+        // Adjust detection radius based on sprint
+        sprintCheckTimer += Time.deltaTime;
+        if (sprintCheckTimer >= sprintCheckInterval)
+        {
+            sprintCheckTimer = 0f;
+
+            if (player != null && player.isRunning)
+                distance = baseDistance * sprintMultiplier;
+            else
+                distance = baseDistance;
+        }
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, distance, objectsLayers);
 
         detectedObject = null;

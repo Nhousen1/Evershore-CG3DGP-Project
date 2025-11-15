@@ -7344,7 +7344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc4223ff02794d559cb1a8cb8725f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 18
+  distance: 12
   angle: 360
   objectsLayers:
     serializedVersion: 2
@@ -7353,6 +7353,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   detectedObject: {fileID: 0}
+  player: {fileID: 0}
+  sprintMultiplier: 2
+  sprintCheckInterval: 0.1
 --- !u!114 &240034507435413051
 MonoBehaviour:
   m_ObjectHideFlags: 0
