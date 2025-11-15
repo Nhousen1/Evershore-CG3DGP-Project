@@ -36,8 +36,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;//TODO: should the animator really be handled here?
     [SerializeField]
     private ParticleSystem dustTrail;
+    [Header("Audio")]
+    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private AudioClip footstepClip;
+    [SerializeField] private float walkStepInterval = 0.5f;
+    [SerializeField, Tooltip("Multiplier applied to the walk interval while running (lower = faster).")] private float runStepIntervalMultiplier = 0.65f;
 
     private Vector3 velocity;
+    private float footstepTimer;
     public void OnMove(InputValue value)
     {
         if (canMove)
@@ -118,6 +124,8 @@ public class PlayerMovement : MonoBehaviour
         {
             dustTrail.Stop();
         }
+
+        HandleFootsteps(Time.deltaTime);
     }
     public void stopInputMovement()
     {
@@ -131,5 +139,34 @@ public class PlayerMovement : MonoBehaviour
     public void unstopInputMovement()
     {
         canMove = true;
+    }
+
+    private void HandleFootsteps(float deltaTime)
+    {
+        if (!footstepSource || !footstepClip)
+        {
+            return;
+        }
+
+        bool shouldStep = canMove && cc.isGrounded && moveInput.magnitude > 0.1f;
+        if (!shouldStep)
+        {
+            footstepTimer = 0f;
+            return;
+        }
+
+        float interval = Mathf.Max(0.05f, walkStepInterval);
+        if (isRunning)
+        {
+            interval *= Mathf.Clamp(runStepIntervalMultiplier, 0.1f, 1f);
+        }
+
+        footstepTimer -= deltaTime;
+        if (footstepTimer <= 0f)
+        {
+            footstepSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+            footstepSource.PlayOneShot(footstepClip);
+            footstepTimer = interval;
+        }
     }
 }
