@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 /* Author: Marcus King
  * Date created: 10/1/2025
- * Date last updated: 10/20/2025
+ * Date last updated: 11/20/2025
  * Summary: handles player movement inputs, sets animator controller vars, and defines isometric coordinate system.
  */
 public class PlayerMovement : MonoBehaviour
@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     private CinemachineVirtualCamera isoCam;
     private Vector3 isoForward;
     private Vector3 isoRight;
-
     private CharacterController cc;
 
     [Header("Input Flags")]
@@ -36,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;//TODO: should the animator really be handled here?
     [SerializeField]
     private ParticleSystem dustTrail;
+
     [Header("Audio")]
     [SerializeField] private AudioSource footstepSource;
     [SerializeField] private AudioClip footstepClip;
@@ -97,7 +97,28 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         cc.Move(velocity * Time.deltaTime);
 
-        //The players feet need to always look like they are moving in the desired direciton, but the players head should always face the aiming direction.
+        HandleAnimator(move);
+
+        HandleDustTrail();
+
+        HandleFootsteps(Time.deltaTime);
+    }
+    public void stopInputMovement()
+    {
+        //Potentially useful in the future for cutscenes, knockback, or anything that freezes player
+        canMove = false;
+        if (dustTrail.isPlaying)
+        {
+            dustTrail.Stop();
+        }
+    }
+    public void unstopInputMovement()
+    {
+        canMove = true;
+    }
+    private void HandleAnimator(Vector3 move)
+    {
+        //The players feet need to always look like they are moving in the desired direction, but the players head should always face the aiming direction.
         Vector2 moveDirection = moveInput;
         float lookAngle = GetComponent<PointAim>().target.transform.eulerAngles.y;
 
@@ -109,9 +130,10 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("MoveBlendAngle", animatorBlendAngle);
         animator.SetBool("IsRunning", (moveInput.magnitude > 0)); //TODO handle walking
-
-        //dustTrail.Play();
-        if (moveInput.magnitude > 0)
+    }
+    private void HandleDustTrail()
+    {
+        if (moveInput.magnitude > 0 && canMove)
         {
             var emission = dustTrail.emission;
             emission.rateOverTime = 5 * (isRunning ? runSpeedMultiplier : 1f);
@@ -120,25 +142,10 @@ public class PlayerMovement : MonoBehaviour
                 dustTrail.Play();
             }
         }
-        else if (dustTrail.isPlaying) 
+        else if (dustTrail.isPlaying)
         {
             dustTrail.Stop();
         }
-
-        HandleFootsteps(Time.deltaTime);
-    }
-    public void stopInputMovement()
-    {
-        //Potentially useful in the future for cutscenes, knockback, or anything that freezes player
-        canMove = false;
-        if (dustTrail.isEmitting)
-        {
-            dustTrail.Stop();
-        }
-    }
-    public void unstopInputMovement()
-    {
-        canMove = true;
     }
 
     private void HandleFootsteps(float deltaTime)
