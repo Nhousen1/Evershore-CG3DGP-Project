@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 /**
 * Author: Liam Housenbold
 * Date Created: 9-25-2025
-* Date Modified: 11-14-2025
+* Date Modified: 12-1-2025
 * Summary: A finite state machine (FSM) for melee enemy AI behavior. has a out of combat patrol state, chase player state, charge attack state, sword swing attack state, and defense stance state.
 * The enemy uses a NavMeshAgent for movement and pathfinding.
 */
@@ -85,6 +85,14 @@ public class EnemyFSM : MonoBehaviour
     // Sword Swing Params
     public float swingCooldown = 1f;
     private float swingTimer = 0f;
+
+    private void ResetDamageWindow()
+    {
+        if (swordHit != null)
+        {
+            swordHit.ResetDamageWindow();
+        }
+    }
 
     [Header("Refrences")]
     [SerializeField] private SwordHit swordHit;
@@ -596,6 +604,11 @@ public class EnemyFSM : MonoBehaviour
                 StartCoroutine(TriggerWithDelay("Attack", Random.Range(0f, 0.25f)));
                 StartCoroutine(PlaySoundDelayed(swordSwingClip, 0.25f));
             }
+        }
+
+        if(swingTimer < 0.35f && swingTimer > 0.3f)
+        {
+            ResetDamageWindow();
         }
 
         if (swingTimer >= swingCooldown)

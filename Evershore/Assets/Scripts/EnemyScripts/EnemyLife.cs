@@ -22,9 +22,12 @@ public class EnemyLife : MonoBehaviour
     public UnityEvent onEnemyDamaged = new UnityEvent();
 
     [SerializeField] private FloatingEnemyHpBar floatingHpBar;
+    private GameManager gameManager;
+    public ParticleSystem deathBloodEffect;
 
     void Awake()
     {
+        gameManager = GameManager.Instance;
         floatingHpBar = GetComponentInChildren<FloatingEnemyHpBar>();
         max_amount = amount;
         current_amount = amount;
@@ -43,6 +46,21 @@ public class EnemyLife : MonoBehaviour
         if (amount <= 0)
         {
             onEnemyDeath.Invoke();
+            if (deathBloodEffect != null)
+            {
+                ParticleSystem ps = Instantiate(
+                    deathBloodEffect,
+                    transform.position,
+                    transform.rotation
+                );
+                ps.Play();
+                Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+            if (gameManager != null)
+            {
+                gameManager.enemiesKilled++;
+                Debug.Log("Enemy killed. Total: " + gameManager.enemiesKilled);
+            }
             Destroy(gameObject);
         }
     }

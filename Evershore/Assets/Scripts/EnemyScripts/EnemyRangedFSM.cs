@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 /**
 * Author: Liam Housenbold
 * Date Created: 9-30-2025
-* Date Modified: 11-14-2025
+* Date Modified: 12-1-2025
 * Summary: A finite state machine (FSM) for Ranged enemy AI behavior. has a out of combat patrol state, chase player state, and attack state.
 * The enemy uses a NavMeshAgent for movement and pathfinding.
 */
@@ -389,7 +389,7 @@ public class EnemyRangedFSM : MonoBehaviour
         if (audioSource != null && shootClip != null)
         {
             audioSource.pitch = Random.Range(0.97f, 1.03f);
-            audioSource.volume = 0.6f;
+            audioSource.volume = 0.3f;
             audioSource.PlayOneShot(shootClip);
         }
     }

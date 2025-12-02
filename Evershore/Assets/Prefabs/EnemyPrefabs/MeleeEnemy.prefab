@@ -2199,6 +2199,7 @@ MonoBehaviour:
   OnSwordHit:
     m_PersistentCalls:
       m_Calls: []
+  enemyFsm: {fileID: 3487750905452824801}
 --- !u!1 &6582671579439033558
 GameObject:
   m_ObjectHideFlags: 0
