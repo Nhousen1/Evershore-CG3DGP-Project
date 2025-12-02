@@ -3075,7 +3075,7 @@ MonoBehaviour:
   nightAmbientLight: {r: 0.5053399, g: 0.6383382, b: 0.9622642, a: 0}
   volume: {fileID: 379035264}
   skyboxMaterial: {fileID: 2100000, guid: 3fa3cd91b769a454ebedac38337905a7, type: 2}
-  dial: {fileID: 1849023950}
+  dial: {fileID: 2448278715004521836}
   timeSettings: {fileID: 11400000, guid: 859bc50099a75fd4da9bcf4bbbffefb1, type: 2}
 --- !u!4 &840500638
 Transform:
@@ -6115,11 +6115,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2605347534144766006, guid: d543d9d683913134a9bd404dda7c0102, type: 3}
   m_PrefabInstance: {fileID: 1842438741}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1849023950 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2913991501405795313, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
-  m_PrefabInstance: {fileID: 2448278715004521835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1898492616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7445,6 +7440,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+--- !u!224 &2448278715004521836 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7479449090057834369, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+  m_PrefabInstance: {fileID: 2448278715004521835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7908526033706614339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
