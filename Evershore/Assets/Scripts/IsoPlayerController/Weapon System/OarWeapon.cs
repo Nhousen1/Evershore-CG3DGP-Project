@@ -69,6 +69,17 @@ public class OarWeapon : Weapon
                     hasHit = true;
                     life.amount -= damage;
                     onCollide.Invoke();
+                    break;
+                }
+
+                var destructible = collider.GetComponent<Destructible>();
+                if (destructible != null)
+                {
+                    audioSource.PlayOneShot(hitSound);
+                    hasHit = true;
+                    destructible.ApplyDamage(damage);
+                    onCollide.Invoke();
+                    break;
                 }
             }
 
