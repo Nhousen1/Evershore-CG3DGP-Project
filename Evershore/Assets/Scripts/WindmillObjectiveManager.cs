@@ -23,6 +23,10 @@ public class WindmillObjectiveManager : MonoBehaviour
     [SerializeField] private TMP_Text counterLabel;
     [SerializeField] private string counterFormat = "Windmills: {0}/{1}";
 
+    [Header("Game End Integration")]
+    [Tooltip("Optional reference to the GameEndManager; will fall back to FindObjectOfType.")]
+    [SerializeField] private GameEndManager gameEndManager;
+
     private int destroyedCount;
     private bool isReturning;
 
@@ -65,6 +69,12 @@ public class WindmillObjectiveManager : MonoBehaviour
             return;
 
         isReturning = true;
+
+        if (GameEndManager.Instance)
+        {
+            GameEndManager.Instance.windPuzzleCompleted = true;
+        }
+
         if (autoLoadHubOnComplete && !string.IsNullOrEmpty(hubSceneName))
         {
             StartCoroutine(ReturnToHubRoutine());

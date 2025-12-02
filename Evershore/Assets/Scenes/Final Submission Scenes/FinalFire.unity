@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c5c1803818f5e4c9f08ce0dc387daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireIndex: 3
+  fireIndex: 2
   audioSource: {fileID: 0}
   puzzle: {fileID: 914856401}
 --- !u!65 &358052501
@@ -1021,6 +1021,7 @@ MonoBehaviour:
   fallbackOutcomeAudioSource: {fileID: 964531155}
   sequencesRequired: 3
   hubSceneName: FinalHub
+  gameEndManager: {fileID: 0}
   logPlayerChoices: 1
   startOnPillarAttack: 1
   triggerPillar: {fileID: 311313207}

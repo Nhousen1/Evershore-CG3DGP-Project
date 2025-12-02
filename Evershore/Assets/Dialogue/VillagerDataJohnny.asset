@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: 'Johnny says:'
   lines:
-  - 'DON''T TRUST BRETT AND SHAWN. THEY
-
-    HAVE THEIR OWN GOALS. TRUST ME!'
+  - "For the Flame Ritual, you must appease the God of Color.\nFor the Wind Ritual,
+    you should look for hidden red windmills and break them down. \nGood luck!"
   portrait: {fileID: 21300000, guid: 8e528620ccd11ce4f91b1693725a48d3, type: 3}
