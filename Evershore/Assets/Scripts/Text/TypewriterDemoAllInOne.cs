@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TypewriterDemoAllInOne : MonoBehaviour
 {
@@ -22,6 +23,10 @@ Press any key during typing to fast-reveal the current sentence.";
     public float punctuationHold = 0.25f;   // for , ; :
     public float sentenceHold = 0.60f;    // small beat after . ! ?
     public bool sfxEveryChar = false;    // if false, skips whitespace etc.
+
+    [Header("Flow")] 
+    [Tooltip("Optional scene name to load automatically when all text has finished.")]
+    public string mainMenuSceneName = "MainMenu";
 
     [Header("Audio (optional)")]
     public AudioClip typeSfx;               // assign a short “tick” if you have one
@@ -129,6 +134,19 @@ Press any key during typing to fast-reveal the current sentence.";
             SetHintVisible(true);
             yield return StartCoroutine(WaitForAnyPress());
             SetHintVisible(false);
+        }
+
+        // All sentences complete; auto-return to main menu if configured.
+        if (!string.IsNullOrWhiteSpace(mainMenuSceneName))
+        {
+            try
+            {
+                SceneManager.LoadScene(mainMenuSceneName);
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"TypewriterDemoAllInOne: Failed to load scene '{mainMenuSceneName}'. Exception: {ex.Message}", this);
+            }
         }
     }
 

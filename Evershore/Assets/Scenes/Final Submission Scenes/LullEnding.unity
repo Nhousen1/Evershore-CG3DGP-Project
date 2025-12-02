@@ -905,14 +905,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fontAsset: {fileID: 11400000, guid: 5cc39517889a851489dc353f5abdd228, type: 2}
   sampleText: "The lull arrives early and without the redness of blood. The windmills
-    are aligned. The bell was rung at the right time. The candle stays lit. The skiff
-    is stocked and quiet. You push off while the village is busy with the festival.
-    The oar locks do not creak. The current carries you past the shoals. The headland
-    falls behind. The sea closes again before the harbor rises to full alarm. Large
-    boats cannot be prepared in time. There is no one with you in the skiff. The
-    island becomes smaller and then hard to see. The lull ends, and the sea returns
-    to normal behind you. As you look towards the horizon, you sigh in relief as
-    you move towards a more peaceful life.\r"
+    were destroyed and the flame was appeased. The skiff is stocked and quiet. You
+    push off while the village is busy with the festival. The oar locks do not creak.
+    The current carries you past the shoals. The headland falls behind. The sea closes
+    again before the harbor rises to full alarm. Large boats cannot be prepared in
+    time. There is no one with you in the skiff. The island becomes smaller and then
+    hard to see. The lull ends, and the sea returns to normal behind you. As you
+    look towards the horizon, you sigh in relief as you move towards a more peaceful
+    future.\r"
   charsPerSecond: 30
   punctuationHold: 0.25
   sentenceHold: 0.6

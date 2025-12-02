@@ -2464,6 +2464,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 915433115640153526, guid: 7a92d70f42aca1d40aa5675904d4fb0a, type: 3}
   m_PrefabInstance: {fileID: 1925676843}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2070591942
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 385686190201180331, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_text
+      value: Wind
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 70.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 50.006104
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 129.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.074630655
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9972113
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -171.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644917187606825202, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4842147317373400843, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: m_Name
+      value: japanese boat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455262741159975008, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
+      propertyPath: targetSceneName
+      value: FinalForest
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9511deccdd6524d44ad716df1611884c, type: 3}
 --- !u!1001 &2147284119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2697,3 +2762,4 @@ SceneRoots:
   - {fileID: 1129526418}
   - {fileID: 689863248}
   - {fileID: 840500638}
+  - {fileID: 2070591942}
