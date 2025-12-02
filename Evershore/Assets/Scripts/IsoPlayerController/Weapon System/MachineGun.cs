@@ -78,6 +78,15 @@ public class MachineGun : Weapon
                 life.amount -= damage;
                 onHit.Invoke();
             }
+            else
+            {
+                var destructible = hit.collider.GetComponent<Destructible>();
+                if (destructible != null)
+                {
+                    destructible.ApplyDamage(damage);
+                    onHit.Invoke();
+                }
+            }
         }
         
     }
