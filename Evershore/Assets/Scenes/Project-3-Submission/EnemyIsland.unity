@@ -416,10 +416,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7521894298618215453, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
-      propertyPath: deathBloodEffect
-      value: 
-      objectReference: {fileID: 8437168049629602325, guid: 7d376d481adc14abc876050f7f84cefd, type: 3}
     - target: {fileID: 8629010432430187365, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: detectedObject
       value: 

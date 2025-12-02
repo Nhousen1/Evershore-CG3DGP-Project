@@ -1275,6 +1275,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   floatingHpBar: {fileID: 8501089733143850902}
+  deathBloodEffect: {fileID: 8437168049629602325, guid: 7d376d481adc14abc876050f7f84cefd, type: 3}
 --- !u!195 &412655398683605108
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2199,7 +2200,6 @@ MonoBehaviour:
   OnSwordHit:
     m_PersistentCalls:
       m_Calls: []
-  enemyFsm: {fileID: 3487750905452824801}
 --- !u!1 &6582671579439033558
 GameObject:
   m_ObjectHideFlags: 0
