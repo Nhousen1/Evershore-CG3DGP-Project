@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6da359e56048714f812e77e7daa9164, type: 3}
+  m_Name: VillagerData Tutorial
+  m_EditorClassIdentifier: 
+  speakerName: 'Shawn says:'
+  lines:
+  - 'Ahoy stranger! Seems like you have crashed on our archipelago. '
+  - Surviving here ain't easy. First try walking (WASD) and jumping (space). Don't
+    forget you can run too (Shift + WASD)
+  - Seems like you brought some weapons on your boat. Smart choice. Try cycling through
+    your weapons using <q> and <e>. Left click to fire, of course.
+  - Alright, now that you know the basics of survival, why dont you head into town
+    with me. We don't get visitors much, so im sure everyone wants to meet the newcomer.
+  - Just keep walking right for a bit and you will find my boat. Jump in, and i'll
+    take you to our island.
+  portrait: {fileID: 21300000, guid: 6d0e78d60a0c060468c10295fa4fe3dc, type: 3}

@@ -46,6 +46,7 @@ public class DialogueUI : MonoBehaviour
         // Singleton pattern - ensures only one DialogueUI exists
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+        Debug.Log(Instance.gameObject.name);
         
         // Start with dialogue panel hidden
         if (dialoguePanel) dialoguePanel.SetActive(false);
