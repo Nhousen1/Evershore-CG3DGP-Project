@@ -654,11 +654,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
---- !u!224 &480891453 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2913991501405795313, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
-  m_PrefabInstance: {fileID: 2448278715004521835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &568224921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2123414754824647561, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
@@ -1224,7 +1219,7 @@ MonoBehaviour:
   nightAmbientLight: {r: 0.5053399, g: 0.6383382, b: 0.9622642, a: 0}
   volume: {fileID: 379035264}
   skyboxMaterial: {fileID: 2100000, guid: 3fa3cd91b769a454ebedac38337905a7, type: 2}
-  dial: {fileID: 480891453}
+  dial: {fileID: 0}
   timeSettings: {fileID: 11400000, guid: 859bc50099a75fd4da9bcf4bbbffefb1, type: 2}
 --- !u!4 &840500638
 Transform:
@@ -1529,7 +1524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762252a14a8fa874293d28f989ef0359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: Wind 1
+  targetSceneName: FinalForest
   transitionDelay: 0.5
   requirePlayerTag: 1
 --- !u!65 &893395990
@@ -2774,7 +2769,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6596893129270010531, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
