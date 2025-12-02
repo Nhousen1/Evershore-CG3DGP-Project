@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: 'Shawn says:'
   lines:
-  - Hi I'm Shawn and I sell weaponss
+  - 'Challenge the rituals of Wind and Flame. We also need
+
+    some blood from any
+    source to power the rituals too.'
   portrait: {fileID: 21300000, guid: 6d0e78d60a0c060468c10295fa4fe3dc, type: 3}

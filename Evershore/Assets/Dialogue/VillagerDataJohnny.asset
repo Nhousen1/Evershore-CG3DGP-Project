@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: 'Johnny says:'
   lines:
-  - Hi I'm Johnny and I live in a tent
+  - 'DON''T TRUST BRETT AND SHAWN. THEY
+
+    HAVE THEIR OWN GOALS. TRUST ME!'
   portrait: {fileID: 21300000, guid: 8e528620ccd11ce4f91b1693725a48d3, type: 3}

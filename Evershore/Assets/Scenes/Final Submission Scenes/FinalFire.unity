@@ -987,7 +987,7 @@ MonoBehaviour:
   failureAudioSource: {fileID: 964531155}
   fallbackOutcomeAudioSource: {fileID: 964531155}
   sequencesRequired: 3
-  hubSceneName: IslandHub 1
+  hubSceneName: FinalHub
   logPlayerChoices: 1
   startOnPillarAttack: 1
   triggerPillar: {fileID: 311313207}

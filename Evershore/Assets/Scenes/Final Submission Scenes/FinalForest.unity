@@ -788,6 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  allowDestruction: 1
   destroyGameObject: 1
   destroyDelay: 0
   destructionVfx: {fileID: 283484453}
@@ -923,6 +924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  allowDestruction: 1
   destroyGameObject: 1
   destroyDelay: 0
   destructionVfx: {fileID: 744640054}
@@ -3535,7 +3537,7 @@ MonoBehaviour:
   requiredWindmills: 7
   windmillTag: Windmill
   requireMatchingTag: 1
-  hubSceneName: IslandHub 1
+  hubSceneName: FinalHub
   returnDelay: 2
   autoLoadHubOnComplete: 1
   counterLabel: {fileID: 0}
@@ -3614,6 +3616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  allowDestruction: 1
   destroyGameObject: 1
   destroyDelay: 0
   destructionVfx: {fileID: 1869747630}
@@ -4142,6 +4145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  allowDestruction: 1
   destroyGameObject: 1
   destroyDelay: 0
   destructionVfx: {fileID: 497499904}
@@ -4277,6 +4281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  allowDestruction: 1
   destroyGameObject: 1
   destroyDelay: 0
   destructionVfx: {fileID: 1962739772}
@@ -4345,6 +4350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  allowDestruction: 1
   destroyGameObject: 1
   destroyDelay: 0
   destructionVfx: {fileID: 778304905}
@@ -6748,6 +6754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  allowDestruction: 1
   destroyGameObject: 1
   destroyDelay: 0
   destructionVfx: {fileID: 1305605946}

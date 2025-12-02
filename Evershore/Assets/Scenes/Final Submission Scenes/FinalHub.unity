@@ -1852,7 +1852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762252a14a8fa874293d28f989ef0359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: Forest
+  targetSceneName: Marcus's Thing
   transitionDelay: 0.5
   requirePlayerTag: 1
 --- !u!4 &584871572 stripped
@@ -2711,7 +2711,7 @@ MonoBehaviour:
   nightAmbientLight: {r: 0.5053399, g: 0.6383382, b: 0.9622642, a: 0}
   volume: {fileID: 379035264}
   skyboxMaterial: {fileID: 2100000, guid: 3fa3cd91b769a454ebedac38337905a7, type: 2}
-  dial: {fileID: 1332353203}
+  dial: {fileID: 0}
   timeSettings: {fileID: 11400000, guid: 859bc50099a75fd4da9bcf4bbbffefb1, type: 2}
 --- !u!4 &840500638
 Transform:
@@ -3582,7 +3582,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Puzzle Test
+  m_text: 'Challenge
+
+    the Wind
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3693,7 +3697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762252a14a8fa874293d28f989ef0359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: EnemyIsland
+  targetSceneName: EnemyLevel 2
   transitionDelay: 0.5
   requirePlayerTag: 1
 --- !u!4 &1084172208 stripped
@@ -4216,11 +4220,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d89cffeade6d8ee499a0b16e9286d46e, type: 3}
---- !u!224 &1332353203 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4652481628982862901, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
-  m_PrefabInstance: {fileID: 2448278715004521835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1341343238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3184c8a016da6e34abff1686da99650b, type: 3}
@@ -4694,9 +4693,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enemy Test
+  m_text: 'Challenge
 
-'
+    the Flame'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6220,6 +6219,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2255400967242451401, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2324818711500343825, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2324818711500343825, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2324818711500343825, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2324818711500343825, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2324818711500343825, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2324818711500343825, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3801139248482704074, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
