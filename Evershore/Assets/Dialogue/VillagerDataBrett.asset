@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: 'Brett says:'
   lines:
-  - Hi I'm Brett and I sell cookies
+  - 'We are trapped on these islands due to the sea, but we can
+
+    calm it down
+    if you complete the rituals of Wind and Flame.'
   portrait: {fileID: 21300000, guid: 3f4cfac1635bea5409961c18a6346f10, type: 3}
