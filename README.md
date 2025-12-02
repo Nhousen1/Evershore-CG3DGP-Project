@@ -235,9 +235,7 @@ Lull ending \- add counter to detect if enemies killed (goto ending if condition
 
 
 ## **Instructions for Testing the Project:**  
-Please browse through all scenes in Project-3-Submission folder and the Gameplay Testing secene that is in the Marcus folder both of wich are in the Scenes folder ADDITIONALLY: in the SamPrject4 folder there are more updated scenes with work for submission 4 such as the Forrest4 scene. This contains all planed endings (not yet connected), win/lose place holder scenes, the island hub connected to the puzzel test and enemy combat testing scene.
-
-The Ambient audio 
+Please browse through all scenes in "Scenes/Final Submission" folder. Load these scenes in the sequence defined above. Change parameters in puzzle completion flags of the endmanager in the finalhub scene to get different endings
 
 Player:
 
