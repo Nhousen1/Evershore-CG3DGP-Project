@@ -20,9 +20,12 @@ public class SimonPuzzleManager : MonoBehaviour
     [SerializeField] private bool allowDamageDrivenInput = true;
 
     [Header("Colors & Sounds")]
-    public Color[] colors;
+    [Tooltip("Index 0 = Blue, 1 = Pink, 2 = Green, 3 = Orange, 4 = Purple")]
+    [SerializeField] private Color[] colors;
     [SerializeField] private AudioClip[] sequenceClips;
     [SerializeField] private AudioSource sequenceAudioSource;
+    [SerializeField] private AudioClip lighterClip;
+    [SerializeField] private AudioSource lighterAudioSource;
     [Header("Result Sounds")]
     [SerializeField] private AudioClip successClip;
     [SerializeField] private AudioSource successAudioSource;
@@ -223,6 +226,7 @@ public class SimonPuzzleManager : MonoBehaviour
             int index = sequence[i];
 
             // Flash ON
+            PlayLighterSound();
             SetPillarParticleColor(colors[index]);
             PlaySound(index);
 
@@ -305,12 +309,13 @@ public class SimonPuzzleManager : MonoBehaviour
 
     bool EnsureSequence()
     {
-        if (sequenceLength <= 0 || colors == null || colors.Length == 0)
+        if (sequenceLength <= 0)
         {
             sequenceLength = Mathf.Max(1, sequenceLength);
-            Debug.LogWarning("SimonPuzzleManager: colors array is empty; cannot build sequence.", this);
-            return false;
         }
+
+        // Ensure colors array has at least 5 slots in the fixed order we expect.
+        EnsureColorArray();
 
         if (sequenceClips == null || sequenceClips.Length < colors.Length)
         {
@@ -362,6 +367,26 @@ public class SimonPuzzleManager : MonoBehaviour
         }
     }
 
+    void PlayLighterSound()
+    {
+        if (!lighterClip)
+            return;
+
+        if (lighterAudioSource)
+        {
+            lighterAudioSource.Stop();
+            lighterAudioSource.PlayOneShot(lighterClip);
+        }
+        else if (sequenceAudioSource)
+        {
+            sequenceAudioSource.PlayOneShot(lighterClip);
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(lighterClip, transform.position);
+        }
+    }
+
     void HandleSequenceCompleted()
     {
         awaitingPlayerInput = false;
@@ -405,6 +430,9 @@ public class SimonPuzzleManager : MonoBehaviour
 
     int GetRandomColorIndex(int lastIndex)
     {
+        // We always treat indices as 0..(colors.Length-1). If colors is
+        // not yet initialised, EnsureColorArray will be called before
+        // sequence generation.
         if (colors == null || colors.Length == 0)
             return 0;
 
@@ -418,6 +446,48 @@ public class SimonPuzzleManager : MonoBehaviour
         } while (candidate == lastIndex);
 
         return candidate;
+    }
+
+    /// <summary>
+    /// Ensures the colors array exists and that the first five slots follow
+    /// the agreed convention: 0=Blue,1=Pink,2=Green,3=Orange,4=Purple.
+    /// Any existing user-assigned colors are preserved where possible.
+    /// </summary>
+    void EnsureColorArray()
+    {
+        const int required = 5;
+
+        if (colors == null || colors.Length < required)
+        {
+            var old = colors;
+            colors = new Color[required];
+
+            // Copy any existing values into the new array
+            if (old != null)
+            {
+                int copy = Mathf.Min(old.Length, required);
+                for (int i = 0; i < copy; i++)
+                {
+                    colors[i] = old[i];
+                }
+            }
+        }
+
+        // If specific slots are still default (0,0,0,0), assign sensible
+        // defaults for the canonical palette the puzzle expects.
+        if (IsUninitializedColor(colors[0])) colors[0] = Color.blue;                 // 0 = Blue
+        if (IsUninitializedColor(colors[1])) colors[1] = new Color(1.0f, 0.4f, 0.8f); // 1 = Pink
+        if (IsUninitializedColor(colors[2])) colors[2] = Color.green;                // 2 = Green
+        if (IsUninitializedColor(colors[3])) colors[3] = new Color(1.0f, 0.55f, 0.0f);// 3 = Orange
+        if (IsUninitializedColor(colors[4])) colors[4] = new Color(0.6f, 0.0f, 1.0f); // 4 = Purple
+    }
+
+    bool IsUninitializedColor(Color c)
+    {
+        return Mathf.Approximately(c.r, 0f)
+               && Mathf.Approximately(c.g, 0f)
+               && Mathf.Approximately(c.b, 0f)
+               && Mathf.Approximately(c.a, 0f);
     }
 
         void PlayOutcomeSound(AudioClip clip, AudioSource preferredSource)
