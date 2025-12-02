@@ -1973,7 +1973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd871670ec6ad9f43a10d9d824c850d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEndManager: {fileID: 333556878}
   playerTag: Player
 --- !u!1001 &507655752
 PrefabInstance:
@@ -3202,7 +3201,7 @@ MonoBehaviour:
   nightAmbientLight: {r: 0.5053399, g: 0.6383382, b: 0.9622642, a: 0}
   volume: {fileID: 379035264}
   skyboxMaterial: {fileID: 2100000, guid: 3fa3cd91b769a454ebedac38337905a7, type: 2}
-  dial: {fileID: 0}
+  dial: {fileID: 2448278715004521836}
   timeSettings: {fileID: 11400000, guid: 859bc50099a75fd4da9bcf4bbbffefb1, type: 2}
 --- !u!4 &840500638
 Transform:
@@ -5430,7 +5429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd871670ec6ad9f43a10d9d824c850d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEndManager: {fileID: 333556878}
   playerTag: Player
 --- !u!1 &1507923929 stripped
 GameObject:
@@ -7855,6 +7853,11 @@ PrefabInstance:
       addedObject: {fileID: 876341677}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+--- !u!224 &2448278715004521836 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7479449090057834369, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+  m_PrefabInstance: {fileID: 2448278715004521835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

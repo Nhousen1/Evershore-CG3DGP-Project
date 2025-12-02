@@ -81,7 +81,7 @@ MonoBehaviour:
   fireMode: 0
   windUp: 0
   active: 0.01
-  recovery: 0.3
+  recovery: 0.15
   overrideController: {fileID: 22100000, guid: da87ae6e9bc8a8f4ab8ab3f5dadaf6b3, type: 2}
   animator: {fileID: 0}
   damage: 10

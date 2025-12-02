@@ -11,12 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Project-3-Submission/Forest.unity
     guid: 8c6df18d47602af449cf55de6cb06fee
-  - enabled: 0
-    path: Assets/Scenes/Project-3-Submission/WinLoss/LoseScene.unity
-    guid: cca067dc27ae64cb48ed8fbdf7db9207
-  - enabled: 0
-    path: Assets/Scenes/Project-3-Submission/WinLoss/WinScene.unity
-    guid: d444d9c308cdd45799dc6330927ffb68
+  - enabled: 1
+    path: Assets/Scenes/Final Submission Scenes/MainMenu.unity
+    guid: 9a9d5f7fb5baa62429ffe9dc8e755168
+  - enabled: 1
+    path: Assets/Scenes/Final Submission Scenes/FinalTutorial.unity
+    guid: 7d615f9f97e91924f83c44269d00afdd
   - enabled: 1
     path: Assets/Scenes/Final Submission Scenes/SacrificeEnding.unity
     guid: d968e49a6188d5e4282fcedff0219a07
@@ -32,9 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Project-3-Submission/Fire.unity
     guid: 82042083e1454494daeb0ac1a88805e9
-  - enabled: 1
-    path: Assets/Scenes/Final Submission Scenes/MainMenu.unity
-    guid: 9a9d5f7fb5baa62429ffe9dc8e755168
   - enabled: 1
     path: Assets/Scenes/Project-3-Submission/IslandHub 1.unity
     guid: b2c1537fa2ff0424dbc01c96d5e5bc0e
@@ -56,5 +53,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Submission Scenes/FinalHub.unity
     guid: c86310de5df69fa40a856655c3003b80
+  - enabled: 1
+    path: Assets/Scenes/Project-3-Submission/WinLoss/WinScene.unity
+    guid: d444d9c308cdd45799dc6330927ffb68
+  - enabled: 1
+    path: Assets/Scenes/Project-3-Submission/WinLoss/LoseScene.unity
+    guid: cca067dc27ae64cb48ed8fbdf7db9207
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
