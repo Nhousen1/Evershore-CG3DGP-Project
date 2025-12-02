@@ -1219,7 +1219,7 @@ MonoBehaviour:
   nightAmbientLight: {r: 0.5053399, g: 0.6383382, b: 0.9622642, a: 0}
   volume: {fileID: 379035264}
   skyboxMaterial: {fileID: 2100000, guid: 3fa3cd91b769a454ebedac38337905a7, type: 2}
-  dial: {fileID: 0}
+  dial: {fileID: 2448278715004521836}
   timeSettings: {fileID: 11400000, guid: 859bc50099a75fd4da9bcf4bbbffefb1, type: 2}
 --- !u!4 &840500638
 Transform:
@@ -1234,7 +1234,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 914258591}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &869678324
 GameObject:
@@ -1586,7 +1586,6 @@ Transform:
   - {fileID: 974457642}
   - {fileID: 796577476}
   - {fileID: 876709808}
-  - {fileID: 840500638}
   - {fileID: 379035265}
   - {fileID: 350168651}
   - {fileID: 678910060}
@@ -2676,11 +2675,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6596893129270010531, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+--- !u!224 &2448278715004521836 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2913991501405795313, guid: 3106131d886be7243bdd25e9f2c8ad5e, type: 3}
+  m_PrefabInstance: {fileID: 2448278715004521835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2693,3 +2696,4 @@ SceneRoots:
   - {fileID: 2448278715004521835}
   - {fileID: 1129526418}
   - {fileID: 689863248}
+  - {fileID: 840500638}
