@@ -61,7 +61,7 @@ A top down mobile game involving building camps. We will take inspiration from i
 
 ## **Development Plan**  
    
-### **Project Checkpoint 1-2: Basic Mechanics and Scripting (Ch 5-9)**  
+### **Project Checkpoint 1: Basic Mechanics and Scripting (Ch 5-9)**  
 \-~~Build isometric perspective~~, ~~player controller~~, ~~combat system~~, stealth, ~~movement~~, ~~health~~, ~~attacks~~  
 *“We were not able to complete the stealth system due to  time constraints. The combat system took longer to implement than expected.”*  
 ~~\-Implement enemy navigation objective system and attack sequences. Set up sight and sound detection.~~  
@@ -154,7 +154,7 @@ Nice to have:
 - ~~Add particle effects to enhance~~ the bonfire and ~~combat interactions.~~  
 - Refine lighting to make scenes more dynamic and to give each area a distinct atmosphere.
 
-## Checkpoint 3:
+## Checkpoint 4:
 
 Checkpoint 3: (Chapters 14, 15, and 17)
 SAM:
@@ -178,7 +178,7 @@ LIAM:
 - ~~Add enemy audio(footsteps, attack, defense, shoot, charge)~~
 -~~Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.~~
 
-## Checkpoint 4: (Final Update)
+## Checkpoint 5: (Final Update)
 
 Change parameters in puzzle completion flags of the endmanager in the FinalHub scene to get different endings
 
