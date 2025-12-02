@@ -154,9 +154,9 @@ Nice to have:
 - ~~Add particle effects to enhance~~ the bonfire and ~~combat interactions.~~  
 - Refine lighting to make scenes more dynamic and to give each area a distinct atmosphere.
 
-## Checkpoint 3-4:
+## Checkpoint 3:
 
-Checkpoint 4: (Chapters 14, 15, and 17)
+Checkpoint 3: (Chapters 14, 15, and 17)
 SAM:
 -~~Add death screen prefab that appears on player death event (main menu, restart scene)~~
 -~~Add main menu that allows access to all scenes (no options, just play -> select scene)~~
@@ -178,14 +178,60 @@ LIAM:
 - ~~Add enemy audio(footsteps, attack, defense, shoot, charge)~~
 -~~Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.~~
 
-## Checkpoint 4 Plan:
--add additional ending scenes
--add killing villagers
--fix up the scene transitions for the various updated versions of scenes that are a bit all over the place 
--clean up project heiracrchy more
--add some bonus juice and polish (more soundeffects/particles/deathanimation etc.)
--add pause menu
--refine puzzle maps and enemy map
+## Checkpoint 4: (Final Update)
+
+Change parameters in puzzle completion flags of the endmanager in the FinalHub scene to get different endings
+
+### SAM:
+
+- Complete a fully playable start-to-finish game loop, including all planned levels and a final win condition, and ensure players can return to the beginning.
+
+<img src="GDD_Images/linkedScenes.png" alt="linkedScenes" width="400">
+*All scenes are now linked with proper transitions.*
+
+-  Start connecting the endings you have to the main gameplay. The difference between endings doesn't have to require substantially different choices made in gameplay.  
+- Fix the grass on puzzle and add lit player fade material on objects in the puzzle scenes
+
+### MARCUS:
+
+- ~~Bug: Dust continues after death~~  
+- ~~Tutorial level~~
+
+<img src="GDD_Images/tutorial.png" alt="tutorial" width="400">
+*Tutorial level featuring a new NPC.*
+
+- ~~Add combat level~~
+
+<img src="GDD_Images/enemylevel1.png" alt="enemylevel1" width="400">
+*EnemyLevel1 experiments with how vertical level design integrates in our game.*
+
+- ~~Polish the UI~~
+
+<img src="GDD_Images/newUI.png" alt="newUI" width="400">
+*New UI Design gives old-timey look to Evershore*
+
+- ~~Start preparing a WebGL build and test it early to catch any WebGL specific issues since that will be required for the next submission~~  
+- ~~Unlock cursor in main menu screen~~  
+- Add at least two additional juicing elements  
+  - Camera Shake  
+    “Given the amount of work we needed to do to develop horizontally, this was out of scope. This submission was focused on putting everything together and fixing bugs.”  
+  - ~~Fixed blood dripper effect~~
+
+### LIAM:
+
+- ~~Reduce noise of throwing effect~~  
+- ~~Update enemy sounds and add death sound/particle/animation fixes~~  
+- ~~Have the sword not damage the player when not being used by enemy~~  
+- ~~Do one of the combat levels~~  
+- ~~Add enemy death counter that persists and connect it to the lull ending~~
+
+## Scene Sequence
+
+Tutorial level \- first thing you load into (Marcus)  
+2 Combat levels \- can traverse to from hub (one Liam one Marcus)  
+Fire puzzle \- second puzzle (Sam)  
+Sacrifice ending \- second options at the end (add selection) (Sam)  
+Lull ending \- add counter to detect if enemies killed (goto ending if condition at end) (Liam)
 
 
 ## **Instructions for Testing the Project:**  
