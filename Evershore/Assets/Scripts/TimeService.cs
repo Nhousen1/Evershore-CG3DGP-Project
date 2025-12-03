@@ -33,7 +33,13 @@ public class TimeService
 
     public void UpdateTime(float deltaTime)
     {
+        // Advance time in seconds with multiplier
         currentTime = currentTime.AddSeconds(deltaTime * settings.timeMultiplier);
+
+        // Wrap to keep DateTime in a safe 24-hour range
+        var timeOfDay = currentTime.TimeOfDay;
+        currentTime = DateTime.Today + timeOfDay;
+
         isDayTime.Value = IsDayTime();
         currentHour.Value = currentTime.Hour;
     }

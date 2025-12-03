@@ -19,9 +19,6 @@ public class TimeManager : MonoBehaviour
     [SerializeField] Volume volume;
     [SerializeField] Material skyboxMaterial;
 
-    [SerializeField] RectTransform dial;
-    float initialDialRotation;
-
     ColorAdjustments colorAdjustments;
 
     [SerializeField] TimeSettings timeSettings;
@@ -53,8 +50,6 @@ public class TimeManager : MonoBehaviour
         OnSunrise += () => Debug.Log("Sunrise");
         OnSunset += () => Debug.Log("Sunset");
         OnHourChange += () => Debug.Log("Hour change");
-
-        initialDialRotation = dial.rotation.eulerAngles.z;
     }
 
     void Update()
@@ -97,7 +92,6 @@ public class TimeManager : MonoBehaviour
     {
         float rotation = service.CalculateSunAngle();
         sun.transform.rotation = Quaternion.AngleAxis(rotation, Vector3.right);
-        dial.rotation = Quaternion.Euler(0, 0, rotation + initialDialRotation);
     }
 
     void UpdateTimeOfDay()
