@@ -53,6 +53,16 @@ public class GameEndManager : MonoBehaviour
     [Tooltip("Optional UI controller that shows buttons for the final choice.")]
     [SerializeField] private EndingChoiceUI endingChoiceUI;
 
+    [Header("Ending Events (optional)")]
+    [Tooltip("Raised when the player tries to leave but rituals are incomplete.")]
+    [SerializeField] private GameEvent ritualsIncompleteEvent;
+    [Tooltip("Raised when the neutral 'Lull' ending is chosen (rituals done, enemies not cleared).")]
+    [SerializeField] private GameEvent lullEndingEvent;
+    [Tooltip("Raised when the binding ending is chosen (villagers alerted).")]
+    [SerializeField] private GameEvent bindingEndingEvent;
+    [Tooltip("Raised when the sacrifice ending is chosen (leave on own).")]
+    [SerializeField] private GameEvent sacrificeEndingEvent;
+
     /// <summary>
     /// Returns true if both wind and flame puzzles have been completed.
     /// </summary>
@@ -68,6 +78,10 @@ public class GameEndManager : MonoBehaviour
         if (!AllRitualsCompleted)
         {
             ShowIncompleteRitualsFeedback();
+            if (ritualsIncompleteEvent)
+            {
+                ritualsIncompleteEvent.Raise();
+            }
             return;
         }
 
@@ -75,6 +89,10 @@ public class GameEndManager : MonoBehaviour
         if (!enemiesCleared)
         {
             // Player finished puzzles but ignored the threat; use Lull ending.
+            if (lullEndingEvent)
+            {
+                lullEndingEvent.Raise();
+            }
             LoadEndingSceneSafe(lullEndingScene);
             return;
         }
@@ -91,6 +109,10 @@ public class GameEndManager : MonoBehaviour
     /// </summary>
     public void OnVillagersAlertedChoice()
     {
+        if (bindingEndingEvent)
+        {
+            bindingEndingEvent.Raise();
+        }
         LoadEndingSceneSafe(bindingEndingScene);
     }
 
@@ -99,6 +121,10 @@ public class GameEndManager : MonoBehaviour
     /// </summary>
     public void OnLeaveOnOwnChoice()
     {
+        if (sacrificeEndingEvent)
+        {
+            sacrificeEndingEvent.Raise();
+        }
         LoadEndingSceneSafe(sacrificeEndingScene);
     }
 

@@ -37,8 +37,8 @@ public class SimonPuzzleManager : MonoBehaviour
     [SerializeField] private int sequencesRequired = 3;
     [SerializeField] private string hubSceneName = "IslandHub 1";
     [Header("Game End Integration")]
-    [Tooltip("Optional reference to the GameEndManager; will fall back to FindObjectOfType.")]
-    [SerializeField] private GameEndManager gameEndManager;
+    [Tooltip("Optional GameEvent raised when the flame puzzle fully completes.")]
+    [SerializeField] private GameEvent flameCompleteEvent;
     [Header("Debugging")]
     [SerializeField] private bool logPlayerChoices = false;
 
@@ -402,10 +402,23 @@ public class SimonPuzzleManager : MonoBehaviour
             puzzleComplete = true;
             Debug.Log("SIMON PUZZLE COMPLETE - returning to hub");
 
-            if (GameEndManager.Instance)
+            if (flameCompleteEvent != null)
             {
-                GameEndManager.Instance.flamePuzzleCompleted = true;
+                try
+                {
+                    flameCompleteEvent.Raise();
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning($"SimonPuzzleManager: Exception raising flameCompleteEvent: {e}");
+                }
             }
+
+            if (GameManager.Instance)
+            {
+                GameManager.Instance.OnFlamePuzzleCompleted();
+            }
+
             EnsureFlameReady();
             SetPillarParticleColor(Color.green);
             LoadHubScene();

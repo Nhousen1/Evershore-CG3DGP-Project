@@ -909,13 +909,14 @@ MonoBehaviour:
     the redness of blood. They raise a shout, and the crowd runs from the Shrine.
     You desperately try to row away, but you are too slow. A hook buries into the
     side of the boat. They grab your arms and legs. They pull you back across the
-    sand and take you to the slab. The windmills were aligned. The bell was struck.
-    The candle stays lit. A knife is used, and your blood enters the water. The large
-    boats leave the harbor while you bleed out. The island becomes quiet.\r"
+    sand and take you to the slab. The windmills were destroyed and flame appeased.
+    A knife is used, and your blood enters the water. The large boats leave the harbor
+    while you bleed out. The island becomes quiet.\r"
   charsPerSecond: 30
   punctuationHold: 0.25
   sentenceHold: 0.6
   sfxEveryChar: 1
+  mainMenuSceneName: MainMenu
   typeSfx: {fileID: 8300000, guid: 5a895ef98ca69704f848a4d6c1a45d55, type: 3}
 --- !u!4 &1695480499
 Transform:

@@ -19,9 +19,9 @@ public class BoatEndTrigger : MonoBehaviour
         if (!other.CompareTag(playerTag))
             return;
 
-        if (GameEndManager.Instance)
+        if (GameManager.Instance)
         {
-            GameEndManager.Instance.OnBoatTriggered();
+            GameManager.Instance.OnBoatTriggered();
         }
     }
 
@@ -30,9 +30,9 @@ public class BoatEndTrigger : MonoBehaviour
         if (!other.CompareTag(playerTag))
             return;
 
-        if (GameEndManager.Instance)
+        if (GameManager.Instance)
         {
-            GameEndManager.Instance.HideIncompleteRitualsFeedback();
+            GameManager.Instance.HideIncompleteRitualsFeedback();
         }
     }
 }
