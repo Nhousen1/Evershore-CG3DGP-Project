@@ -154,9 +154,7 @@ Nice to have:
 - ~~Add particle effects to enhance~~ the bonfire and ~~combat interactions.~~  
 - Refine lighting to make scenes more dynamic and to give each area a distinct atmosphere.
 
-## Checkpoint 4:
-
-Checkpoint 3: (Chapters 14, 15, and 17)
+## Checkpoint 4: (Chapters 14, 15, and 17)
 SAM:
 -~~Add death screen prefab that appears on player death event (main menu, restart scene)~~
 -~~Add main menu that allows access to all scenes (no options, just play -> select scene)~~
