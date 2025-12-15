@@ -140,6 +140,7 @@ MonoBehaviour:
   runSpeedMultiplier: 2
   gravity: -9.8
   jumpHeight: 1.5
+  isRunning: 0
   isoCam: {fileID: 5858127509575451839}
   canMove: 1
   animator: {fileID: 4773159661264104746}
@@ -411,7 +412,7 @@ Transform:
   m_GameObject: {fileID: 2724522424458059149}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911792, y: 0.3696462, z: -0.099045314, w: 0.8923981}
-  m_LocalPosition: {x: -12.24752, y: 10.000006, z: -12.247372}
+  m_LocalPosition: {x: -12.24752, y: 10, z: -12.247368}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2522,6 +2523,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3239078375520770774, guid: c8d4165b168c68744bb15b4a4b9d42b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239078375520770774, guid: c8d4165b168c68744bb15b4a4b9d42b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 5258948567976367556, guid: c8d4165b168c68744bb15b4a4b9d42b7, type: 3}
       propertyPath: active
       value: 0.15
@@ -2534,6 +2543,10 @@ PrefabInstance:
       propertyPath: hitPoint
       value: 
       objectReference: {fileID: 9195444798436667670}
+    - target: {fileID: 5258948567976367556, guid: c8d4165b168c68744bb15b4a4b9d42b7, type: 3}
+      propertyPath: onCollide.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5543873088699742000, guid: c8d4165b168c68744bb15b4a4b9d42b7, type: 3}
       propertyPath: m_Name
       value: Oar
