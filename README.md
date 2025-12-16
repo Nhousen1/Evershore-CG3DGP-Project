@@ -133,14 +133,14 @@ Possible nice to have:
 
 \-Finish Player weapon Animations  
 *“This has been pushed to the next submission due to complexity. I have discussed this system with Shawn and made an outline on paper. I am currently in the preliminary stages of implementing this on a feature branch”*  
-~~\-Update Player movement Animations~~  
-~~\-Make materials transparent when the player moves behind objects, particularly in the puzzle test scene, to improve visibility.~~  
-~~\-Add player HP bars~~  
-~~\-Add blood particle effect on weapon hit~~  
-~~\-Add dust trail effect on sprint~~
+- ~~\-Update Player movement Animations~~  
+- ~~\-Make materials transparent when the player moves behind objects, particularly in the puzzle test scene, to improve visibility.~~  
+- ~~\-Add player HP bars~~  
+- ~~\-Add blood particle effect on weapon hit~~  
+- ~~\-Add dust trail effect on sprint~~
 
 Possible nice to have:
-\-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
+- \-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
 
 ### **LIAM:**
 
@@ -217,7 +217,7 @@ Nice to have:
 - ~~Update readme to be current and add a future work section.~~  
 - ~~Gather playtesting feedback~~  
 - ~~Created logo~~
-<img src="GDD_Images/itchlogo.png" alt="itchlogo" width="400">  
+<img src="GDD_Images/Itchlogo.png" alt="itchlogo" width="400">  
 - ~~Made and imported custom oar 3d model~~
 - ~~Fix tree collision and awkward level layout in final hub.~~
 - ~~Add water kill volume to the tutorial.~~  
