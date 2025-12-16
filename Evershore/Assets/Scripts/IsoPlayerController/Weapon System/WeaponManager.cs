@@ -17,6 +17,7 @@ public class WeaponManager : MonoBehaviour
     private List<Weapon> weaponList;
     public Weapon activeWeapon;
     [Header("Animation")]
+    public Transform weaponFollowPoint;
     public Animator animator;
     private RuntimeAnimatorController baseController;
     private int WeaponAnimLayerIndex;
@@ -72,6 +73,14 @@ public class WeaponManager : MonoBehaviour
 
             SelectWeapon(0);
             EnableWeaponAnimations();
+        }
+    }
+    private void Update()
+    {
+        if(activeWeapon != null)
+        {
+            activeWeapon.transform.position = weaponFollowPoint.position;
+            activeWeapon.transform.rotation = weaponFollowPoint.rotation;
         }
     }
     public void addWeapon(Weapon weapon)
