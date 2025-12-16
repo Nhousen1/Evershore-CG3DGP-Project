@@ -6,7 +6,7 @@ Liam Housenbold, Marcus King, Samuel Huang
 
 ## **Game Summary**
 
-Our project is a disguised survival horror game with a top-down isometric perspective. You find yourself on an island which seems like paradise, only to encounter horrors beyond your comprehension.  
+Our project is a disguised survival horror game with a top-down isometric perspective. You find yourself on an archipelago which seems like paradise, only to encounter horrors beyond your comprehension.  
 
 ## **Genres**
 
@@ -223,13 +223,16 @@ Change parameters in puzzle completion flags of the endmanager in the FinalHub s
 - ~~Do one of the combat levels~~  
 - ~~Add enemy death counter that persists and connect it to the lull ending~~
 
-## Scene Sequence
-
-Tutorial level \- first thing you load into (Marcus)  
-2 Combat levels \- can traverse to from hub (one Liam one Marcus)  
-Fire puzzle \- second puzzle (Sam)  
-Sacrifice ending \- second options at the end (add selection) (Sam)  
-Lull ending \- add counter to detect if enemies killed (goto ending if condition at end) (Liam)
+## Future Work:
+After getting feedback from playtesters, these are the following most important features to add next.
+- Levels need indication when they are completed (boats should disappear)
+- Add a way of  indicating there is a way to get a good ending (ending 1 of 3, etc.)
+- Candle level needs some explanation on how to start it
+- Indicate that killing enemies has a consequence for the story (something in the level should change)
+- Hub village should update when you complete a level to show that villagers are preparing for a festival.
+- Have villagers mention the skeletons so they make sense in the story
+- The endings are not very rewarding for players. If the player leaves quietly, the text should be supplemented with a battle on the boat before it gets captured. If the player alerts the villagers, have a similar sequence in the hub level
+- If the player kills all the skeletons, unlock a weapon which allows the player to get the massacre ending.
 
 
 ## **Instructions for Testing the Project:**  
