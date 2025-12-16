@@ -189,6 +189,10 @@ Change parameters in puzzle completion flags of the endmanager in the FinalHub s
 
 -  Start connecting the endings you have to the main gameplay. The difference between endings doesn't have to require substantially different choices made in gameplay.  
 - Fix the grass on puzzle and add lit player fade material on objects in the puzzle scenes
+- ~~Check that game is fully reset on ending scene, so that the player can continue post the ending~~   
+- ~~Fix day/night cycle speed glitch on one of the scenes~~   
+- ~~Remove the quit button from the web build,~~   
+- update web build version on itch page 
 
 ### MARCUS:
 
@@ -214,7 +218,19 @@ Change parameters in puzzle completion flags of the endmanager in the FinalHub s
   - Camera Shake  
     “Given the amount of work we needed to do to develop horizontally, this was out of scope. This submission was focused on putting everything together and fixing bugs.”  
   - ~~Fixed blood dripper effect~~
-
+- ~~screen capture recording of a demo playthrough download with a link to an updated itch.io page~~   
+- ~~Update readme to be current and add a future work section.~~  
+- ~~Gather playtesting feedback~~  
+- ~~Created logo~~
+<img src="GDD_Images/itchlogo.png" alt="newUI" width="400">  
+- ~~Made and imported custom oar 3d model~~
+- ~~Fix tree collision and awkward level layout in final hub.~~
+- ~~Add water kill volume to the tutorial.~~  
+- ~~Improve performance in grass heavy forest scene~~   
+- ~~Make the font more readable in the "Shawn says" screen, update the color of the text to be more visible in the background.~~  
+- ~~Update placeholder dialogue UI so that images are not stretched and blurry~~  
+- ~~Fix NPC scaling so they are no longer giants.~~  
+- ~~Add dithering shader into forest scene~~
 ### LIAM:
 
 - ~~Reduce noise of throwing effect~~  
@@ -222,6 +238,11 @@ Change parameters in puzzle completion flags of the endmanager in the FinalHub s
 - ~~Have the sword not damage the player when not being used by enemy~~  
 - ~~Do one of the combat levels~~  
 - ~~Add enemy death counter that persists and connect it to the lull ending~~
+- ~~Add delay and visual transition before scene transition so sound effects don't get cut~~   
+- ~~Add UI background for endings~~  
+- ~~Fix all audio to be same volume~~  
+- ~~Fix enemy death audio~~  
+- ~~Added safety platforms below boats so you don't fall through and die when transitioning between scenes~~
 
 ## Future Work:
 After getting feedback from playtesters, these are the following most important features to add next.
