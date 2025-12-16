@@ -192,7 +192,6 @@ Nice to have:
 - ~~Check that game is fully reset on ending scene, so that the player can continue post the ending~~   
 - ~~Fix day/night cycle speed glitch on one of the scenes~~   
 - ~~Remove the quit button from the web build,~~   
-- update web build version on itch page 
 
 #### MARCUS: 
 - ~~Add Tutorial level~~
@@ -233,6 +232,7 @@ Nice to have:
 - ~~Update placeholder dialogue UI so that images are not stretched and blurry~~  
 - ~~Fix NPC scaling so they are no longer giants.~~  
 - ~~Add dithering shader into forest scene~~
+- ~~update web build version on itch page~~
 #### LIAM:
 
 - ~~Reduce noise of throwing effect~~  
