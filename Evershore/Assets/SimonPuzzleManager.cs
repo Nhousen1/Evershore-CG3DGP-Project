@@ -421,7 +421,7 @@ public class SimonPuzzleManager : MonoBehaviour
 
             EnsureFlameReady();
             SetPillarParticleColor(Color.green);
-            LoadHubScene();
+            StartCoroutine(ReturnToHubAfterDelay(0.5f));
             return;
         }
 
@@ -441,13 +441,19 @@ public class SimonPuzzleManager : MonoBehaviour
 
         try
         {
-            SceneManager.LoadScene(hubSceneName);
+            Debug.Log($"SimonPuzzleManager: Returning to hub '{hubSceneName}' (using SceneFader if available)", this);
+
+            if (SceneFader.Instance != null)
+                SceneFader.Instance.FadeToScene(hubSceneName);
+            else
+                SceneManager.LoadScene(hubSceneName);
         }
         catch (System.Exception ex)
         {
             Debug.LogError($"SimonPuzzleManager: Failed to load scene '{hubSceneName}'. Exception: {ex.Message}", this);
         }
     }
+
 
     int GetRandomColorIndex(int lastIndex)
     {
@@ -686,4 +692,16 @@ public class SimonPuzzleManager : MonoBehaviour
         }
         interactPrompt.gameObject.SetActive(state);
     }
+
+    private IEnumerator ReturnToHubAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (SceneFader.Instance != null)
+            SceneFader.Instance.FadeToScene(hubSceneName);
+        else
+            SceneManager.LoadScene(hubSceneName);
+    }
 }
+
+

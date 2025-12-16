@@ -11,11 +11,11 @@ using UnityEngine;
 public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
     public static T Instance { get; private set; }
-    //inherited class sets persistence flag
+
     public abstract bool defineScenePersistence();
     private bool isScenePersistent;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         isScenePersistent = defineScenePersistence();
 
@@ -27,6 +27,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
         {
             Debug.LogWarning(gameObject.name + " is an illegal singleton instance. Removing singleton component...");
             Destroy(gameObject);
+            return; // important: stop running on the destroyed duplicate
         }
 
         if (isScenePersistent)
@@ -34,10 +35,10 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
             DontDestroyOnLoad(Instance.gameObject);
         }
     }
-    //reset instance so instance is not persistent across scenes
-    private void OnDestroy()
+
+    protected virtual void OnDestroy()
     {
-        if(Instance == this)
+        if (Instance == this)
         {
             Instance = null;
         }

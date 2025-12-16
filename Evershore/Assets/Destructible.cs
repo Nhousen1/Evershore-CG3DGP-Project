@@ -21,7 +21,7 @@ public class Destructible : MonoBehaviour
     [SerializeField] private GameObject fireworkPrefab;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip hitSfx;
-    [SerializeField] [Range(0f, 1f)] private float hitVolume = 0.7f;
+    [SerializeField] [Range(0f, 1f)] private float hitVolume = 0.1f;
     [SerializeField] private Renderer[] renderersToDisable;
     [SerializeField] private Collider[] collidersToDisable;
 
