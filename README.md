@@ -74,8 +74,8 @@ A top down mobile game involving building camps. We will take inspiration from i
 *~~We were able to make a scene transition script to move between scenes~~*  
 *~~We were also able to make a GameManager Script to transition to the loss screen on player death and the win screen on puzzle completion~~*
 
-### **Project Checkpoint 2:**  
-#### **Player Prefab Updates (Marcus)**  
+## **Checkpoint 2**  
+### **Player Prefab Updates (Marcus)**  
 ~~\-Clean up and document player code~~   
 ~~\-Add updates from last submission to README~~   
 ~~\-Add rigidbody to player controller~~   
@@ -89,7 +89,7 @@ Nice to have Additions:
 \-Add basic animator to player  
 “Both of these are partially implemented and in progress for the next checkpoint”
 
-#### **Enemy Updates (Liam)**  
+### **Enemy Updates (Liam)**  
 ~~\-Clean up and document enemy code~~  
 ~~\-add updates from last submission to README~~  
 ~~\-add 3rd attack to enemy (diagonal swing)~~  
@@ -105,7 +105,7 @@ Nice to have Additions:
 \-Enemy visual HP bar  
 “Didnt get to these extra steps but am planning on adding the HP bars this weekend and I made a lot of bonus progress on the enemy animations”
 
-#### **Map/town updates: (Samuel)**  
+### **Map/town updates: (Samuel)**  
 ~~\-Comment and add documentation to previous code~~  
 ~~\-Populate town with assets~~  
 ~~\-add boat assets and fix scene transition~~  
@@ -114,9 +114,9 @@ Nice to have Additions:
 ~~\-Add villager models~~  
 ~~\-Add textbox dialogue system with villagers on interact~~
 
-## Checkpoint 3: (Chapters 11, 12, and 13\)
+## Checkpoint 3: (Chapters 11, 12, and 13)
 
-### SAM:
+### **SAM:**
 
 ~~\-Add scene Illumination w/ day-night cycle (lighting and shadows)~~  
 ~~\-Apply post-processing effects to highlight tonal shifts as the game becomes more sinister.~~  
@@ -129,7 +129,7 @@ Possible nice to have:
 \-Add respawn/replay button to win and lose screens  
 \- Experiment with increasing the player’s scale to match the proportions of other scene elements.
 
-### MARCUS:
+### **MARCUS:**
 
 \-Finish Player weapon Animations  
 *“This has been pushed to the next submission due to complexity. I have discussed this system with Shawn and made an outline on paper. I am currently in the preliminary stages of implementing this on a feature branch”*  
@@ -142,7 +142,7 @@ Possible nice to have:
 Possible nice to have:
 \-Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.
 
-### LIAM:
+### **LIAM:**
 
 ~~\-Add ranged enemies~~  
 ~~\-enemy HP bar~~  
@@ -155,13 +155,13 @@ Nice to have:
 - Refine lighting to make scenes more dynamic and to give each area a distinct atmosphere.
 
 ## Checkpoint 4: (Chapters 14, 15, and 17)
-###SAM:
+### **SAM:**
 - ~~Add death screen prefab that appears on player death event (main menu, restart scene)~~
 - ~~Add main menu that allows access to all scenes (no options, just play -> select scene)~~
 - ~~Animate environmental elements such as grass or trees to add life to the scene.~~
 - ~~Implement sound effects and music, with the soundtrack gradually becoming creepier as the game progresses.~~
 
-###MARCUS:
+### **MARCUS:**
 - ~~Make the dithering shader effect slightly less intense.~~ 
 - ~~Update in-game healthbar~~ 
 - ~~Finish Player weapon Animations~~ 
@@ -169,7 +169,8 @@ Nice to have:
 - ~~Add second weapon~~
 - ~~Add weapon UI display~~
 - ~~Player Audio (footsteps, hurt, attack)~~
-###LIAM:
+
+### **LIAM:**
 - ~~Fix the skeleton walking animation, which currently looks like sliding/skating.~~
 - ~~Fix the throwing animation for the ranged enemy.~~
 - ~~Fix animation conflicts with multiple enemies at same time.~~
@@ -177,9 +178,6 @@ Nice to have:
 - ~~Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.~~
 
 ## Checkpoint 5: (Final Update)
-
-Change parameters in puzzle completion flags of the endmanager in the FinalHub scene to get different endings
-
 ### SAM:
 
 - Complete a fully playable start-to-finish game loop, including all planned levels and a final win condition, and ensure players can return to the beginning.
