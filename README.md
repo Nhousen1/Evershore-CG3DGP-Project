@@ -223,7 +223,7 @@ Nice to have:
 
 - ~~Made and imported custom oar 3d model~~
 <img src="GDD_Images/Screenshot 2025-12-15 124849.png" alt="Screenshot 2025-12-15 124849" width="400">
-*Oar model made in Blender. Ecpirmenting with a bevel mask and color ramp to highlight edges*
+*Oar model made in Blender. Expirmenting with a bevel mask and color ramp to highlight edges*
 
 - ~~Fix tree collision and awkward level layout in final hub.~~
 - ~~Add water kill volume to the tutorial.~~  
