@@ -62,13 +62,16 @@ A top down mobile game involving building camps. We will take inspiration from i
 ## **Development Plan**  
    
 ### **Project Checkpoint 1: Basic Mechanics and Scripting (Ch 5-9)**  
-- \-~~Build isometric perspective~~, ~~player controller~~, ~~combat system~~, stealth, ~~movement~~, ~~health~~, ~~attacks~~  
-*“We were not able to complete the stealth system due to  time constraints. The combat system took longer to implement than expected.”*  
-- ~~\-Implement enemy navigation objective system and attack sequences. Set up sight and sound detection.~~  
-*“The enemy works on a range detection, not a sound detection system”*  
+### **SAM**  
 - ~~\-Finish design sketch of all areas, characters, and items of the game.~~  
 \-Implement individual scene decisions and lore of the endings.  
 *“We did not get to the ending portion. We invested our time in gameplay resources. We needed to make a gameplay loop first so the ending could be reached we now realize after getting started that adding the ending text scene will be the last thing we do after all the other gameplay and impacting decisions are implemented”*
+### **MARCUS**
+- \-~~Build isometric perspective~~, ~~player controller~~, ~~combat system~~, stealth, ~~movement~~, ~~health~~, ~~attacks~~  
+*“We were not able to complete the stealth system due to  time constraints. The combat system took longer to implement than expected.”*
+### **LIAM**  
+- ~~\-Implement enemy navigation objective system and attack sequences. Set up sight and sound detection.~~  
+*“The enemy works on a range detection, not a sound detection system”*
 
 *Additions:*  
 *~~We were able to make a scene transition script to move between scenes~~*  
