@@ -62,11 +62,11 @@ A top down mobile game involving building camps. We will take inspiration from i
 ## **Development Plan**  
    
 ### **Project Checkpoint 1: Basic Mechanics and Scripting (Ch 5-9)**  
-\-~~Build isometric perspective~~, ~~player controller~~, ~~combat system~~, stealth, ~~movement~~, ~~health~~, ~~attacks~~  
+- \-~~Build isometric perspective~~, ~~player controller~~, ~~combat system~~, stealth, ~~movement~~, ~~health~~, ~~attacks~~  
 *“We were not able to complete the stealth system due to  time constraints. The combat system took longer to implement than expected.”*  
-~~\-Implement enemy navigation objective system and attack sequences. Set up sight and sound detection.~~  
+- ~~\-Implement enemy navigation objective system and attack sequences. Set up sight and sound detection.~~  
 *“The enemy works on a range detection, not a sound detection system”*  
-~~\-Finish design sketch of all areas, characters, and items of the game.~~  
+- ~~\-Finish design sketch of all areas, characters, and items of the game.~~  
 \-Implement individual scene decisions and lore of the endings.  
 *“We did not get to the ending portion. We invested our time in gameplay resources. We needed to make a gameplay loop first so the ending could be reached we now realize after getting started that adding the ending text scene will be the last thing we do after all the other gameplay and impacting decisions are implemented”*
 
@@ -76,13 +76,13 @@ A top down mobile game involving building camps. We will take inspiration from i
 
 ## **Checkpoint 2**  
 ### **Player Prefab Updates (Marcus)**  
-~~\-Clean up and document player code~~   
-~~\-Add updates from last submission to README~~   
-~~\-Add rigidbody to player controller~~   
-~~\-Document how to use the player controller and attack system in README~~   
-~~\-Configure to work with scene transition using player tag~~   
-~~\-Win loss conditions~~   
-~~\-Find or make a static player model and cite~~ 
+- ~~\-Clean up and document player code~~   
+- ~~\-Add updates from last submission to README~~   
+- ~~\-Add rigidbody to player controller~~   
+- ~~\-Document how to use the player controller and attack system in README~~   
+- ~~\-Configure to work with scene transition using player tag~~   
+- ~~\-Win loss conditions~~   
+- ~~\-Find or make a static player model and cite~~ 
 
 Nice to have Additions:  
 \-update oar Collison and add flare gun(requires charge up mechanic to be added)  
@@ -90,15 +90,15 @@ Nice to have Additions:
 “Both of these are partially implemented and in progress for the next checkpoint”
 
 ### **Enemy Updates (Liam)**  
-~~\-Clean up and document enemy code~~  
-~~\-add updates from last submission to README~~  
-~~\-add 3rd attack to enemy (diagonal swing)~~  
-~~\-add model/texture to enemy prefab~~  
-~~\-add model animations to enemy prefab?~~  
-~~\-Document how the enemies work in README~~  
-~~\-add collider bounds gizmo to enemy/weapon hitboxes~~  
-~~Add enemy island with island terrain texture~~  
-~~Create water shader for water effect for scenes~~
+- ~~\-Clean up and document enemy code~~  
+- ~~\-add updates from last submission to README~~  
+- ~~\-add 3rd attack to enemy (diagonal swing)~~  
+- ~~\-add model/texture to enemy prefab~~  
+- ~~\-add model animations to enemy prefab?~~  
+- ~~\-Document how the enemies work in README~~  
+- ~~\-add collider bounds gizmo to enemy/weapon hitboxes~~  
+- ~~Add enemy island with island terrain texture~~  
+- ~~Create water shader for water effect for scenes~~
 
 Nice to have Additions:  
 \-Ranged enemy version  
@@ -106,23 +106,23 @@ Nice to have Additions:
 “Didnt get to these extra steps but am planning on adding the HP bars this weekend and I made a lot of bonus progress on the enemy animations”
 
 ### **Map/town updates: (Samuel)**  
-~~\-Comment and add documentation to previous code~~  
-~~\-Populate town with assets~~  
-~~\-add boat assets and fix scene transition~~  
-~~\-add puzzle island and town island~~   
-~~\-Update puzzle with windmill assets~~  
-~~\-Add villager models~~  
-~~\-Add textbox dialogue system with villagers on interact~~
+- ~~\-Comment and add documentation to previous code~~  
+- ~~\-Populate town with assets~~  
+- ~~\-add boat assets and fix scene transition~~  
+- ~~\-add puzzle island and town island~~   
+- ~~\-Update puzzle with windmill assets~~  
+- ~~\-Add villager models~~  
+- ~~\-Add textbox dialogue system with villagers on interact~~
 
 ## Checkpoint 3: (Chapters 11, 12, and 13)
 
 ### **SAM:**
 
-~~\-Add scene Illumination w/ day-night cycle (lighting and shadows)~~  
-~~\-Apply post-processing effects to highlight tonal shifts as the game becomes more sinister.~~  
-~~\-Finalize level design~~  
-~~\-Add ending scene with typewriter effect~~  
-~~\-Add basic ending scene~~  
+- ~~\-Add scene Illumination w/ day-night cycle (lighting and shadows)~~  
+- ~~\-Apply post-processing effects to highlight tonal shifts as the game becomes more sinister.~~  
+- ~~\-Finalize level design~~  
+- ~~\-Add ending scene with typewriter effect~~  
+- ~~\-Add basic ending scene~~  
 \-Add second Puzzle
 
 Possible nice to have:  
@@ -217,7 +217,7 @@ Nice to have:
 - ~~Update readme to be current and add a future work section.~~  
 - ~~Gather playtesting feedback~~  
 - ~~Created logo~~
-<img src="GDD_Images/Itchlogo.png" alt="itchlogo" width="400">  
+<img src="GDD_Images/Itchlogo.png" alt="Itchlogo" width="400">  
 - ~~Made and imported custom oar 3d model~~
 - ~~Fix tree collision and awkward level layout in final hub.~~
 - ~~Add water kill volume to the tutorial.~~  
