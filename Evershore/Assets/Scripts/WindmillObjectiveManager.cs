@@ -61,29 +61,26 @@ public class WindmillObjectiveManager : MonoBehaviour
 
     private void CompleteObjective()
     {
-        if (isReturning)
-            return;
-
+        if (isReturning) return;
         isReturning = true;
 
         if (GameManager.Instance)
-        {
             GameManager.Instance.OnAllPillarsActivated();
-        }
 
         if (autoLoadHubOnComplete && !string.IsNullOrEmpty(hubSceneName))
-        {
-            StartCoroutine(ReturnToHubRoutine());
-        }
+            StartCoroutine(ReturnToHubAfterDelay(returnDelay));
     }
 
-    private IEnumerator ReturnToHubRoutine()
+    private IEnumerator ReturnToHubAfterDelay(float delay)
     {
-        if (returnDelay > 0f)
-            yield return new WaitForSeconds(returnDelay);
+        yield return new WaitForSecondsRealtime(delay);
 
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(hubSceneName);
+        Debug.Log($"[WindmillObjectiveManager] Returning to hub '{hubSceneName}'. SceneFader={(SceneFader.Instance ? "YES" : "NO")}", this);
+
+        if (SceneFader.Instance != null)
+            SceneFader.Instance.FadeToScene(hubSceneName);
+        else
+            SceneManager.LoadScene(hubSceneName);
     }
 
     private void UpdateCounterLabel()

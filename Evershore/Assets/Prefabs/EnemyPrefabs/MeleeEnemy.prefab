@@ -1274,6 +1274,9 @@ MonoBehaviour:
   onEnemyDamaged:
     m_PersistentCalls:
       m_Calls: []
+  deathClip: {fileID: 8300000, guid: 1d92c5ac0e056b045b4461b147f95be5, type: 3}
+  deathAudioSource: {fileID: 0}
+  deathVolume: 1
   floatingHpBar: {fileID: 8501089733143850902}
   deathBloodEffect: {fileID: 8437168049629602325, guid: 7d376d481adc14abc876050f7f84cefd, type: 3}
 --- !u!195 &412655398683605108
@@ -2363,7 +2366,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 50
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

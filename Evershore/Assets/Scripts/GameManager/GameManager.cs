@@ -43,6 +43,8 @@ public class GameManager : Singleton<GameManager>
     [Tooltip("When true the manager will spawn basic UI overlays if scene references are missing.")]
     [SerializeField] private bool createFallbackUI = true;
 
+    [SerializeField] private SceneFader sceneFaderPrefab;
+
     [Header("Debug/Tracking")]
     public int enemiesKilled = 0; // optional external tracking
 
@@ -55,6 +57,23 @@ public class GameManager : Singleton<GameManager>
 
     public bool AllRitualsCompleted => windRitualCompleted && flameRitualCompleted;
 
+
+     protected override void Awake()
+    {
+        base.Awake();
+
+        Debug.Log($"[GM] Awake scene={gameObject.scene.name} id={GetInstanceID()} instance={(GameManager.Instance ? "SET" : "NULL")}");
+
+        if (SceneFader.Instance == null && sceneFaderPrefab != null)
+        {
+            Debug.Log("[GM] Instantiating SceneFader prefab");
+            Instantiate(sceneFaderPrefab);
+        }
+        else
+        {
+            Debug.Log($"[GM] SceneFader.Instance={(SceneFader.Instance ? "exists" : "null")} prefab={(sceneFaderPrefab ? "assigned" : "NULL")}");
+        }
+    }
     void Start()
     {
         if (!PillarsActivatedListener || !FlamePuzzleCompletedListener)
@@ -191,7 +210,10 @@ public class GameManager : Singleton<GameManager>
 
         try
         {
-            SceneManager.LoadScene(sceneName);
+            if (SceneFader.Instance != null)
+                SceneFader.Instance.FadeToScene(sceneName);
+            else
+                SceneManager.LoadScene(sceneName);
         }
         catch (System.Exception ex)
         {

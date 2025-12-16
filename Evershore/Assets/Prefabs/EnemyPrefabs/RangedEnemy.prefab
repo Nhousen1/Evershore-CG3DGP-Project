@@ -448,7 +448,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 50
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -6772,7 +6772,11 @@ MonoBehaviour:
   onEnemyDamaged:
     m_PersistentCalls:
       m_Calls: []
+  deathClip: {fileID: 8300000, guid: 9df77b70cadc8384ca073a95aebc666f, type: 3}
+  deathAudioSource: {fileID: 0}
+  deathVolume: 2
   floatingHpBar: {fileID: 3069873720454272789}
+  deathBloodEffect: {fileID: 0}
 --- !u!195 &5676889415043067781
 NavMeshAgent:
   m_ObjectHideFlags: 0

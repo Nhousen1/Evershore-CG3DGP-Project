@@ -75,7 +75,10 @@ public class SceneTransition : MonoBehaviour
         if (!string.IsNullOrEmpty(targetSceneName))
         {
             Debug.Log($"SceneTransition: Loading scene '{targetSceneName}'");
-            SceneManager.LoadScene(targetSceneName);
+            if (SceneFader.Instance != null)
+                SceneFader.Instance.FadeToScene(targetSceneName);
+            else
+                SceneManager.LoadScene(targetSceneName);
         }
         else
         {

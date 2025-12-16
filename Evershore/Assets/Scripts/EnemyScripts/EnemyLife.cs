@@ -21,6 +21,12 @@ public class EnemyLife : MonoBehaviour
 
     public UnityEvent onEnemyDamaged = new UnityEvent();
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip deathClip;
+    [SerializeField] private AudioSource deathAudioSource;
+    [SerializeField] private float deathVolume = 2f;
+    private bool isDead = false;
+
     [SerializeField] private FloatingEnemyHpBar floatingHpBar;
     private GameManager gameManager;
     public ParticleSystem deathBloodEffect;
@@ -45,6 +51,9 @@ public class EnemyLife : MonoBehaviour
         }
         if (amount <= 0)
         {
+            if (isDead) return;
+            isDead = true;
+            PlayDeathSound();
             onEnemyDeath.Invoke();
             if (deathBloodEffect != null)
             {
@@ -64,4 +73,28 @@ public class EnemyLife : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void PlayDeathSound()
+    {
+        if (!deathClip) return;
+
+        // Spawns a temporary audio source at the enemy position so Destroy(gameObject) can't cut it off.
+        var go = new GameObject("EnemyDeathOneShot");
+        go.transform.position = transform.position;
+
+        var src = go.AddComponent<AudioSource>();
+        src.clip = deathClip;
+        src.volume = deathVolume;
+        src.loop = false;
+
+        // Make it easy to hear (tweak to taste)
+        src.spatialBlend = 1f; // 3D
+        src.rolloffMode = AudioRolloffMode.Linear;
+        src.minDistance = 6f;
+        src.maxDistance = 40f;
+
+        src.Play();
+        Destroy(go, deathClip.length + 0.1f);
+    }
+
 }

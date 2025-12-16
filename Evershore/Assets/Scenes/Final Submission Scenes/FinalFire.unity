@@ -1150,7 +1150,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 9648360f19d627745ac5cba1539f550b, type: 3}
   m_Resource: {fileID: 8300000, guid: 9648360f19d627745ac5cba1539f550b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.697
+  m_Volume: 0.413
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1606,6 +1606,10 @@ PrefabInstance:
       propertyPath: loseScene
       value: LoseScene
       objectReference: {fileID: 0}
+    - target: {fileID: 2857783171370894456, guid: f67bbcaad9bb3c84787f8ad79e28e837, type: 3}
+      propertyPath: sceneFaderPrefab
+      value: 
+      objectReference: {fileID: 528328265803841930, guid: 7bd5c8d423cec4cf3ae7b9ff9632b52f, type: 3}
     - target: {fileID: 5824773796110361792, guid: f67bbcaad9bb3c84787f8ad79e28e837, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
