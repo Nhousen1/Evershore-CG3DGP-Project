@@ -183,7 +183,7 @@ Nice to have:
 ### Checkpoint 5: (Final Update)
 #### SAM:
 
-- Complete a fully playable start-to-finish game loop, including all planned levels and a final win condition, and ensure players can return to the beginning.
+- ~~Complete a fully playable start-to-finish game loop, including all planned levels and a final win condition, and ensure players can return to the beginning.~~
 
 <img src="GDD_Images/linkedScenes.png" alt="linkedScenes" width="400">
 *All scenes are now linked with proper transitions.*
@@ -191,7 +191,8 @@ Nice to have:
 - ~~Start connecting the endings you have to the main gameplay. The difference between endings doesn't have to require substantially different choices made in gameplay.~~
 - ~~Check that game is fully reset on ending scene, so that the player can continue post the ending~~   
 - ~~Fix day/night cycle speed glitch on one of the scenes~~   
-- ~~Remove the quit button from the web build,~~   
+- ~~Remove the quit button from the web build,~~
+- ~~update itch.io page to look nicer~~   
 
 #### MARCUS: 
 - ~~Add Tutorial level~~
@@ -233,6 +234,7 @@ Nice to have:
 - ~~Fix NPC scaling so they are no longer giants.~~  
 - ~~Add dithering shader into forest scene~~
 - ~~update web build version on itch page~~
+- ~~Add 3d scene backrounds to all endings and menu that update with player choices~~
 #### LIAM:
 
 - ~~Reduce noise of throwing effect~~  
@@ -252,7 +254,7 @@ After getting feedback from playtesters, the following features are most importa
 - Levels need indication when they are completed (boats should disappear)
 - Add a way of  indicating there is a way to get a good ending (ending 1 of 3, etc.)
 - Candle level needs some explanation on how to start it
-- Indicate that killing enemies has a consequence for the story (something in the level should change)
+- Indicate that killing enemies has a consequence for the story (sea turns bloody)
 - Hub village should update when you complete a level to show that villagers are preparing for a festival.
 - Have villagers mention the skeletons so they make sense in the story
 - The endings are not very rewarding for players. If the player leaves quietly, the text should be supplemented with a battle on the boat before it gets captured. If the player alerts the villagers, have a similar sequence in the hub level
