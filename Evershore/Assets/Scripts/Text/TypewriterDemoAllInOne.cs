@@ -136,7 +136,12 @@ Press any key during typing to fast-reveal the current sentence.";
             SetHintVisible(false);
         }
 
-        // All sentences complete; auto-return to main menu if configured.
+        // All sentences complete; reset run state and auto-return to main menu if configured.
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetGameState();
+        }
+
         if (!string.IsNullOrWhiteSpace(mainMenuSceneName))
         {
             try

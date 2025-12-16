@@ -28,6 +28,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private string bindingEndingScene = "BindingEnding";
     [SerializeField] private string sacrificeEndingScene = "SacrificeEnding";
 
+    [Header("Restart Settings")]
+    [SerializeField] private string startingSceneName = "IslandHub 1";
+
     [Header("Hub Feedback")]
     [TextArea]
     [SerializeField] private string incompleteRitualsMessage = "The restless sea pushes you back.";
@@ -114,6 +117,7 @@ public class GameManager : Singleton<GameManager>
     {
         endingChoiceUI?.Hide();
         HideRuntimeChoiceUI();
+        ResetGameState();
         LoadEndingSceneSafe(bindingEndingScene);
     }
 
@@ -121,6 +125,7 @@ public class GameManager : Singleton<GameManager>
     {
         endingChoiceUI?.Hide();
         HideRuntimeChoiceUI();
+        ResetGameState();
         LoadEndingSceneSafe(sacrificeEndingScene);
     }
 
@@ -195,6 +200,32 @@ public class GameManager : Singleton<GameManager>
     }
 
     #endregion
+
+    // Clears run-specific flags and UI so a new playthrough starts clean.
+    public void ResetGameState()
+    {
+        windRitualCompleted = false;
+        flameRitualCompleted = false;
+        enemiesKilled = 0;
+
+        HideIncompleteRitualsFeedback();
+        endingChoiceUI?.Hide();
+        HideRuntimeChoiceUI();
+    }
+
+    // Convenience hook for UI buttons to fully restart the game from the starting scene.
+    public void ResetGameAndRestart()
+    {
+        ResetGameState();
+
+        if (string.IsNullOrWhiteSpace(startingSceneName))
+        {
+            Debug.LogWarning("GameManager: startingSceneName is empty; cannot restart game.", this);
+            return;
+        }
+
+        SceneManager.LoadScene(startingSceneName);
+    }
 
     TMP_Text ResolveFeedbackLabel()
     {
