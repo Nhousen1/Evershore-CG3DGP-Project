@@ -220,8 +220,12 @@ Nice to have:
 - ~~Update readme to be current and add a future work section.~~  
 - ~~Gather playtesting feedback~~  
 - ~~Created logo~~
-<img src="GDD_Images/ItchLogo.png" alt="ItchLogo" width="400">  
+<img src="GDD_Images/ItchLogo.png" alt="ItchLogo" width="400">
+
 - ~~Made and imported custom oar 3d model~~
+<img src="GDD_Images/Screenshot 2025-12-15 124849.png" alt="Screenshot 2025-12-15 124849" width="400">
+*Oar model made in Blender. Ecpirmenting with a bevel mask and color ramp to highlight edges*
+
 - ~~Fix tree collision and awkward level layout in final hub.~~
 - ~~Add water kill volume to the tutorial.~~  
 - ~~Improve performance in grass heavy forest scene~~   
