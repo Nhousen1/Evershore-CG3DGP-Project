@@ -47,9 +47,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PillarsActivatedListener: {fileID: 5191120692344058465}
+  FlamePuzzleCompletedListener: {fileID: 0}
   PlayerDeathListener: {fileID: 8468341488537835643}
-  winScene: WinScene
-  loseScene: LoseScene
+  lullEndingScene: LullEnding
+  bindingEndingScene: BindingEnding
+  sacrificeEndingScene: SacrificeEnding
+  startingSceneName: IslandHub 1
+  incompleteRitualsMessage: The restless sea pushes you back.
+  feedbackLabel: {fileID: 0}
+  endingChoiceUI: {fileID: 0}
+  createFallbackUI: 1
+  sceneFaderPrefab: {fileID: 528328265803841930, guid: 7bd5c8d423cec4cf3ae7b9ff9632b52f, type: 3}
+  enemiesKilled: 0
 --- !u!114 &5191120692344058465
 MonoBehaviour:
   m_ObjectHideFlags: 0
