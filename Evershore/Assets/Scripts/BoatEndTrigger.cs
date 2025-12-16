@@ -14,20 +14,23 @@ public class BoatEndTrigger : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+  void OnTriggerEnter(Collider other)
+{
+    Debug.Log($"[BoatEndTrigger] GM.Instance={(GameManager.Instance ? GameManager.Instance.GetInstanceID().ToString() : "NULL")}");
+
+    if (!other.CompareTag(playerTag))
     {
-        Debug.Log($"[BoatEndTrigger] GM.Instance={(GameManager.Instance ? GameManager.Instance.GetInstanceID().ToString() : "NULL")}");
-        if (!other.CompareTag(playerTag))
-            Debug.Log($"[BoatEndTrigger] Ignored because tag != {playerTag}");
-            return;
-
-
-        Debug.Log($"[BoatEndTrigger] Player detected. GameManager.Instance={(GameManager.Instance ? "OK" : "NULL")}");
-        if (GameManager.Instance)
-        {
-            GameManager.Instance.OnBoatTriggered();
-        }
+        Debug.Log($"[BoatEndTrigger] Ignored because tag != {playerTag} (was {other.tag})");
+        return;
     }
+
+    Debug.Log($"[BoatEndTrigger] Player detected. GameManager.Instance={(GameManager.Instance ? "OK" : "NULL")}");
+    if (GameManager.Instance)
+    {
+        GameManager.Instance.OnBoatTriggered();
+    }
+}
+
 
     void OnTriggerExit(Collider other)
     {

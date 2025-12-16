@@ -113,6 +113,7 @@ public class GameManager : Singleton<GameManager>
     public void OnBoatTriggered()
     {
         Debug.Log($"[GM] Boat triggered. AllRitualsCompleted={AllRitualsCompleted}, enemiesKilled={enemiesKilled}", this);
+         Debug.Log($"[GM] BoatTriggered wind={windRitualCompleted} flame={flameRitualCompleted} all={AllRitualsCompleted} killed={enemiesKilled}", this);
 
         if (!AllRitualsCompleted)
         {
