@@ -155,26 +155,26 @@ Nice to have:
 - Refine lighting to make scenes more dynamic and to give each area a distinct atmosphere.
 
 ## Checkpoint 4: (Chapters 14, 15, and 17)
-SAM:
--~~Add death screen prefab that appears on player death event (main menu, restart scene)~~
--~~Add main menu that allows access to all scenes (no options, just play -> select scene)~~
--~~Animate environmental elements such as grass or trees to add life to the scene.~~
--~~Implement sound effects and music, with the soundtrack gradually becoming creepier as the game progresses.~~
+###SAM:
+- ~~Add death screen prefab that appears on player death event (main menu, restart scene)~~
+- ~~Add main menu that allows access to all scenes (no options, just play -> select scene)~~
+- ~~Animate environmental elements such as grass or trees to add life to the scene.~~
+- ~~Implement sound effects and music, with the soundtrack gradually becoming creepier as the game progresses.~~
 
-MARCUS:
--~~Make the dithering shader effect slightly less intense.~~ 
--~~Update in-game healthbar~~ 
--~~Finish Player weapon Animations~~ 
--~~Update Oar attack system~~
--~~Add second weapon~~
--~~Add weapon UI display~~
--~~Player Audio (footsteps, hurt, attack)~~
-LIAM:
+###MARCUS:
+- ~~Make the dithering shader effect slightly less intense.~~ 
+- ~~Update in-game healthbar~~ 
+- ~~Finish Player weapon Animations~~ 
+- ~~Update Oar attack system~~
+- ~~Add second weapon~~
+- ~~Add weapon UI display~~
+- ~~Player Audio (footsteps, hurt, attack)~~
+###LIAM:
 - ~~Fix the skeleton walking animation, which currently looks like sliding/skating.~~
 - ~~Fix the throwing animation for the ranged enemy.~~
--~~Fix animation conflicts with multiple enemies at same time.~~
+- ~~Fix animation conflicts with multiple enemies at same time.~~
 - ~~Add enemy audio(footsteps, attack, defense, shoot, charge)~~
--~~Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.~~
+- ~~Continue developing the stealth mechanic; start with a simple change such as reducing enemy detection range while the player is moving.~~
 
 ## Checkpoint 5: (Final Update)
 
@@ -187,8 +187,7 @@ Change parameters in puzzle completion flags of the endmanager in the FinalHub s
 <img src="GDD_Images/linkedScenes.png" alt="linkedScenes" width="400">
 *All scenes are now linked with proper transitions.*
 
--  Start connecting the endings you have to the main gameplay. The difference between endings doesn't have to require substantially different choices made in gameplay.  
-- Fix the grass on puzzle and add lit player fade material on objects in the puzzle scenes
+- ~~Start connecting the endings you have to the main gameplay. The difference between endings doesn't have to require substantially different choices made in gameplay.~~
 - ~~Check that game is fully reset on ending scene, so that the player can continue post the ending~~   
 - ~~Fix day/night cycle speed glitch on one of the scenes~~   
 - ~~Remove the quit button from the web build,~~   
