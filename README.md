@@ -215,7 +215,7 @@ Nice to have:
   - Camera Shake  
     “Given the amount of work we needed to do to develop horizontally, this was out of scope. This submission was focused on putting everything together and fixing bugs.”  
   - ~~Fixed blood dripper effect~~
-- ~~screen capture recording of a demo playthrough download with a link to an updated itch.io page~~   
+- ~~download with a link to an updated itch.io page~~   
 - ~~Update readme to be current and add a future work section.~~  
 - ~~Gather playtesting feedback~~  
 - ~~Created logo~~
@@ -242,7 +242,8 @@ Nice to have:
 - ~~Add enemy death counter that persists and connect it to the lull ending~~
 - ~~Add delay and visual transition before scene transition so sound effects don't get cut~~   
 - ~~Add UI background for endings~~  
-- ~~Fix all audio to be same volume~~  
+- ~~Fix all audio to be same volume~~
+- ~~screen capture recording of a demo playthrough~~
 - ~~Fix enemy death audio~~  
 - ~~Added safety platforms below boats so you don't fall through and die when transitioning between scenes~~
 
