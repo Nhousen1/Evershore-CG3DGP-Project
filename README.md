@@ -258,6 +258,11 @@ After getting feedback from playtesters, the following features are most importa
 - If the player kills all the skeletons, unlock a weapon which allows the player to get the massacre ending.
 
 
+## Game Demo:
+Note that for the last 2 endings of this demo I used cheat codes to instantly finish the puzzles rather than spending the 15 extra minutes to play through the 4 scenes twice more over again each.
+[Watch the gameplay demo](https://www.youtube.com/watch?v=Ond1yq2edJM)
+
+
 ## **Instructions for Testing the Project:**  
 Please browse through all scenes in "Scenes/Final Submission" folder. Load these scenes in the sequence defined above. Change parameters in puzzle completion flags of the endmanager in the finalhub scene to get different endings
 
