@@ -247,7 +247,7 @@ Nice to have:
 - ~~Added safety platforms below boats so you don't fall through and die when transitioning between scenes~~
 
 ## Future Work:
-After getting feedback from playtesters, these are the following most important features to add next.
+After getting feedback from playtesters, the following features are most important to add next.
 - Levels need indication when they are completed (boats should disappear)
 - Add a way of  indicating there is a way to get a good ending (ending 1 of 3, etc.)
 - Candle level needs some explanation on how to start it
