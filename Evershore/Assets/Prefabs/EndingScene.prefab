@@ -9458,9 +9458,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -9523,7 +9523,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -13278,7 +13278,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c8bf0cd686216b648bb59ab02d8898ff, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 26749dcbe62694d41a783d8297034512, type: 2}
+      objectReference: {fileID: 2100000, guid: 34a4735484629c44a861bf1af73a2b72, type: 2}
     - target: {fileID: 919132149155446097, guid: c8bf0cd686216b648bb59ab02d8898ff, type: 3}
       propertyPath: m_Name
       value: waterMesh
