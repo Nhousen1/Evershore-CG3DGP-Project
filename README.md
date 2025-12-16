@@ -194,20 +194,18 @@ Change parameters in puzzle completion flags of the endmanager in the FinalHub s
 - ~~Remove the quit button from the web build,~~   
 - update web build version on itch page 
 
-### MARCUS:
-
-- ~~Bug: Dust continues after death~~  
-- ~~Tutorial level~~
+### MARCUS: 
+- ~~Add Tutorial level~~
 
 <img src="GDD_Images/tutorial.png" alt="tutorial" width="400">
 *Tutorial level featuring a new NPC.*
 
-- ~~Add combat level~~
+- ~~Add combat level (enemyLevel1)~~
 
 <img src="GDD_Images/enemylevel1.png" alt="enemylevel1" width="400">
 *EnemyLevel1 experiments with how vertical level design integrates in our game.*
 
-- ~~Polish the UI~~
+- ~~Polish the combat and menu UI~~
 
 <img src="GDD_Images/newUI.png" alt="newUI" width="400">
 *New UI Design gives old-timey look to Evershore*
@@ -222,7 +220,7 @@ Change parameters in puzzle completion flags of the endmanager in the FinalHub s
 - ~~Update readme to be current and add a future work section.~~  
 - ~~Gather playtesting feedback~~  
 - ~~Created logo~~
-<img src="GDD_Images/itchlogo.png" alt="newUI" width="400">  
+<img src="GDD_Images/itchlogo.png" alt="itchlogo" width="400">  
 - ~~Made and imported custom oar 3d model~~
 - ~~Fix tree collision and awkward level layout in final hub.~~
 - ~~Add water kill volume to the tutorial.~~  
