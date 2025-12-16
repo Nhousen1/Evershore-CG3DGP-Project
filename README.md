@@ -220,7 +220,7 @@ Nice to have:
 - ~~Update readme to be current and add a future work section.~~  
 - ~~Gather playtesting feedback~~  
 - ~~Created logo~~
-<img src="GDD_Images/Itchlogo.png" alt="Itchlogo" width="400">  
+<img src="GDD_Images/ItchLogo.png" alt="ItchLogo" width="400">  
 - ~~Made and imported custom oar 3d model~~
 - ~~Fix tree collision and awkward level layout in final hub.~~
 - ~~Add water kill volume to the tutorial.~~  
