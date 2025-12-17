@@ -291,5 +291,7 @@ https://assetstore.unity.com/packages/3d/environments/simplepoly-city-low-poly-a
 [https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-atmospheric-locations-pack-278928](https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-atmospheric-locations-pack-278928)  
 [https://assetstore.unity.com/packages/3d/animations/skeleton-animations-free-217504\#description](https://assetstore.unity.com/packages/3d/animations/skeleton-animations-free-217504#description)  
 [https://assetstore.unity.com/packages/3d/characters/humanoids/humans/human-character-dummy-178395](https://assetstore.unity.com/packages/3d/characters/humanoids/humans/human-character-dummy-178395), [https://assetstore.unity.com/packages/3d/animations/human-melee-animations-free-165785](https://assetstore.unity.com/packages/3d/animations/human-melee-animations-free-165785), [https://gamedevbeginner.com/singletons-in-unity-the-right-way/](https://gamedevbeginner.com/singletons-in-unity-the-right-way/), [https://github.com/roboryantron/Unite2017](https://github.com/roboryantron/Unite2017)  
-All material/texture/noise pngs from are from https://www.freepik.com  
+All material/texture/noise pngs from are from https://www.freepik.com
+https://www.youtube.com/watch?v=aRU-CWP0yOo
+
 
