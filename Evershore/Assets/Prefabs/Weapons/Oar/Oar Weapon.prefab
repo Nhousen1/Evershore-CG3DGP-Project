@@ -4979,7 +4979,7 @@ GameObject:
   - component: {fileID: 5258948567976367556}
   - component: {fileID: 2350489709934681524}
   m_Layer: 6
-  m_Name: Oar
+  m_Name: Oar Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

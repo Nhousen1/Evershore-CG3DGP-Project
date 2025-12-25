@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 /* Author: Marcus King
  * Date created: 10/1/2025
@@ -11,10 +12,6 @@ using UnityEngine.InputSystem;
 public class PointAim : MonoBehaviour
 {
     public Transform target;
-
-    [Header("Layer Filtering")]
-    //Which layers should the cursor raycast collide with
-    [SerializeField] private LayerMask aimLayers = 0;
 
     private void OnEnable()
     {
@@ -26,17 +23,29 @@ public class PointAim : MonoBehaviour
     }
     void Update()
     {
-        //Uses hit point so this system works with both perspective and orthographic projection
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Vector2 rawPointPostion = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 rawCenter = new Vector2(Screen.width/2, Screen.height/2);
+        Vector2 pointFromCenter = rawPointPostion - rawCenter;
+        pointFromCenter = pointFromCenter.normalized;
+        
+        Vector3 camSpacePointVector = (Camera.main.transform.right * pointFromCenter.x + Camera.main.transform.up * pointFromCenter.y).normalized;
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, aimLayers))
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 aimingPlane = Vector3.up;
+
+        float denominator = Vector3.Dot(aimingPlane, camForward);
+        if(Mathf.Abs(denominator) <= 0.0001)
         {
-            Vector3 hitPoint = hitInfo.point;
-            Vector3 dirVector = (hitPoint - target.transform.position).normalized;
-            Vector3 aimDir = new Vector3(dirVector.x, 0, dirVector.z);
-            Debug.DrawLine(target.transform.position, hitPoint, Color.red);
-
-            target.transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
+            return;
+            //Skip aiming because the player has cursor on character and is not aiming anywhere.
         }
+
+        float forwardAmmount = -1f * (Vector3.Dot(aimingPlane, camSpacePointVector)) / denominator;
+        Vector3 lookDir = (camSpacePointVector + camForward * forwardAmmount).normalized;
+
+        target.transform.rotation = Quaternion.LookRotation(lookDir);
+
+        Debug.Log(lookDir);
+        Debug.DrawLine(target.transform.position, target.transform.position + lookDir * 5, Color.red);
     }
 }
