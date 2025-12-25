@@ -26,20 +26,9 @@ public class bulletTrail : MonoBehaviour
         {
             Debug.LogError("Fadetime for bullet trail must be greater than 0");
         }
-        Activate(Camera.main.transform.position, Camera.main.transform.position + Camera.main.transform.forward*5);
     }
-    private void Update()
+    public void Play(Vector3 start, Vector3 end)
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            Debug.Log("test");
-            Activate(Camera.main.transform.position, Camera.main.transform.position + Camera.main.transform.forward * 5);
-        }
-    }
-
-    public void Activate(Vector3 start, Vector3 end)
-    {
-        gameObject.SetActive(true);
         StopAllCoroutines();
         currentFadeTime = fadeTime;
 
@@ -72,6 +61,5 @@ public class bulletTrail : MonoBehaviour
             yield return null;
        }
        pool.Release(this);
-       gameObject.SetActive(false);
     }
 }
