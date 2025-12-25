@@ -45,7 +45,6 @@ public class PointAim : MonoBehaviour
 
         target.transform.rotation = Quaternion.LookRotation(lookDir);
 
-        Debug.Log(lookDir);
         Debug.DrawLine(target.transform.position, target.transform.position + lookDir * 5, Color.red);
     }
 }
