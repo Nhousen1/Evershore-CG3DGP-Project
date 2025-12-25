@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Flare Gun Animator
+  m_Name: Mini Gun Animator
   m_Controller: {fileID: 9100000, guid: 3383b1f113ed9d144ade6656a5dd0464, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 3094330708855449807, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}

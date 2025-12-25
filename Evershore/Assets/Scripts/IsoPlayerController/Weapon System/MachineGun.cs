@@ -25,7 +25,6 @@ public class MachineGun : Weapon
     private float ammoRegenCounter;
 
     [Header("Particles")]
-    public ParticleSystem muzzleFlash;
     public GameObject bulletDust;
     public BulletTrailPool bulletTrailPool;
     public Transform barrelPoint;
@@ -68,7 +67,6 @@ public class MachineGun : Weapon
         ammoRegenCounter = ammoRegenTime;
         currentAmmo--;
 
-        muzzleFlash.Play();
         audioSource.PlayOneShot(fireSound);
         bulletTrail trail = bulletTrailPool.Get();
         trail.Play(barrelPoint.position, shootPoint.transform.position + shootPoint.transform.forward * range);
@@ -98,6 +96,5 @@ public class MachineGun : Weapon
     }
     public override void StopAttack()
     {
-        muzzleFlash.Stop();
     }
 }

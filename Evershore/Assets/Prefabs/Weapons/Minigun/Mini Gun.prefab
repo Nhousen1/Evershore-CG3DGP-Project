@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 463698553144723210}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000074503363, y: -0.7071069, z: 0.000000026541947, w: -0.7071067}
-  m_LocalPosition: {x: 0.34597299, y: 0.098584, z: 0}
+  m_LocalPosition: {x: -0.028, y: 0.109, z: -0.731}
   m_LocalScale: {x: 1.31, y: 1.31, z: 1.31}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,15 +55,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029855998756241986}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.7071066, z: -0, w: 0.70710707}
+  m_LocalPosition: {x: 0.286, y: 0.049, z: 0.035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5860168601188847870}
   - {fileID: 674865989768866366}
   m_Father: {fileID: 72374837409969139}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &5543873088699742000
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,14 +114,13 @@ MonoBehaviour:
   windUp: 0
   active: 0.01
   recovery: 0.02
-  overrideController: {fileID: 22100000, guid: da87ae6e9bc8a8f4ab8ab3f5dadaf6b3, type: 2}
+  overrideController: {fileID: 22100000, guid: ce8b06b8dba9be94db50e48547e6fb88, type: 2}
   animator: {fileID: 0}
   damage: 1
   range: 20
   MaxAmmo: 100
   currentAmmo: 100
   ammoRegenTime: 0.1
-  muzzleFlash: {fileID: 0}
   bulletDust: {fileID: 1210802516905347179, guid: 10948de4b150034498bc95ea2298e456, type: 3}
   bulletTrailPool: {fileID: 0}
   barrelPoint: {fileID: 674865989768866366}
@@ -244,6 +243,18 @@ PrefabInstance:
       value: M249
       objectReference: {fileID: 0}
     - target: {fileID: 4251306428143386, guid: 432643b6e5110004083fdff3e33e490b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251306428143386, guid: 432643b6e5110004083fdff3e33e490b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251306428143386, guid: 432643b6e5110004083fdff3e33e490b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251306428143386, guid: 432643b6e5110004083fdff3e33e490b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -281,6 +292,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4251306428143386, guid: 432643b6e5110004083fdff3e33e490b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251306428143386, guid: 432643b6e5110004083fdff3e33e490b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

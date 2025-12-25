@@ -86,10 +86,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   damage: 4
   range: 10
-  MaxAmmo: 10
+  MaxAmmo: 100
   currentAmmo: 10
   ammoRegenTime: 1
-  muzzleFlash: {fileID: 4225332857069879313}
   bulletDust: {fileID: 1210802516905347179, guid: 10948de4b150034498bc95ea2298e456, type: 3}
   bulletTrailPool: {fileID: 0}
   barrelPoint: {fileID: 674865989768866366}
@@ -259,11 +258,6 @@ PrefabInstance:
 --- !u!4 &674865989768866366 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4054974685133517827, guid: 1d5e1d05ef07cec4fad25eacd9cc5d2d, type: 3}
-  m_PrefabInstance: {fileID: 3538618707091643965}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4225332857069879313 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 844661531102682668, guid: 1d5e1d05ef07cec4fad25eacd9cc5d2d, type: 3}
   m_PrefabInstance: {fileID: 3538618707091643965}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5024692710236919638
