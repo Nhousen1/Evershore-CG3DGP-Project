@@ -260,6 +260,15 @@ After getting feedback from playtesters, the following features are most importa
 - The endings are not very rewarding for players. If the player leaves quietly, the text should be supplemented with a battle on the boat before it gets captured. If the player alerts the villagers, have a similar sequence in the hub level
 - If the player kills all the skeletons, unlock a weapon which allows the player to get the massacre ending.
 
+#### MARCUS CONTINUED WORK (12/25)
+- Update logo to be thicker
+- Used screen space center vector aiming system to replace the raycast intersection aiming
+- Add a procedural bullet trail that scale with weapon rage and uses object pooling for better preformance
+- Add M240 Machine gun
+- Tweak combat weapon values
+- Add "heavy" weapon type where player cannot sprint while holding
+- Overhaul the weapon widget system to dynamically scale with number of weapons
+
 
 ## Game Demo:
 Note that for the last 2 endings of this demo I used cheat codes to instantly finish the puzzles rather than spending the 15 extra minutes to play through the 4 scenes twice more over again each.
