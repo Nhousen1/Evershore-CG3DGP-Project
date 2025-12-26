@@ -268,6 +268,7 @@ After getting feedback from playtesters, the following features are most importa
 - Tweak combat weapon values
 - Add "heavy" weapon type where player cannot sprint while holding
 - Overhaul the weapon widget system to dynamically scale with number of weapons
+- Added camera shake
 
 
 ## Game Demo:
