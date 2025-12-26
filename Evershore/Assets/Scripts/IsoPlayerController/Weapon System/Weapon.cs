@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 public enum FireMode { Single, AutoHold }
 /* Author: Marcus King
  * Date created: 10/1/2025
- * Date last updated: 10/6/2025
+ * Date last updated: 12/26/2025
  * Summary: enumerates through an attack cycle defined in inspector. Inherited scripts handle attack function.
  */
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerMovement movement;
+
+    [SerializeField]
+    private bool SlowMovement = false;
     [Header("Cycle Timing")]
     [SerializeField] 
     private FireMode fireMode = FireMode.Single;
@@ -66,12 +73,20 @@ public abstract class Weapon : MonoBehaviour
     public abstract void StopAttack();
     private void OnDisable()
     {
+        if (SlowMovement)
+        {
+            movement.enableSprint();
+        }
         isCycling = false;
         isAttackHeld = false;
         StopAllCoroutines();
     }
     private void OnEnable()
     {
+        if(SlowMovement)
+        {
+            movement.disableSprint();
+        }
         isCycling = false;
         isAttackHeld = false;
     }

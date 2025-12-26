@@ -1,26 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+/* Author: Marcus King
+ * Date created: 12/25/2025
+ * Date last updated: 12/25/2025
+ * Summary: placeholder UI manager for weapon widgets
+ */
 public class WeaponWidgetManager : MonoBehaviour
 {
-    //TODO: make this scale with different items
     public WeaponManager manager;
-    public GameObject oarWidget;
-    public GameObject flareWidget;
+    public List<GameObject> weaponWidgets;//TODO: in future, inject from prefab references from weapons
+    private int currentIndex = 0; //TODO: Have this sync with weapons manager index
 
-    // Update is called once per frame
-    void Update()
+    
+    [SerializeField] private InputActionReference next;
+    [SerializeField] private InputActionReference previous;
+
+    private void Awake()
     {
-        if (manager.activeWeapon.GetComponent<OarWeapon>())
+        foreach (var weapon in weaponWidgets)
         {
-            oarWidget.SetActive(true);
-            flareWidget.SetActive(false);
+            weapon.gameObject.SetActive(false);
         }
-        if (manager.activeWeapon.GetComponent<MachineGun>())
+        currentIndex = manager.weaponList.IndexOf(manager.activeWeapon); //UNSAFE: assumes dev has perfectly synced the lists
+        showWidgetAtIndex(currentIndex);
+    }
+    private void OnEnable()
+    {
+        next.action.performed += onNext;
+        previous.action.performed += onPrevious;
+    }
+    private void OnDisable()
+    {
+        next.action.performed -= onNext;
+        previous.action.performed -= onNext;
+    }
+    private void onNext(InputAction.CallbackContext ctx)
+    {
+        currentIndex = (currentIndex + 1) % weaponWidgets.Count;
+        showWidgetAtIndex(currentIndex);
+    }
+    private void onPrevious(InputAction.CallbackContext ctx)
+    {
+        currentIndex = (currentIndex - 1 + weaponWidgets.Count) % weaponWidgets.Count;
+        showWidgetAtIndex(currentIndex);
+    }
+    private void showWidgetAtIndex(int index)
+    {
+        if(index > weaponWidgets.Count)
         {
-            flareWidget.SetActive(true);
-            oarWidget.SetActive(false);
+            Debug.LogError("Index out of list bounds");
+            return;
+        }
+        foreach (GameObject widget in weaponWidgets) 
+        { 
+            if(widget == weaponWidgets[index]) 
+            {
+                widget.SetActive(true);
+            }
+            else
+            {
+                widget.SetActive(false);
+            }
         }
     }
 }

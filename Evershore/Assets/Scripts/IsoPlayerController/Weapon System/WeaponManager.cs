@@ -14,7 +14,7 @@ public class WeaponManager : MonoBehaviour
 {
     [Header("Inventory")]
     [SerializeField]
-    private List<Weapon> weaponList;
+    public List<Weapon> weaponList;
     public Weapon activeWeapon;
     [Header("Animation")]
     public Transform weaponFollowPoint;

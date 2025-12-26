@@ -25,8 +25,11 @@ public class MachineGun : Weapon
     private float ammoRegenCounter;
 
     [Header("Particles")]
-    public ParticleSystem muzzleFlash;
     public GameObject bulletDust;
+    public BulletTrailPool bulletTrailPool;
+    public Transform barrelPoint;
+    public UnityEvent onFire;
+
     [Header("Collision Info")]
     [SerializeField]
     private Transform shootPoint;
@@ -65,11 +68,15 @@ public class MachineGun : Weapon
         ammoRegenCounter = ammoRegenTime;
         currentAmmo--;
 
-        muzzleFlash.Play();
+        onFire.Invoke();
         audioSource.PlayOneShot(fireSound);
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out RaycastHit hit, range, damageLayers))
+        bulletTrail trail = bulletTrailPool.Get();
+        trail.Play(barrelPoint.position, shootPoint.transform.position + shootPoint.transform.forward * range);
+
+        if(Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out RaycastHit hit, range, damageLayers)) 
         {
             Debug.DrawLine(shootPoint.position, hit.point, Color.red, 0.1f);
+
             GameObject impact = Instantiate(bulletDust, hit.collider.transform.position, hit.collider.transform.rotation);
             var life = hit.collider.GetComponent<EnemyLife>();
 
@@ -88,10 +95,8 @@ public class MachineGun : Weapon
                 }
             }
         }
-        
     }
     public override void StopAttack()
     {
-        muzzleFlash.Stop();
     }
 }
