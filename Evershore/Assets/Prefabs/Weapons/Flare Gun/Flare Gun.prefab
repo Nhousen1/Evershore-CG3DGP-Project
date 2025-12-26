@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a82a5658e6ec8849a692240480c0416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireMode: 1
+  fireMode: 0
   windUp: 0
   active: 0.01
   recovery: 0.15

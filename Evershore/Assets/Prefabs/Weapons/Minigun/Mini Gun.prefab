@@ -113,14 +113,14 @@ MonoBehaviour:
   fireMode: 1
   windUp: 0
   active: 0.01
-  recovery: 0.02
+  recovery: 0.09
   overrideController: {fileID: 22100000, guid: ce8b06b8dba9be94db50e48547e6fb88, type: 2}
   animator: {fileID: 0}
-  damage: 1
+  damage: 2
   range: 20
-  MaxAmmo: 100
-  currentAmmo: 100
-  ammoRegenTime: 0.1
+  MaxAmmo: 50
+  currentAmmo: 50
+  ammoRegenTime: 0.2
   bulletDust: {fileID: 1210802516905347179, guid: 10948de4b150034498bc95ea2298e456, type: 3}
   bulletTrailPool: {fileID: 0}
   barrelPoint: {fileID: 674865989768866366}
