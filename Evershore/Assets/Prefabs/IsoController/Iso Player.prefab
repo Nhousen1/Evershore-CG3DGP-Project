@@ -2557,6 +2557,10 @@ PrefabInstance:
       propertyPath: hitPoint
       value: 
       objectReference: {fileID: 9195444798436667670}
+    - target: {fileID: 5258948567976367556, guid: c8d4165b168c68744bb15b4a4b9d42b7, type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 24673468124281660}
     - target: {fileID: 5543873088699742000, guid: c8d4165b168c68744bb15b4a4b9d42b7, type: 3}
       propertyPath: m_Name
       value: Oar Weapon
@@ -2587,6 +2591,10 @@ PrefabInstance:
       propertyPath: MaxAmmo
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -976117518124887927, guid: 2c42245e37c33614182716d6cc3a405b, type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 24673468124281660}
     - target: {fileID: -976117518124887927, guid: 2c42245e37c33614182716d6cc3a405b, type: 3}
       propertyPath: shootPoint
       value: 
@@ -2662,9 +2670,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 8252694692876780093}
     m_Modifications:
     - target: {fileID: -976117518124887927, guid: 548e088712aa7764fbdaeae65c85d1fd, type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 24673468124281660}
+    - target: {fileID: -976117518124887927, guid: 548e088712aa7764fbdaeae65c85d1fd, type: 3}
       propertyPath: shootPoint
       value: 
       objectReference: {fileID: 9195444798436667670}
+    - target: {fileID: -976117518124887927, guid: 548e088712aa7764fbdaeae65c85d1fd, type: 3}
+      propertyPath: SlowMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -976117518124887927, guid: 548e088712aa7764fbdaeae65c85d1fd, type: 3}
       propertyPath: bulletTrailPool
       value: 

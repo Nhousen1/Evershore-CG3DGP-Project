@@ -9,6 +9,10 @@ public enum FireMode { Single, AutoHold }
  */
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerMovement movement;
+    [SerializeField]
+    private bool SlowMovement = false;
     [Header("Cycle Timing")]
     [SerializeField] 
     private FireMode fireMode = FireMode.Single;
@@ -66,12 +70,20 @@ public abstract class Weapon : MonoBehaviour
     public abstract void StopAttack();
     private void OnDisable()
     {
+        if (SlowMovement)
+        {
+            movement.enableSprint();
+        }
         isCycling = false;
         isAttackHeld = false;
         StopAllCoroutines();
     }
     private void OnEnable()
     {
+        if(SlowMovement)
+        {
+            movement.disableSprint();
+        }
         isCycling = false;
         isAttackHeld = false;
     }

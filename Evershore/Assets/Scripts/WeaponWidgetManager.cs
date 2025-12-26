@@ -20,6 +20,10 @@ public class WeaponWidgetManager : MonoBehaviour
 
     private void Awake()
     {
+        foreach (var weapon in weaponWidgets)
+        {
+            weapon.gameObject.SetActive(false);
+        }
         currentIndex = manager.weaponList.IndexOf(manager.activeWeapon); //UNSAFE: assumes dev has perfectly synced the lists
         showWidgetAtIndex(currentIndex);
     }

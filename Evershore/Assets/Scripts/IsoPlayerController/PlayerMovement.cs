@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Input Flags")]
     [SerializeField]
     private bool canMove;
+    private bool canSprint;
 
     [Header("Animator and particles")]
     [SerializeField]
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float speed = walkSpeed * (isRunning ? runSpeedMultiplier : 1f);
+        float speed = walkSpeed * (isRunning && canSprint ? runSpeedMultiplier : 1f);
 
         Vector3 move = isoForward * moveInput.x + isoRight * moveInput.y;
         Vector3 moveAdjusted = new Vector3(move.x * speed * Time.deltaTime, 0, move.z * speed * Time.deltaTime);
@@ -175,5 +176,13 @@ public class PlayerMovement : MonoBehaviour
             footstepSource.PlayOneShot(footstepClip);
             footstepTimer = interval;
         }
+    }
+    public void disableSprint()
+    {
+        canSprint = false;
+    }
+    public void enableSprint()
+    {
+        canSprint = true;
     }
 }

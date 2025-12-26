@@ -3168,8 +3168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   weaponWidgets: []
-  next: {fileID: 0}
-  previous: {fileID: 0}
+  next: {fileID: 7978986749307992920, guid: 6da3de0cb30b87742ac181f60e917a5b, type: 3}
+  previous: {fileID: 1175091833803317061, guid: 6da3de0cb30b87742ac181f60e917a5b, type: 3}
 --- !u!1 &7280863413924741277
 GameObject:
   m_ObjectHideFlags: 0
