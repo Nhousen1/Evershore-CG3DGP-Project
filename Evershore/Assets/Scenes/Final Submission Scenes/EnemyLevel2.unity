@@ -228,6 +228,22 @@ PrefabInstance:
       propertyPath: playerLife
       value: 
       objectReference: {fileID: 144638006}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeWindup
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: maxChargeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (7)
@@ -520,6 +536,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 487291937622501562, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: range
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617342406869167736, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.000008
+      objectReference: {fileID: 0}
     - target: {fileID: 7319231641874773411, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 92.15
@@ -1283,6 +1307,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1898859959990307860, guid: 183f673e56c443641ba59fc6e59eac64, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898859959990307860, guid: 183f673e56c443641ba59fc6e59eac64, type: 3}
+      propertyPath: m_Volume
+      value: 0.297
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898859959990307860, guid: 183f673e56c443641ba59fc6e59eac64, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 150b9fd3977af164492ed62a93b515c5, type: 3}
+    - target: {fileID: 1898859959990307860, guid: 183f673e56c443641ba59fc6e59eac64, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 150b9fd3977af164492ed62a93b515c5, type: 3}
     - target: {fileID: 3187536046427398679, guid: 183f673e56c443641ba59fc6e59eac64, type: 3}
       propertyPath: m_Name
       value: Ambience
@@ -2006,7 +2046,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 240034507435413051, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: fireRate
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 371595361513700876, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2678,7 +2718,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 240034507435413051, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: fireRate
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 371595361513700876, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2942,6 +2982,22 @@ PrefabInstance:
       propertyPath: playerLife
       value: 
       objectReference: {fileID: 144638006}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeWindup
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: maxChargeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (2)
@@ -3571,6 +3627,22 @@ PrefabInstance:
       propertyPath: playerLife
       value: 
       objectReference: {fileID: 144638006}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeWindup
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: maxChargeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (6)
@@ -4388,7 +4460,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 240034507435413051, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: fireRate
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 371595361513700876, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4853,6 +4925,22 @@ PrefabInstance:
       propertyPath: playerLife
       value: 
       objectReference: {fileID: 144638006}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeWindup
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: maxChargeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
@@ -5071,6 +5159,22 @@ PrefabInstance:
       propertyPath: playerLife
       value: 
       objectReference: {fileID: 144638006}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeWindup
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: maxChargeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (4)
@@ -5186,7 +5290,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 240034507435413051, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: fireRate
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 371595361513700876, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5387,6 +5491,22 @@ PrefabInstance:
       propertyPath: playerLife
       value: 
       objectReference: {fileID: 144638006}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeWindup
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: maxChargeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (5)
@@ -5679,7 +5799,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 240034507435413051, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: fireRate
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 371595361513700876, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5756,7 +5876,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 240034507435413051, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: fireRate
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 371595361513700876, guid: 0495b5feb9f3041d39f441ac2b3250b4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6388,6 +6508,22 @@ PrefabInstance:
       propertyPath: playerLife
       value: 
       objectReference: {fileID: 144638006}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeWindup
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: maxChargeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (1)
@@ -6806,6 +6942,22 @@ PrefabInstance:
       propertyPath: playerLife
       value: 
       objectReference: {fileID: 144638006}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: chargeWindup
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: defenseDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487750905452824801, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
+      propertyPath: maxChargeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3909060113810735952, guid: 88cf6f1df5107484f87f2756e8edbec9, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (3)

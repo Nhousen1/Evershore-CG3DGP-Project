@@ -1853,6 +1853,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 221298507920985165, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 502719346171623168, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4617342406869167736, guid: aa9ce702fd6252d419924efdd7c5947a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.247522

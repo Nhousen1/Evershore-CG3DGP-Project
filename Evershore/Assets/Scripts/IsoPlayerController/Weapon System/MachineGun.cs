@@ -28,6 +28,7 @@ public class MachineGun : Weapon
     public GameObject bulletDust;
     public BulletTrailPool bulletTrailPool;
     public Transform barrelPoint;
+    public UnityEvent onFire;
 
     [Header("Collision Info")]
     [SerializeField]
@@ -67,6 +68,7 @@ public class MachineGun : Weapon
         ammoRegenCounter = ammoRegenTime;
         currentAmmo--;
 
+        onFire.Invoke();
         audioSource.PlayOneShot(fireSound);
         bulletTrail trail = bulletTrailPool.Get();
         trail.Play(barrelPoint.position, shootPoint.transform.position + shootPoint.transform.forward * range);

@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Input Flags")]
     [SerializeField]
     private bool canMove;
-    private bool canSprint;
+    [SerializeField]
+    private bool canSprint = true;
 
     [Header("Animator and particles")]
     [SerializeField]
